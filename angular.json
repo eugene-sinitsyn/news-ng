@@ -52,6 +52,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/ng-news/",
               "deployUrl": "/ng-news/",
               "fileReplacements": [
                 {
