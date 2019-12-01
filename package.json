@@ -4,8 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "lint": "ng lint"
+    "build": "ng build --prod",
+    "lint": "ng lint",
+    "publish": "gh-pages -d dist",
+    "deploy": "npm run build && npm run publish"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +29,7 @@
     "@angular/compiler-cli": "~8.0.1",
     "@angular/language-service": "~8.0.1",
     "@types/node": "~8.9.4",
+    "gh-pages": "^2.1.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
