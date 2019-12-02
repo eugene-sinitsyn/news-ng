@@ -1,3 +1,7 @@
-import { createReducer } from '@ngrx/store';
+import { createReducer, Action } from '@ngrx/store';
 
-export const newsReducer = createReducer({});
+const reducer = createReducer({});
+
+export function newsReducer(state: any, action: Action) {
+  return reducer(state, action);
+}

@@ -1,4 +1,4 @@
-import { ArticleModel } from '@domain/models';
+import { ArticleModel } from '@domain';
 
 export class ArticlesResponseModel {
   public status: string;
