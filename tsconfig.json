@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
+    "outDir": "./out-tsc/app",
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -17,6 +17,17 @@
     "lib": [
       "es2018",
       "dom"
-    ]
-  }
+    ],
+    "paths": {
+      "@state": ["src/state"],
+      "@network": ["src/network"]
+    }
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/test.ts",
+    "src/**/*.spec.ts"
+  ],
 }
