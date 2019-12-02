@@ -1,3 +1,3 @@
 Under construction...
 
-Live: https://eugene-sinitsyn.github.io/ng-news/
+Live: https://eugene-sinitsyn.github.io/news-ng/

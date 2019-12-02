@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-news": {
+    "news-ng": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:class": {
@@ -52,8 +52,8 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/ng-news/",
-              "deployUrl": "/ng-news/",
+              "baseHref": "/news-ng/",
+              "deployUrl": "/news-ng/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -82,21 +82,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-news:build"
+            "browserTarget": "news-ng:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-news:build:production"
+              "browserTarget": "news-ng:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ng-news:build"
+            "browserTarget": "news-ng:build"
           }
         }
       }
     }},
-  "defaultProject": "ng-news"
+  "defaultProject": "news-ng"
 }

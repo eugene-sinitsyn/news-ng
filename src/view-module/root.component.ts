@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './root.component.html',
   styles: []
 })
-export class AppComponent {
-  title = 'ng-news';
-}
+export class AppComponent {}
