@@ -1,28 +1,17 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '@environment';
 
 export abstract class HttpService {
   protected constructor(protected readonly httpClient: HttpClient) {}
 
   protected async httpGet(
-    url: string,
-    queryParams: { [key: string]: string } = null
+    endpoint: string,
+    queryParams: HttpParams = null
   ): Promise<any> {
-    const query = this.toQueryParamsString(queryParams);
+    const url = `${environment.apiBaseUrl}/${endpoint}`;
     const response = await this.httpClient
-      .get(`${environment.apiBaseUrl}/${url}${query}`)
+      .get(url, { params: queryParams })
       .toPromise();
     return response;
-  }
-
-  protected toQueryParamsString(queryParams: { [key: string]: string }): string {
-    if (!queryParams) return '';
-
-    const params = Object
-      .keys(queryParams)
-      .filter(key => queryParams[key])
-      .map(key => `${key}=${queryParams[key]}`)
-      .join('&');
-    return params ? `?${params}` : '';
   }
 }
