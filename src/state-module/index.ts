@@ -1,2 +1,2 @@
 export * from './state.module';
-export * from './models';
+export * from './models/root-state.model';

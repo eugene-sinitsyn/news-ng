@@ -1,2 +1,2 @@
 export * from './network.module';
-export * from './models';
+export * from './models/articles-response.model';
