@@ -22,7 +22,8 @@
       "@view": ["src/view-module"],
       "@state": ["src/state-module"],
       "@network": ["src/network-module"],
-      "@domain": ["src/domain-module"]
+      "@domain": ["src/domain-module"],
+      "@environment": ["src/environments/environment"]
     }
   },
   "include": [
