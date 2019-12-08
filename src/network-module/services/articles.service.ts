@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpService } from '../http/http.service';
-import { ArticleModel, TopArticlesRequestModel } from '@domain';
+import { TopArticlesRequestModel, ArticleModel } from '@domain';
 import { environment } from '@environment';
 
 export class ArticlesService extends HttpService {
@@ -8,7 +8,7 @@ export class ArticlesService extends HttpService {
     super(httpClient);
   }
 
-  public async getTop(request: TopArticlesRequestModel): Promise<void> { // Promise<ArticleModel[]>
+  public async getTop(request: TopArticlesRequestModel): Promise<ArticleModel[]> {
     const params = new HttpParams();
     params.set('apiKey', environment.apiKey);
     if (request) {
@@ -22,5 +22,7 @@ export class ArticlesService extends HttpService {
 
     const response = await this.httpGet('top-headlines', params);
     console.dir(response);
+
+    return [];
   }
 }
