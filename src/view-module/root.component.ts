@@ -17,17 +17,25 @@ export class AppComponent {
   public readonly articles$: Observable<ArticleModel[]>;
 
   public fetchTop(): void {
+    this.clearArticles();
     this.store.dispatch(articlesActions.loadTopArticles({
       request: { language: LanguageEnum.english }
     }));
   }
 
   public fetchEverything(): void {
+    this.clearArticles();
     this.store.dispatch(articlesActions.searchArticles({
       request: {
         language: LanguageEnum.english,
         searchString: 'Microsoft'
       }
+    }));
+  }
+
+  private clearArticles(): void {
+    this.store.dispatch(articlesActions.storeArticles({
+      articles: []
     }));
   }
 }
