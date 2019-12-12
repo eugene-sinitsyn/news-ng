@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'news-root',
   templateUrl: './root.component.html',
-  styles: []
 })
 export class AppComponent {
   public constructor(private readonly store: Store<RootStateModel>) {

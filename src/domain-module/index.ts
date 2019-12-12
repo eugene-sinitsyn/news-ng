@@ -1,4 +1,6 @@
 export * from './models/article-source.model';
+export * from './models/article-source-details.model';
+export * from './models/article-sources-request.model';
 export * from './models/article.model';
 export * from './models/top-articles-request.model';
 export * from './models/search-articles-request.model';
