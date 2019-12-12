@@ -12,7 +12,7 @@ export class ArticlesService extends HttpService {
     super(httpClient);
   }
 
-  public async getTop(request: TopArticlesRequestModel): Promise<ArticleModel[]> {
+  public async searchTop(request: TopArticlesRequestModel): Promise<ArticleModel[]> {
     let params: HttpParams = new HttpParams()
       .set('apiKey', environment.apiKey)
       .set('language', request.language);

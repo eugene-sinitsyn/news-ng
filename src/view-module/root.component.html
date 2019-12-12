@@ -1,6 +1,12 @@
 Under construction...
+<br />
+
 <button (click)="fetchTop()">Fetch "top headlines" headlines</button>
 <button (click)="fetchEverything()">Fetch "everything" endpoint</button>
+<button (click)="fetchSources()">Fetch "sources" endpoint</button>
+
 <p>{{ articles$ | async | json }}</p>
+<p>{{ sources$ | async | json }}</p>
+
 <router-outlet></router-outlet>
 <p>Powered by <a href="https://newsapi.org" target="_blank">News API</a></p>

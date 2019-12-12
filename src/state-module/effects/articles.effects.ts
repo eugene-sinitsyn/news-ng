@@ -29,7 +29,7 @@ export class ArticlesEffects {
   );
 
   private mapToStoreTopArticles(request: TopArticlesRequestModel): Promise<Action> {
-    return this.articlesService.getTop(request)
+    return this.articlesService.searchTop(request)
       .then(articles => articlesActions.storeArticles({ articles }));
       // TODO: .catch(error => )
   }
