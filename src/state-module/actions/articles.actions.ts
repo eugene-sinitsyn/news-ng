@@ -6,8 +6,8 @@ import {
 } from '@domain';
 
 export const articlesActions = {
-  loadTopArticles: createAction(
-    'articles-load-top',
+  searchTopArticles: createAction(
+    'articles-search-top',
     props<{ request: TopArticlesRequestModel }>()
   ),
   searchArticles: createAction(
@@ -15,7 +15,7 @@ export const articlesActions = {
     props<{ request: SearchArticlesRequestModel }>()
   ),
   storeArticles: createAction(
-    'store-articles',
+    'articles-store',
     props<{ articles: ArticleModel[] }>()
   )
 };

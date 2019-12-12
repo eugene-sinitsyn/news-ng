@@ -19,8 +19,10 @@ export class ArticlesService extends HttpService {
 
     if (request.country) params = params.set('country', request.country);
     if (request.category) params = params.set('category', request.category);
-    if (request.sources) params = params.set('sources', request.sources.join(','));
-    if (request.searchString) params = params.set('q', request.searchString);
+    if (request.sources && request.sources.length)
+      params = params.set('sources', request.sources.join(','));
+    if (request.searchString)
+      params = params.set('q', encodeURI(request.searchString));
     if (request.pageSize) params = params.set('pageSize', request.pageSize.toString());
     if (request.page) params = params.set('page', request.page.toString());
 

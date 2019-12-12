@@ -17,7 +17,7 @@ export class AppComponent {
 
   public fetchTop(): void {
     this.clearArticles();
-    this.store.dispatch(articlesActions.loadTopArticles({
+    this.store.dispatch(articlesActions.searchTopArticles({
       request: { language: LanguageEnum.english }
     }));
   }

@@ -14,9 +14,9 @@ export class ArticlesEffects {
     private readonly articlesService: ArticlesService
   ) {}
 
-  public readonly loadTopArticles$: Observable<Action> = createEffect(
+  public readonly searchTopArticles$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
-      ofType(articlesActions.loadTopArticles),
+      ofType(articlesActions.searchTopArticles),
       mergeMap(action => this.mapToStoreTopArticles(action.request))
     )
   );
