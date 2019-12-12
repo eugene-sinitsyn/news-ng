@@ -1,9 +1,9 @@
-import { ArticleSourceModel } from './article-source.model';
+import { SourceModel } from './source.model';
 import { LanguageEnum } from '../enums/language.enum';
 import { CategoryEnum } from '../enums/category.enum';
 import { CountryEnum } from '../enums/country.enum';
 
-export class ArticleSourceDetailsModel extends ArticleSourceModel {
+export class SourceDetailsModel extends SourceModel {
   public description: string;
   public url: string;
   public category: CategoryEnum;

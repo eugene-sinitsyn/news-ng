@@ -1,7 +1,7 @@
-import { ArticleSourceModel } from './article-source.model';
+import { SourceModel } from './source.model';
 
 export class ArticleModel {
-  public source: ArticleSourceModel;
+  public source: SourceModel;
   public author: string;
   public title: string;
   public description: string;
