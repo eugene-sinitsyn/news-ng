@@ -1,9 +1,15 @@
 Under construction...
 <br />
 
-<button (click)="fetchTop()">Fetch "top headlines" headlines</button>
-<button (click)="fetchEverything()">Fetch "everything" endpoint</button>
-<button (click)="fetchSources()">Fetch "sources" endpoint</button>
+<button mat-raised-button (click)="fetchTop()">
+  Fetch "top headlines" headlines
+</button>
+<button mat-raised-button (click)="fetchEverything()">
+  Fetch "everything" endpoint
+</button>
+<button mat-raised-button (click)="fetchSources()">
+  Fetch "sources" endpoint
+</button>
 
 <p>{{ articles$ | async | json }}</p>
 <p>{{ sources$ | async | json }}</p>
