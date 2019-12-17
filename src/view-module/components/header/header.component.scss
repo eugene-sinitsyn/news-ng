@@ -1,0 +1,20 @@
+:host {
+  display: flex;
+  align-items: baseline;
+  padding: 16px;
+
+  .title {
+    padding-right: 36px;
+  }
+
+  .spacer {
+    flex-grow: 1;
+  }
+
+  .language-select {
+    width: 35px;
+    line-height: 36px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
