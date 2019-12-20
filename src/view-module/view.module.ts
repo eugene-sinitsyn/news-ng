@@ -10,8 +10,14 @@ import { AppComponent } from './root.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ArticleCardComponent } from './components/article-card/article-card.component';
+import { TopArticlesComponent } from './pages/top-articles/top-articles.component';
+import { SearchArticlesComponent } from './pages/search-articles/search-articles.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: TopArticlesComponent },
+  { path: 'search', component: SearchArticlesComponent }
+  // TODO: 404 page
+];
 const materialModules = [
   MatButtonModule,
   MatSelectModule,
@@ -23,7 +29,9 @@ const materialModules = [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    ArticleCardComponent
+    ArticleCardComponent,
+    TopArticlesComponent,
+    SearchArticlesComponent
   ],
   imports: [
     BrowserModule,

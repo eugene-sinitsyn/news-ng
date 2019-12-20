@@ -1,7 +1,20 @@
-<h1 class="title">Header</h1>
-<button class="action" mat-button>Action 1</button>
-<button class="action" mat-button>Action 2</button>
+<h1 class="title">News</h1>
+
+<a routerLink="/"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+  class="action"
+  mat-button
+>Top Articles</a>
+
+<a routerLink="/search"
+  routerLinkActive="active"
+  class="action"
+  mat-button
+>Search</a>
+
 <span class="spacer"></span>
+
 <span class="language-select">
   <mat-select value="en">
     <mat-option value="en">en</mat-option>

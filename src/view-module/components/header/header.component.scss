@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 :host {
   display: flex;
   align-items: baseline;
@@ -5,6 +7,14 @@
 
   .title {
     padding-right: 36px;
+  }
+
+  .action {
+    border-bottom: 5px solid transparent;
+
+    &.active {
+      border-bottom-color: $light-dividers;
+    }
   }
 
   .spacer {
