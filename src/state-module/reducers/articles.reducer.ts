@@ -3,8 +3,8 @@ import { ArticleModel } from '@domain';
 import { articlesActions } from '../actions/articles.actions';
 
 const reducer = createReducer<ArticleModel[], Action>(
-  [],
-  on(articlesActions.storeArticles, (state, action) => [...action.articles])
+  null,
+  on(articlesActions.storeArticles, (state, action) => action.articles)
 );
 
 export function articlesReducer(

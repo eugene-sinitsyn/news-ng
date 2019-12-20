@@ -12,6 +12,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ArticleCardComponent } from './components/article-card/article-card.component';
 import { TopArticlesComponent } from './pages/top-articles/top-articles.component';
 import { SearchArticlesComponent } from './pages/search-articles/search-articles.component';
+import { ArticlesComponent } from './components/articles/articles.component';
+import { SearchFilterComponent } from './components/search-filter/search-filter.component';
+import { TopFilterComponent } from './components/top-filter/top-filter.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -31,7 +34,10 @@ const materialModules = [
     FooterComponent,
     ArticleCardComponent,
     TopArticlesComponent,
-    SearchArticlesComponent
+    SearchArticlesComponent,
+    ArticlesComponent,
+    SearchFilterComponent,
+    TopFilterComponent
   ],
   imports: [
     BrowserModule,
