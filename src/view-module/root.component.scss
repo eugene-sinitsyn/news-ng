@@ -1,7 +1,9 @@
 :host {
   height: 100%;
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
+  margin: 0px auto;
 
   .content {
     flex-grow: 1;

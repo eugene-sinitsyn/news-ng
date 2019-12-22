@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StateModule } from '@state';
 import { AppComponent } from './root.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -44,6 +45,7 @@ const materialModules = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     ...materialModules,
+    FontAwesomeModule,
     StateModule
   ],
   providers: [],

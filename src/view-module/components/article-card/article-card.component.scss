@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  width: 300px;
+  padding: 10px;
+
+  mat-card-actions {
+    text-align: right;
+
+    fa-icon {
+      margin-left: 6px;
+      font-size: 11px;
+    }
+  }
+}

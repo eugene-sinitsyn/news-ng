@@ -3,7 +3,8 @@ import { ArticleModel } from '@domain';
 
 @Component({
   selector: 'news-articles',
-  templateUrl: './articles.component.html'
+  templateUrl: './articles.component.html',
+  styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent {
   @Input() articles: ArticleModel[];
