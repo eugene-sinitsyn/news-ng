@@ -5,10 +5,16 @@
       {{ article.source.name }}
     </mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image [src]="article.urlToImage" />
+
+  <img *ngIf="article.urlToImage"
+    mat-card-image
+    [src]="article.urlToImage"
+  />
+
   <mat-card-content>
     <p>{{ article.description }}</p>
   </mat-card-content>
+
   <mat-card-actions>
     <a [href]="article.url" target="_blank" mat-button>
       Read full article
