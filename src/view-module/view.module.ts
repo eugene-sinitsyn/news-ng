@@ -16,6 +16,8 @@ import { SearchArticlesComponent } from './pages/search-articles/search-articles
 import { ArticlesComponent } from './components/articles/articles.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 import { TopFilterComponent } from './components/top-filter/top-filter.component';
+import { LanguageSelector } from './components/language-selector/language-selector.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -38,7 +40,8 @@ const materialModules = [
     SearchArticlesComponent,
     ArticlesComponent,
     SearchFilterComponent,
-    TopFilterComponent
+    TopFilterComponent,
+    LanguageSelector
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ const materialModules = [
     BrowserAnimationsModule,
     ...materialModules,
     FontAwesomeModule,
-    StateModule
+    StateModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

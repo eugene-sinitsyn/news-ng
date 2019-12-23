@@ -5,6 +5,7 @@ import { NetworkModule } from '@network';
 import { RootStateModel } from './models/root-state.model';
 import { articlesReducer } from './reducers/articles.reducer';
 import { sourcesReducer } from './reducers/sources.reducer';
+import { preferencesReducer } from './reducers/preferences.reducer';
 import { ArticlesEffects } from './effects/articles.effects';
 import { SourcesEffects } from './effects/sources.effects';
 
@@ -13,7 +14,8 @@ import { SourcesEffects } from './effects/sources.effects';
     NetworkModule,
     StoreModule.forRoot<RootStateModel>({
       articles: articlesReducer,
-      sources: sourcesReducer
+      sources: sourcesReducer,
+      preferences: preferencesReducer
     }),
     EffectsModule.forRoot([
       ArticlesEffects,
