@@ -1,5 +1,4 @@
-import { ArticleModel, SourceDetailsModel } from '@domain';
-import { PreferencesModel } from './preferences.model';
+import { ArticleModel, SourceDetailsModel, PreferencesModel } from '@domain';
 
 export class RootStateModel {
   public preferences: PreferencesModel;
