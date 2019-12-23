@@ -1,9 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { PreferencesModel } from '../models/preferences.model';
+import { PreferencesStateModel } from '../models/preferences-state.model';
 import { LanguageEnum } from '@domain';
 import { preferencesActions } from '../actions/preferences.actions';
 
-const reducer = createReducer<PreferencesModel, Action>(
+const reducer = createReducer<PreferencesStateModel, Action>(
   { language: LanguageEnum.english },
   on(preferencesActions.storeLanguage, (state, action) => {
     return { ...state, language: action.language };
@@ -11,8 +11,8 @@ const reducer = createReducer<PreferencesModel, Action>(
 );
 
 export function preferencesReducer(
-  state: PreferencesModel,
+  state: PreferencesStateModel,
   action: Action
-): PreferencesModel {
+): PreferencesStateModel {
   return reducer(state, action);
 }

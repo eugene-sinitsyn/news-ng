@@ -1,5 +1,5 @@
 import { LanguageEnum } from '@domain';
 
-export class PreferencesModel {
+export class PreferencesStateModel {
   public language: LanguageEnum;
 }

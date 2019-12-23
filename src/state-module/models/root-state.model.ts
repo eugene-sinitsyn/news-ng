@@ -1,8 +1,11 @@
-import { ArticleModel, SourceDetailsModel } from '@domain';
-import { PreferencesModel } from './preferences.model';
+import { PreferencesStateModel } from './preferences-state.model';
+import { TopArticlesStateModel } from './top-articles-state.model';
+import { SearchArticlesStateModel } from './search-articles-state.model';
+import { SourceDetailsModel } from '@domain';
 
 export class RootStateModel {
-  public preferences: PreferencesModel;
-  public articles: ArticleModel[];
+  public preferences: PreferencesStateModel;
+  public top: TopArticlesStateModel;
+  public search: SearchArticlesStateModel;
   public sources: SourceDetailsModel[];
 }
