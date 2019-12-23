@@ -1,5 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { LanguageEnum, PreferencesModel } from '@domain';
+import { PreferencesModel } from '../models/preferences.model';
+import { LanguageEnum } from '@domain';
 import { preferencesActions } from '../actions/preferences.actions';
 
 const reducer = createReducer<PreferencesModel, Action>(
