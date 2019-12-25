@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
@@ -25,6 +27,8 @@ const routes: Routes = [
   // TODO: 404 page
 ];
 const materialModules = [
+  MatFormFieldModule,
+  MatInputModule,
   MatButtonModule,
   MatSelectModule,
   MatCardModule

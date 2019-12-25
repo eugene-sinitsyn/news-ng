@@ -1,1 +1,40 @@
-Top articles filter
+<form *ngIf="formGroup" [formGroup]="formGroup">
+  <div class="filter-row">
+    <mat-form-field class="field-category">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category">
+        <mat-option [value]="null">Any</mat-option>
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="field-country">
+      <mat-label>Country</mat-label>
+      <mat-select formControlName="country">
+        <mat-option [value]="null">Any</mat-option>
+        <mat-option *ngFor="let country of countries" [value]="country">
+          {{ country }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="field-search-string">
+      <mat-label>Search term</mat-label>
+      <input formControlName="searchString" matInput />
+    </mat-form-field>
+  </div>
+
+  <div class="filter-row">
+    <mat-form-field class="field-sources">
+      <mat-label>Sources</mat-label>
+      <mat-select formControlName="sources" multiple>
+        <mat-option value="1">under construction</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button type="button" (click)="closeFilter()">Cancel</button>
+    <button mat-raised-button type="button" (click)="applyFilter()">Apply</button>
+  </div>
+</form>

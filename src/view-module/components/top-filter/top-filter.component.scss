@@ -1,0 +1,36 @@
+:host {
+  margin: 16px;
+  display: block;
+
+  form {
+    display: block;
+
+    .filter-row {
+      display: flex;
+
+      mat-form-field, button {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      .field-category {
+        flex-grow: 1;
+        min-width: 100px;
+      }
+
+      .field-country {
+        flex-grow: 1;
+        min-width: 100px;
+      }
+
+      .field-search-string {
+        flex-grow: 2;
+        min-width: 100px;
+      }
+
+      .field-sources {
+        flex-grow: 1;
+      }
+    }
+  }
+}

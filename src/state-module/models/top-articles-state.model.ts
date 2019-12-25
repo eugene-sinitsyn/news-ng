@@ -1,6 +1,7 @@
-import { TopArticlesRequestModel, ArticleModel } from '@domain';
+import { ArticleModel } from '@domain';
+import { TopFilterStateModel } from './top-filter-state.model';
 
 export class TopArticlesStateModel {
-  public filter: TopArticlesRequestModel;
+  public filter: TopFilterStateModel;
   public articles: ArticleModel[];
 }

@@ -1,12 +1,17 @@
 import { createReducer, Action, on } from '@ngrx/store';
-import { TopArticlesRequestModel } from '@domain';
 import { topArticlesActions } from '../actions/top-articles.actions';
 import { TopArticlesStateModel } from '../models/top-articles-state.model';
 
 const reducer = createReducer<TopArticlesStateModel, Action>(
-  { filter: new TopArticlesRequestModel, articles: null },
+  {
+    filter: { category: null, country: null, sources: [], searchString: null },
+    articles: null
+  },
   on(topArticlesActions.storeArticles, (state, action) => {
     return { ...state, articles: action.articles };
+  }),
+  on(topArticlesActions.storeFilter, (state, action) => {
+    return { ...state, filter: action.filterState };
   })
 );
 
