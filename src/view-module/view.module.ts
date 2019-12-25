@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { MatBadgeModule } from '@angular/material/badge';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StateModule } from '@state';
 import { AppComponent } from './root.component';
@@ -32,7 +33,8 @@ const materialModules = [
   MatInputModule,
   MatButtonModule,
   MatSelectModule,
-  MatCardModule
+  MatCardModule,
+  MatBadgeModule
 ];
 
 @NgModule({

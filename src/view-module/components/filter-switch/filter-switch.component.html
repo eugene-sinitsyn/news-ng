@@ -1,4 +1,7 @@
-<button type="button" mat-button (click)="toggleFilter()">
+<button
+  type="button"
+  mat-button
+  (click)="toggleFilter()">
   <fa-icon [icon]="faFilter"></fa-icon>
-  <!-- TODO: applied badge -->
+  <span *ngIf="filterBadgeVisible$ | async" matBadge="!" matBadgeSize="small"></span>
 </button>

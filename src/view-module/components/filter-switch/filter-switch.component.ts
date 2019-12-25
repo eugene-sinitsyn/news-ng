@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { faFilter, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { RootStateModel } from '@state';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { uiActions } from '@state';
 
 @Component({
@@ -11,11 +11,14 @@ import { uiActions } from '@state';
   styleUrls: ['./filter-switch.component.scss']
 })
 export class FilterSwitchComponent implements OnInit, OnDestroy {
-  public constructor(private readonly store: Store<RootStateModel>) {}
+  public constructor(private readonly store: Store<RootStateModel>) {
+    this.filterBadgeVisible$ = store.select(state => state.ui.filterBadgeVisible);
+  }
 
   private subscription: Subscription;
   private filterOpened: boolean;
   public readonly faFilter: IconDefinition = faFilter;
+  public readonly filterBadgeVisible$: Observable<boolean>;
 
   public ngOnInit(): void {
     this.subscription = this.store

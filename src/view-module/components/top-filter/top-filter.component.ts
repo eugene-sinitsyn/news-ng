@@ -52,11 +52,13 @@ export class TopFilterComponent implements OnInit, OnDestroy {
   }
 
   public clearFilter(): void {
-    this.formGroup.setValue(new TopFilterStateModel())
+    this.formGroup.setValue(new TopFilterStateModel());
+    this.formGroup.markAsDirty();
   }
 
   public applyFilter(): void {
-    this.filter.emit(this.formGroup.value);
+    const filterState = this.formIsEmpty ? null : this.formGroup.value;
+    this.filter.emit(filterState);
   }
 
   private setupFormGroup(filterState: TopFilterStateModel): Subscription {

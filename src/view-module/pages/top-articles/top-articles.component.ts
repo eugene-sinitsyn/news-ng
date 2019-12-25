@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ArticleModel, TopArticlesRequestModel, LanguageEnum, CountryEnum } from '@domain';
-import { RootStateModel, topArticlesActions, TopFilterStateModel } from '@state';
+import { RootStateModel, topArticlesActions, TopFilterStateModel, uiActions } from '@state';
 import { Store } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
 
@@ -29,13 +29,9 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
     this.subscription = null;
   }
 
-  public applyFilter(filterState: TopFilterStateModel): void {
-    const request = new TopArticlesRequestModel();
-    request.category = filterState.category;
-    request.country = filterState.country;
-    request.sources = filterState.sources;
-    request.searchString = filterState.searchString;
-    this.dispatchSearch(request);
+  public applyFilter(filterState: TopFilterStateModel = null): void {
+    this.dispatchSearch(filterState && this.toRequestModel(filterState));
+    this.store.dispatch(uiActions.toggleFilterBadge({ visible: !!filterState }));
   }
 
   private dispatchSearch(request: TopArticlesRequestModel = null): void {
@@ -43,5 +39,14 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
     request.language = LanguageEnum.english;
     request.country = CountryEnum.unitesStatesOfAmerica;
     this.store.dispatch(topArticlesActions.fetchArticles({ request }));
+  }
+
+  private toRequestModel(filterState: TopFilterStateModel): TopArticlesRequestModel {
+    const request = new TopArticlesRequestModel();
+    request.category = filterState.category;
+    request.country = filterState.country;
+    request.sources = filterState.sources;
+    request.searchString = filterState.searchString;
+    return request;
   }
 }
