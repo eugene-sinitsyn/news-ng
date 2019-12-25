@@ -20,6 +20,7 @@
     ],
     "paths": {
       "@view": ["src/view-module"],
+      "@view/config": ["src/view-module/config/view-config"],
       "@state": ["src/state-module"],
       "@network": ["src/network-module"],
       "@domain": ["src/domain-module"],

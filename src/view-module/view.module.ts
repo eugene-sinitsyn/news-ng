@@ -11,6 +11,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StateModule } from '@state';
+import { ViewConfiguration } from './config/view-config';
 import { AppComponent } from './root.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -62,7 +63,9 @@ const materialModules = [
     StateModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: ViewConfiguration, useValue: new ViewConfiguration() }
+  ],
   bootstrap: [AppComponent]
 })
 export class ViewModule {}

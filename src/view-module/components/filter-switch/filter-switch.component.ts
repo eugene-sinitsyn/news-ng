@@ -4,6 +4,7 @@ import { faFilter, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { RootStateModel } from '@state';
 import { uiActions } from '@state';
+import { ViewConfiguration } from '@view/config';
 
 @Component({
   selector: 'news-filter-switch',
@@ -11,7 +12,10 @@ import { uiActions } from '@state';
   styleUrls: ['./filter-switch.component.scss']
 })
 export class FilterSwitchComponent implements OnInit, OnDestroy {
-  public constructor(private readonly store: Store<RootStateModel>) {}
+  public constructor(
+    private readonly store: Store<RootStateModel>,
+    public readonly viewConfig: ViewConfiguration
+  ) {}
 
   private subscription: Subscription;
   private filterIsOpened: boolean;

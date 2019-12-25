@@ -2,7 +2,7 @@
   type="button"
   mat-button
   [matTooltip]="tooltipText"
-  [matTooltipShowDelay]="1000"
+  [matTooltipShowDelay]="viewConfig.tooltipDelay"
   (click)="toggleFilter()">
   <fa-icon [icon]="faFilter"></fa-icon>
   <span *ngIf="filterBadgeIsVisible" matBadge="!" matBadgeSize="small"></span>
