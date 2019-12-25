@@ -1,8 +1,8 @@
 import { CountryEnum, CategoryEnum } from '@domain';
 
 export class TopFilterStateModel {
-  public category?: CategoryEnum;
-  public country?: CountryEnum;
-  public sources?: string[];
-  public searchString?: string;
+  public category?: CategoryEnum = null;
+  public country?: CountryEnum = null;
+  public sources?: string[] = [];
+  public searchString?: string = null;
 }

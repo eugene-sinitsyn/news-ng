@@ -1,2 +1,5 @@
-<news-top-filter *ngIf="filterOpened$ | async"></news-top-filter>
+<news-top-filter
+  *ngIf="filterOpened$ | async"
+  (filter)="applyFilter($event)"
+></news-top-filter>
 <news-articles [articles]="articles"></news-articles>

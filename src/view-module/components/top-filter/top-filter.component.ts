@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Subscription, Observable } from 'rxjs';
-import { RootStateModel, TopFilterStateModel, topArticlesActions, uiActions } from '@state';
+import { Subscription } from 'rxjs';
 import { CategoryEnum, CountryEnum } from '@domain';
+import { RootStateModel, TopFilterStateModel, topArticlesActions, uiActions } from '@state';
 
 @Component({
   selector: 'news-top-filter',
@@ -20,6 +20,18 @@ export class TopFilterComponent implements OnInit, OnDestroy {
   public readonly categories: any[] = this.toOptionList(CategoryEnum);
   public readonly countries: any[] = this.toOptionList(CountryEnum);
   public formGroup: FormGroup;
+
+  @Output() public readonly filter: EventEmitter<TopFilterStateModel> =
+    new EventEmitter<TopFilterStateModel>();
+
+  public get formIsEmpty(): boolean {
+    if (!this.formGroup) return true;
+    const state: TopFilterStateModel = this.formGroup.value;
+    return !state.category
+        && !state.country
+        && !state.searchString
+        && (!state.sources || !state.sources.length)
+  }
 
   public ngOnInit(): void {
     const stateSubscription = this.store
@@ -40,12 +52,11 @@ export class TopFilterComponent implements OnInit, OnDestroy {
   }
 
   public clearFilter(): void {
-    // TODO: implement
+    this.formGroup.setValue(new TopFilterStateModel())
   }
 
   public applyFilter(): void {
-    // TODO: implement
-    console.dir(this.formGroup.value);
+    this.filter.emit(this.formGroup.value);
   }
 
   private setupFormGroup(filterState: TopFilterStateModel): Subscription {
@@ -55,6 +66,7 @@ export class TopFilterComponent implements OnInit, OnDestroy {
       sources: [filterState.sources],
       searchString: [filterState.searchString]
     });
+    this.formGroup.get('sources').disable();
     return this.formGroup.valueChanges.subscribe(filterState => {
       this.store.dispatch(topArticlesActions.storeFilter({ filterState }));
     });

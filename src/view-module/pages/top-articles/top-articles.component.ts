@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ArticleModel, TopArticlesRequestModel, LanguageEnum, CountryEnum } from '@domain';
-import { RootStateModel, topArticlesActions } from '@state';
+import { RootStateModel, topArticlesActions, TopFilterStateModel } from '@state';
 import { Store } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
 
 @Component({
   selector: 'news-top-articles',
-  templateUrl: './top-articles.component.html'
+  templateUrl: './top-articles.component.html',
+  styleUrls: ['./top-articles.component.scss']
 })
 export class TopArticlesComponent implements OnInit, OnDestroy {
   public constructor(private readonly store: Store<RootStateModel>) {
@@ -28,8 +29,17 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
     this.subscription = null;
   }
 
-  private dispatchSearch(): void {
-    const request: TopArticlesRequestModel = new TopArticlesRequestModel();
+  public applyFilter(filterState: TopFilterStateModel): void {
+    const request = new TopArticlesRequestModel();
+    request.category = filterState.category;
+    request.country = filterState.country;
+    request.sources = filterState.sources;
+    request.searchString = filterState.searchString;
+    this.dispatchSearch(request);
+  }
+
+  private dispatchSearch(request: TopArticlesRequestModel = null): void {
+    if (!request) request = new TopArticlesRequestModel();
     request.language = LanguageEnum.english;
     request.country = CountryEnum.unitesStatesOfAmerica;
     this.store.dispatch(topArticlesActions.fetchArticles({ request }));
