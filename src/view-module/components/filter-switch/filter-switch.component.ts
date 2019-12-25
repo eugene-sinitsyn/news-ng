@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { faFilter, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
+import { faFilter, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { Subscription } from 'rxjs';
 import { RootStateModel } from '@state';
-import { Subscription, Observable } from 'rxjs';
 import { uiActions } from '@state';
 
 @Component({
@@ -11,19 +11,27 @@ import { uiActions } from '@state';
   styleUrls: ['./filter-switch.component.scss']
 })
 export class FilterSwitchComponent implements OnInit, OnDestroy {
-  public constructor(private readonly store: Store<RootStateModel>) {
-    this.filterBadgeVisible$ = store.select(state => state.ui.filterBadgeVisible);
-  }
+  public constructor(private readonly store: Store<RootStateModel>) {}
 
   private subscription: Subscription;
-  private filterOpened: boolean;
+  private filterIsOpened: boolean;
   public readonly faFilter: IconDefinition = faFilter;
-  public readonly filterBadgeVisible$: Observable<boolean>;
+  public filterBadgeIsVisible: boolean = false;
+
+  public get tooltipText(): string {
+    if (this.filterBadgeIsVisible) return 'Filter is applied';
+    else if (this.filterIsOpened) return 'Close filter';
+    else return 'Open filter';
+  }
 
   public ngOnInit(): void {
     this.subscription = this.store
       .select(state => state.ui.filterOpened)
-      .subscribe(opened => this.filterOpened = opened);
+      .subscribe(opened => this.filterIsOpened = opened);
+    this.subscription.add(this.store
+      .select(state => state.ui.filterBadgeVisible)
+      .subscribe(visible => this.filterBadgeIsVisible = visible)
+    );
   }
 
   public ngOnDestroy(): void {
@@ -32,7 +40,7 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
   }
 
   public toggleFilter(): void {
-    const opened = !this.filterOpened;
+    const opened = !this.filterIsOpened;
     this.store.dispatch(uiActions.toggleFilter({ opened }));
   }
 }
