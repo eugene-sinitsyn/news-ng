@@ -34,8 +34,7 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
       .subscribe(opened => this.filterIsOpened = opened);
     this.subscription.add(this.store
       .select(state => state.top.filter)
-      .subscribe(filter => this.filterIsApplied = !!filter)
-    );
+      .subscribe(filter => this.filterIsApplied = !!filter));
   }
 
   public ngOnDestroy(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { CategoryEnum, CountryEnum } from '@domain';
@@ -18,9 +18,6 @@ export class TopFilterComponent implements OnInit {
   public readonly categories: any[] = this.toOptionList(CategoryEnum);
   public readonly countries: any[] = this.toOptionList(CountryEnum);
   public formGroup: FormGroup;
-
-  @Output() public readonly onApplyFilter: EventEmitter<TopFilterStateModel> =
-    new EventEmitter<TopFilterStateModel>();
 
   public get formIsEmpty(): boolean {
     if (!this.formGroup) return true;
@@ -46,7 +43,6 @@ export class TopFilterComponent implements OnInit {
   public applyFilter(): void {
     let filterState = new TopFilterStateModel(this.formGroup.value);
     if (filterState.isEmpty) filterState = null;
-    this.onApplyFilter.emit(filterState);
     this.store.dispatch(topArticlesActions.storeFilter({ filterState }));
     this.closeFilter();
   }

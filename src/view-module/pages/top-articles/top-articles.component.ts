@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ArticleModel, TopArticlesRequestModel, LanguageEnum, CountryEnum } from '@domain';
+import { ArticleModel, TopArticlesRequestModel, LanguageEnum } from '@domain';
 import { RootStateModel, topArticlesActions, TopFilterStateModel } from '@state';
 import { Store } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
@@ -15,12 +15,28 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
   }
 
   private subscription: Subscription;
+  private language: LanguageEnum;
+  private filterState: TopFilterStateModel;
+
   public readonly filterOpened$: Observable<boolean>;
   public articles: ArticleModel[];
 
   public ngOnInit(): void {
     this.subscription = this.store.select(state => state.top.articles)
       .subscribe(articles => this.articles = articles);
+    this.subscription.add(this.store
+      .select(state => state.preferences.language)
+      .subscribe(language => {
+        this.language = language;
+        this.dispatchSearch();
+      }));
+    this.subscription.add(this.store
+      .select(state => state.top.filter)
+      .subscribe(filterState => {
+        this.filterState = filterState;
+        this.dispatchSearch();
+      }));
+
     if (!this.articles) this.dispatchSearch();
   }
 
@@ -29,22 +45,16 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
     this.subscription = null;
   }
 
-  public applyFilter(filterState: TopFilterStateModel = null): void {
-    this.dispatchSearch(filterState && this.toRequestModel(filterState));
-  }
-
-  private dispatchSearch(request: TopArticlesRequestModel = null): void {
-    if (!request) request = new TopArticlesRequestModel();
-    request.language = LanguageEnum.english;
-    this.store.dispatch(topArticlesActions.fetchArticles({ request }));
-  }
-
-  private toRequestModel(filterState: TopFilterStateModel): TopArticlesRequestModel {
+  private dispatchSearch(): void {
     const request = new TopArticlesRequestModel();
-    request.category = filterState.category;
-    request.country = filterState.country;
-    request.sources = filterState.sources;
-    request.searchString = filterState.searchString;
-    return request;
+    request.language = this.language;
+    if (this.filterState) {
+      request.category = this.filterState.category;
+      request.country = this.filterState.country;
+      request.sources = this.filterState.sources;
+      request.searchString = this.filterState.searchString;
+    }
+
+    this.store.dispatch(topArticlesActions.fetchArticles({ request }));
   }
 }

@@ -1,5 +1,10 @@
-<mat-select [formControl]="control">
-  <mat-option [value]="LanguageEnum.english">en</mat-option>
-  <mat-option [value]="LanguageEnum.french">fr</mat-option>
-  <mat-option [value]="LanguageEnum.deutsch">de</mat-option>
+<mat-select
+  [formControl]="control"
+  matTooltip="Change language"
+  [matTooltipShowDelay]="viewConfig.tooltipDelay"
+>
+  <mat-option
+    *ngFor="let language of languages"
+    [value]="language"
+  >{{ language }}</mat-option>
 </mat-select>

@@ -4,6 +4,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { LanguageEnum } from '@domain';
 import { RootStateModel, preferencesActions } from '@state';
+import { ViewConfiguration } from '@view/config';
 
 @Component({
   selector: 'news-language-selector',
@@ -13,11 +14,14 @@ import { RootStateModel, preferencesActions } from '@state';
 export class LanguageSelectorComponent implements OnInit, OnDestroy {
   public constructor(
     private readonly store: Store<RootStateModel>,
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    public readonly viewConfig: ViewConfiguration
   ) {}
 
   private subscription: Subscription;
   public readonly LanguageEnum: typeof LanguageEnum = LanguageEnum;
+  public readonly languages: string[] =
+    Object.keys(LanguageEnum).map(key => LanguageEnum[key]);
   public control: FormControl;
 
   public ngOnInit(): void {
