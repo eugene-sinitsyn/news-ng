@@ -10,7 +10,7 @@ import { RootStateModel, preferencesActions } from '@state';
   templateUrl: './language-selector.component.html',
   styleUrls: ['./language-selector.component.scss']
 })
-export class LanguageSelector implements OnInit, OnDestroy {
+export class LanguageSelectorComponent implements OnInit, OnDestroy {
   public constructor(
     private readonly store: Store<RootStateModel>,
     private readonly formBuilder: FormBuilder

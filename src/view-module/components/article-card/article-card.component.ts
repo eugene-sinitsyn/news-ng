@@ -10,5 +10,5 @@ import { faExternalLinkAlt, IconDefinition } from '@fortawesome/free-solid-svg-i
 export class ArticleCardComponent {
   @Input() public article: ArticleModel;
 
-  public faExternalLinkAlt: IconDefinition = faExternalLinkAlt;
+  public readonly faExternalLinkAlt: IconDefinition = faExternalLinkAlt;
 }

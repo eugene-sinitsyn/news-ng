@@ -18,8 +18,9 @@ import { SearchArticlesComponent } from './pages/search-articles/search-articles
 import { ArticlesComponent } from './components/articles/articles.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 import { TopFilterComponent } from './components/top-filter/top-filter.component';
-import { LanguageSelector } from './components/language-selector/language-selector.component';
+import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FilterSwitchComponent } from './components/filter-switch/filter-switch.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -45,7 +46,8 @@ const materialModules = [
     ArticlesComponent,
     SearchFilterComponent,
     TopFilterComponent,
-    LanguageSelector
+    LanguageSelectorComponent,
+    FilterSwitchComponent
   ],
   imports: [
     BrowserModule,

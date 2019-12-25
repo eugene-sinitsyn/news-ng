@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
-import { RootStateModel, TopFilterStateModel, topArticlesActions } from '@state';
+import { RootStateModel, TopFilterStateModel, topArticlesActions, uiActions } from '@state';
 import { CategoryEnum, CountryEnum } from '@domain';
 
 @Component({
@@ -36,12 +36,16 @@ export class TopFilterComponent implements OnInit, OnDestroy {
   }
 
   public closeFilter(): void {
+    this.store.dispatch(uiActions.toggleFilter({ opened: false }));
+  }
+
+  public clearFilter(): void {
     // TODO: implement
   }
 
   public applyFilter(): void {
     // TODO: implement
-    console.dir(this.formGroup.value());
+    console.dir(this.formGroup.value);
   }
 
   private setupFormGroup(filterState: TopFilterStateModel): Subscription {
