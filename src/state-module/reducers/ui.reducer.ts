@@ -6,9 +6,6 @@ const reducer = createReducer<UiStateModel, Action>(
   new UiStateModel(),
   on(uiActions.toggleFilter, (state, action) => {
     return { ...state, filterOpened: action.opened };
-  }),
-  on(uiActions.toggleFilterBadge, (state, action) => {
-    return { ...state, filterBadgeVisible: action.visible }
   })
 );
 

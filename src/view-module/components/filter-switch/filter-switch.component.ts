@@ -20,10 +20,10 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private filterIsOpened: boolean;
   public readonly faFilter: IconDefinition = faFilter;
-  public filterBadgeIsVisible: boolean = false;
+  public filterIsApplied: boolean = false;
 
   public get tooltipText(): string {
-    if (this.filterBadgeIsVisible) return 'Filter is applied';
+    if (this.filterIsApplied) return 'Filter is applied';
     else if (this.filterIsOpened) return 'Close filter';
     else return 'Open filter';
   }
@@ -33,8 +33,8 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
       .select(state => state.ui.filterOpened)
       .subscribe(opened => this.filterIsOpened = opened);
     this.subscription.add(this.store
-      .select(state => state.ui.filterBadgeVisible)
-      .subscribe(visible => this.filterBadgeIsVisible = visible)
+      .select(state => state.top.filter)
+      .subscribe(filter => this.filterIsApplied = !!filter)
     );
   }
 

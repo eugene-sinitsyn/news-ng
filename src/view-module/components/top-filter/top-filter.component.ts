@@ -19,16 +19,12 @@ export class TopFilterComponent implements OnInit {
   public readonly countries: any[] = this.toOptionList(CountryEnum);
   public formGroup: FormGroup;
 
-  @Output() public readonly filter: EventEmitter<TopFilterStateModel> =
+  @Output() public readonly onApplyFilter: EventEmitter<TopFilterStateModel> =
     new EventEmitter<TopFilterStateModel>();
 
   public get formIsEmpty(): boolean {
     if (!this.formGroup) return true;
-    const state: TopFilterStateModel = this.formGroup.value;
-    return !state.category
-        && !state.country
-        && !state.searchString
-        && (!state.sources || !state.sources.length);
+    else return new TopFilterStateModel(this.formGroup.value).isEmpty;
   }
 
   public ngOnInit(): void {
@@ -48,23 +44,22 @@ export class TopFilterComponent implements OnInit {
   }
 
   public applyFilter(): void {
-    const filterState = this.formIsEmpty ? null : this.formGroup.value;
-    this.filter.emit(filterState);
-    this.store.dispatch(uiActions.toggleFilterBadge({ visible: !!filterState }));
-    this.store.dispatch(
-      topArticlesActions.storeFilter({ filterState: this.formGroup.value })
-    );
+    let filterState = new TopFilterStateModel(this.formGroup.value);
+    if (filterState.isEmpty) filterState = null;
+    this.onApplyFilter.emit(filterState);
+    this.store.dispatch(topArticlesActions.storeFilter({ filterState }));
     this.closeFilter();
   }
 
   private setupFormGroup(filterState: TopFilterStateModel): void {
+    if (!filterState) filterState = new TopFilterStateModel();
     this.formGroup = this.formBuilder.group({
       category: [filterState.category],
       country: [filterState.country],
       sources: [filterState.sources],
       searchString: [filterState.searchString]
     });
-    this.formGroup.get('sources').disable();
+    this.formGroup.get('sources').disable(); // TODO: implement sources
   }
 
   private toOptionList(enumType: any): any[] {

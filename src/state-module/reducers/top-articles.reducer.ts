@@ -1,11 +1,10 @@
 import { createReducer, Action, on } from '@ngrx/store';
 import { topArticlesActions } from '../actions/top-articles.actions';
 import { TopArticlesStateModel } from '../models/top-articles-state.model';
-import { TopFilterStateModel } from '../models/top-filter-state.model';
 
 const reducer = createReducer<TopArticlesStateModel, Action>(
   {
-    filter: new TopFilterStateModel(),
+    filter: null,
     articles: null
   },
   on(topArticlesActions.storeArticles, (state, action) => {
