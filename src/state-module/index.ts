@@ -9,3 +9,4 @@ export * from './models/preferences-state.model';
 export * from './models/top-articles-state.model';
 export * from './models/search-articles-state.model';
 export * from './models/top-filter-state.model';
+export * from './models/ui-state.model';
