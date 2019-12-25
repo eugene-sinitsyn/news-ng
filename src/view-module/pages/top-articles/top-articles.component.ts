@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ArticleModel, TopArticlesRequestModel, LanguageEnum, CountryEnum } from '@domain';
-import { RootStateModel, topArticlesActions, TopFilterStateModel, uiActions } from '@state';
+import { RootStateModel, topArticlesActions, TopFilterStateModel } from '@state';
 import { Store } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
 
@@ -31,13 +31,11 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
 
   public applyFilter(filterState: TopFilterStateModel = null): void {
     this.dispatchSearch(filterState && this.toRequestModel(filterState));
-    this.store.dispatch(uiActions.toggleFilterBadge({ visible: !!filterState }));
   }
 
   private dispatchSearch(request: TopArticlesRequestModel = null): void {
     if (!request) request = new TopArticlesRequestModel();
     request.language = LanguageEnum.english;
-    request.country = CountryEnum.unitesStatesOfAmerica;
     this.store.dispatch(topArticlesActions.fetchArticles({ request }));
   }
 

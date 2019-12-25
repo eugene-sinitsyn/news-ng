@@ -1,22 +1,20 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
 import { CategoryEnum, CountryEnum } from '@domain';
-import { RootStateModel, TopFilterStateModel, topArticlesActions, uiActions } from '@state';
+import { RootStateModel, TopFilterStateModel, uiActions, topArticlesActions } from '@state';
 
 @Component({
   selector: 'news-top-filter',
   templateUrl: './top-filter.component.html',
   styleUrls: ['./top-filter.component.scss']
 })
-export class TopFilterComponent implements OnInit, OnDestroy {
+export class TopFilterComponent implements OnInit {
   public constructor(
     private readonly store: Store<RootStateModel>,
     private readonly formBuilder: FormBuilder,
   ) {}
 
-  private subscription: Subscription;
   public readonly categories: any[] = this.toOptionList(CategoryEnum);
   public readonly countries: any[] = this.toOptionList(CountryEnum);
   public formGroup: FormGroup;
@@ -30,21 +28,14 @@ export class TopFilterComponent implements OnInit, OnDestroy {
     return !state.category
         && !state.country
         && !state.searchString
-        && (!state.sources || !state.sources.length)
+        && (!state.sources || !state.sources.length);
   }
 
   public ngOnInit(): void {
     const stateSubscription = this.store
       .select(state => state.top.filter)
-      .subscribe(filterState => {
-        this.subscription = this.setupFormGroup(filterState);
-      });
+      .subscribe(filterState => this.setupFormGroup(filterState));
     stateSubscription.unsubscribe();
-  }
-
-  public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-    this.subscription = null;
   }
 
   public closeFilter(): void {
@@ -59,9 +50,14 @@ export class TopFilterComponent implements OnInit, OnDestroy {
   public applyFilter(): void {
     const filterState = this.formIsEmpty ? null : this.formGroup.value;
     this.filter.emit(filterState);
+    this.store.dispatch(uiActions.toggleFilterBadge({ visible: !!filterState }));
+    this.store.dispatch(
+      topArticlesActions.storeFilter({ filterState: this.formGroup.value })
+    );
+    this.closeFilter();
   }
 
-  private setupFormGroup(filterState: TopFilterStateModel): Subscription {
+  private setupFormGroup(filterState: TopFilterStateModel): void {
     this.formGroup = this.formBuilder.group({
       category: [filterState.category],
       country: [filterState.country],
@@ -69,9 +65,6 @@ export class TopFilterComponent implements OnInit, OnDestroy {
       searchString: [filterState.searchString]
     });
     this.formGroup.get('sources').disable();
-    return this.formGroup.valueChanges.subscribe(filterState => {
-      this.store.dispatch(topArticlesActions.storeFilter({ filterState }));
-    });
   }
 
   private toOptionList(enumType: any): any[] {
