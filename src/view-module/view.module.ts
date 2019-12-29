@@ -9,6 +9,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StateModule } from '@state';
 import { ViewConfiguration } from './config/view-config';
@@ -24,6 +26,7 @@ import { TopFilterComponent } from './components/top-filter/top-filter.component
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterSwitchComponent } from './components/filter-switch/filter-switch.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -37,10 +40,13 @@ const materialModules = [
   MatSelectModule,
   MatCardModule,
   MatBadgeModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatDialogModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({
+  entryComponents: [MatSpinner],
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -52,7 +58,8 @@ const materialModules = [
     SearchFilterComponent,
     TopFilterComponent,
     LanguageSelectorComponent,
-    FilterSwitchComponent
+    FilterSwitchComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
