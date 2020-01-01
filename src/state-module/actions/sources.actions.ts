@@ -1,10 +1,10 @@
 import { createAction, props } from '@ngrx/store';
-import { SourcesRequestModel, SourceDetailsModel } from '@domain';
+import { SourceDetailsModel, CountryEnum, CategoryEnum } from '@domain';
 
 export const sourcesActions = {
-  searchSources: createAction(
-    'sources-search',
-    props<{ request: SourcesRequestModel }>()
+  fetchSources: createAction(
+    'sources-fetch',
+    props<{ country?: CountryEnum, category?: CategoryEnum }>()
   ),
   storeSources: createAction(
     'sources-store',

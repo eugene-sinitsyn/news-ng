@@ -11,6 +11,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StateModule } from '@state';
 import { ViewConfiguration } from './config/view-config';
@@ -27,6 +28,7 @@ import { LanguageSelectorComponent } from './components/language-selector/langua
 import { ReactiveFormsModule } from '@angular/forms';
 import { FilterSwitchComponent } from './components/filter-switch/filter-switch.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { SourcesSelectorComponent } from './components/sources-selector/sources-selector.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -42,7 +44,8 @@ const materialModules = [
   MatBadgeModule,
   MatTooltipModule,
   MatDialogModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatProgressBarModule
 ];
 
 @NgModule({
@@ -59,7 +62,8 @@ const materialModules = [
     TopFilterComponent,
     LanguageSelectorComponent,
     FilterSwitchComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    SourcesSelectorComponent
   ],
   imports: [
     BrowserModule,

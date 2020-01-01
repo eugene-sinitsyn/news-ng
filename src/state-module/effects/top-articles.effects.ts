@@ -26,7 +26,7 @@ export class TopArticlesEffects {
 
   private mapToStoreTopArticlesAction(state: RootStateModel): Promise<Action> {
     const request = this.toTopArticlesRequest(state);
-    return this.articlesService.searchTop(request)
+    return this.articlesService.fetchTop(request)
       .then(articles => topArticlesActions.storeArticles({ articles }));
       // TODO: .catch(error => )
   }
@@ -35,10 +35,13 @@ export class TopArticlesEffects {
     const request = new TopArticlesRequestModel();
     request.language = state.preferences.language;
     if (state.top.filter) {
-      request.category = state.top.filter.category;
-      request.country = state.top.filter.country;
-      request.sources = state.top.filter.sources;
       request.searchString = state.top.filter.searchString;
+      if (state.top.filter.sources && state.top.filter.sources.length) {
+        request.sources = state.top.filter.sources;
+      } else {
+        request.category = state.top.filter.category;
+        request.country = state.top.filter.country;
+      }
     }
 
     return request;

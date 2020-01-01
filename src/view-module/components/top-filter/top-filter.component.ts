@@ -24,6 +24,14 @@ export class TopFilterComponent implements OnInit {
     else return new TopFilterStateModel(this.formGroup.value).isEmpty;
   }
 
+  public get selectedCountry(): CountryEnum {
+    return this.formGroup ? this.formGroup.get('country').value : null;
+  }
+
+  public get selectedCategory(): CategoryEnum {
+    return this.formGroup ? this.formGroup.get('category').value : null;
+  }
+
   public ngOnInit(): void {
     const stateSubscription = this.store
       .select(state => state.top.filter)
@@ -48,6 +56,10 @@ export class TopFilterComponent implements OnInit {
     this.closeFilter();
   }
 
+  public fetchSources(opened: boolean): void {
+    console.log(opened);
+  }
+
   private setupFormGroup(filterState: TopFilterStateModel): void {
     if (!filterState) filterState = new TopFilterStateModel();
     this.formGroup = this.formBuilder.group({
@@ -56,7 +68,6 @@ export class TopFilterComponent implements OnInit {
       sources: [filterState.sources],
       searchString: [filterState.searchString]
     });
-    this.formGroup.get('sources').disable(); // TODO: implement sources
   }
 
   private toOptionList(enumType: any): any[] {
