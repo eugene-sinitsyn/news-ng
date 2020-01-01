@@ -6,7 +6,7 @@
     </mat-card-subtitle>
   </mat-card-header>
 
-  <img *ngIf="article.urlToImage"
+  <img *ngIf="article.urlToImage && article.urlToImage !== 'null'"
     mat-card-image
     [src]="article.urlToImage"
   />

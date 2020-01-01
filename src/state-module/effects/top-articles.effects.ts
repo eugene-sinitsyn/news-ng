@@ -1,29 +1,46 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
-import { mergeMap } from 'rxjs/operators';
+import { Action, Store } from '@ngrx/store';
+import { mergeMap, withLatestFrom } from 'rxjs/operators';
 import { ArticlesService } from '@network';
 import { topArticlesActions } from '../actions/top-articles.actions';
-import { TopArticlesRequestModel, SearchArticlesRequestModel } from '@domain';
+import { TopArticlesRequestModel } from '@domain';
 import { Observable } from 'rxjs';
+import { RootStateModel } from '../models/root-state.model';
 
 @Injectable()
 export class TopArticlesEffects {
   public constructor(
     private readonly actions$: Actions,
-    private readonly articlesService: ArticlesService
+    private readonly articlesService: ArticlesService,
+    private readonly store: Store<RootStateModel>
   ) {}
 
   public readonly fetchTopArticles$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(topArticlesActions.fetchArticles),
-      mergeMap(action => this.mapToStoreTopArticles(action.request))
+      withLatestFrom(this.store),
+      mergeMap(([action, state]) => this.mapToStoreTopArticlesAction(state))
     )
   );
 
-  private mapToStoreTopArticles(request: TopArticlesRequestModel): Promise<Action> {
+  private mapToStoreTopArticlesAction(state: RootStateModel): Promise<Action> {
+    const request = this.toTopArticlesRequest(state);
     return this.articlesService.searchTop(request)
       .then(articles => topArticlesActions.storeArticles({ articles }));
       // TODO: .catch(error => )
+  }
+
+  private toTopArticlesRequest(state: RootStateModel): TopArticlesRequestModel {
+    const request = new TopArticlesRequestModel();
+    request.language = state.preferences.language;
+    if (state.top.filter) {
+      request.category = state.top.filter.category;
+      request.country = state.top.filter.country;
+      request.sources = state.top.filter.sources;
+      request.searchString = state.top.filter.searchString;
+    }
+
+    return request;
   }
 }

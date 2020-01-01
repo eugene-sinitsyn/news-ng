@@ -44,6 +44,7 @@ export class TopFilterComponent implements OnInit {
     let filterState = new TopFilterStateModel(this.formGroup.value);
     if (filterState.isEmpty) filterState = null;
     this.store.dispatch(topArticlesActions.storeFilter({ filterState }));
+    this.store.dispatch(topArticlesActions.fetchArticles());
     this.closeFilter();
   }
 
