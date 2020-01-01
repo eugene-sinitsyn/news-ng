@@ -30,10 +30,11 @@ export class SourcesSelectorComponent implements
 
   private subscription: Subscription;
   private componentInitiaized: boolean = false;
-  private sources: SourceDetailsModel[];
   private busyValue: boolean = false;
   private countryValue: CountryEnum;
   private categoryValue: CategoryEnum;
+
+  public sources: SourceDetailsModel[];
 
   @Input() public set country(value: CountryEnum) {
     if (this.componentInitiaized) this.reset();
