@@ -67,6 +67,8 @@ export class SourcesSelectorComponent implements
   public ngOnInit(): void {
     this.subscription = this.store.select(state => state.sources)
       .subscribe(sources => this.handleSources(sources));
+    this.subscription.add(this.store.select(state => state.preferences.language)
+      .subscribe(() => this.reset()));
     this.componentInitiaized = true;
   }
 
@@ -99,7 +101,8 @@ export class SourcesSelectorComponent implements
   private reset(): void {
     const control = this.ngControl.control;
     if (control.value && control.value.length) control.setValue([]);
-    if (this.sources && this.sources.length) this.sources = [];
+    if (this.sources && this.sources.length)
+      this.store.dispatch(sourcesActions.storeSources({ sources: [] }));
   }
 
   // MatFormFieldControl implementation:

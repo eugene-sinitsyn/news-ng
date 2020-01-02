@@ -11,6 +11,7 @@ import { sourcesReducer } from './reducers/sources.reducer';
 import { SourcesEffects } from './effects/sources.effects';
 import { TopArticlesEffects } from './effects/top-articles.effects';
 import { SearchArticlesEffects } from './effects/search-articles.effects';
+import { PreferencesEffects } from './effects/preferences.effects';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { SearchArticlesEffects } from './effects/search-articles.effects';
     EffectsModule.forRoot([
       TopArticlesEffects,
       SearchArticlesEffects,
-      SourcesEffects
+      SourcesEffects,
+      PreferencesEffects
     ])
   ],
   exports: [
