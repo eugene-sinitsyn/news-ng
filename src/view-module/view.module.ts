@@ -51,7 +51,7 @@ const materialModules = [
   MatProgressBarModule
 ];
 
-function createTranslationLoader(httpClient: HttpClient): TranslateLoader {
+export function createTranslationLoader(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient, './assets/translations/', '.json');
 }
 
