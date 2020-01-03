@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { faFilter, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
@@ -13,8 +14,9 @@ import { ViewConfiguration } from '@view/config';
 })
 export class FilterSwitchComponent implements OnInit, OnDestroy {
   public constructor(
+    public readonly viewConfig: ViewConfiguration,
     private readonly store: Store<RootStateModel>,
-    public readonly viewConfig: ViewConfiguration
+    private translateService: TranslateService,
   ) {}
 
   private subscription: Subscription;
@@ -23,9 +25,11 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
   public filterIsApplied: boolean = false;
 
   public get tooltipText(): string {
-    if (this.filterIsApplied) return 'Filter is applied';
-    else if (this.filterIsOpened) return 'Close filter';
-    else return 'Open filter';
+    let label: string;
+    if (this.filterIsApplied) label = 'filter-applied';
+    else if (this.filterIsOpened) label = 'filter-close';
+    else label = 'filter-open';
+    return this.translateService.instant(`header.${label}`);
   }
 
   public ngOnInit(): void {

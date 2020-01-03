@@ -1,9 +1,9 @@
 <form *ngIf="formGroup" [formGroup]="formGroup">
   <div class="filter-row">
     <mat-form-field class="field-category">
-      <mat-label>Category</mat-label>
+      <mat-label>{{ 'filter.category' | translate }}</mat-label>
       <mat-select formControlName="category">
-        <mat-option [value]="null">Any</mat-option>
+        <mat-option [value]="null">{{ 'shared.any' | translate }}</mat-option>
         <mat-option *ngFor="let category of categories" [value]="category">
           {{ category }}
         </mat-option>
@@ -11,9 +11,9 @@
     </mat-form-field>
 
     <mat-form-field class="field-country">
-      <mat-label>Country</mat-label>
+      <mat-label>{{ 'filter.country' | translate }}</mat-label>
       <mat-select formControlName="country">
-        <mat-option [value]="null">Any</mat-option>
+        <mat-option [value]="null">{{ 'shared.any' | translate }}</mat-option>
         <mat-option *ngFor="let country of countries" [value]="country">
           {{ country }}
         </mat-option>
@@ -21,14 +21,14 @@
     </mat-form-field>
 
     <mat-form-field class="field-search-string">
-      <mat-label>Search term</mat-label>
-      <input formControlName="searchString" matInput />
+      <mat-label>{{ 'filter.search-term' | translate }}</mat-label>
+      <input formControlName="searchString" matInput autocomplete="off" />
     </mat-form-field>
   </div>
 
   <div class="filter-row">
     <mat-form-field class="field-sources">
-      <mat-label>Sources</mat-label>
+      <mat-label>{{ 'filter.sources' | translate }}</mat-label>
       <news-sources-selector
         #sourcesSelector
         formControlName="sources"
@@ -44,18 +44,19 @@
       </mat-hint>
     </mat-form-field>
 
-    <button mat-button type="button" (click)="closeFilter()">Close</button>
+    <button mat-button type="button" (click)="closeFilter()"
+    >{{ 'shared.close' | translate }}</button>
     <button
       mat-button
       type="button"
       [disabled]="formIsEmpty"
       (click)="clearFilter()"
-    >Clear</button>
+    >{{ 'shared.clear' | translate }}</button>
     <button
       mat-raised-button
       type="button"
       [disabled]="this.formGroup.pristine"
       (click)="applyFilter()"
-    >Apply</button>
+    >{{ 'shared.apply' | translate }}</button>
   </div>
 </form>

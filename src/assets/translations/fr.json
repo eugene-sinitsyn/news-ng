@@ -1,0 +1,28 @@
+{
+  "shared": {
+    "coming-soon": "Coming soon(fr)",
+    "any": "Any(fr)",
+    "open": "Open(fr)",
+    "close": "Close(fr)",
+    "clear": "Clear(fr)",
+    "apply": "Apply(fr)"
+  },
+  "header": {
+    "title": "NEWS(fr)",
+    "top-articles": "Top Articles(fr)",
+    "search": "Search(fr)",
+    "filter-applied": "Filter is applied(fr)",
+    "filter-close": "Close filter(fr)",
+    "filter-open": "Open filter(fr)",
+    "language-change": "Change language(fr)"
+  },
+  "filter": {
+    "category": "Category(fr)",
+    "country": "Country(fr)",
+    "search-term": "Search term(fr)",
+    "sources": "Sources(fr)",
+    "sources-hint-category-country": "{{category}} news sources in {{country}}(fr)",
+    "sources-hint-country": "News sources in {{country}}(fr)",
+    "sources-hint-category": "{{category}} news sources(fr)"
+  }
+}

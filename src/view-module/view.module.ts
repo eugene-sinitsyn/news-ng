@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,6 +31,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FilterSwitchComponent } from './components/filter-switch/filter-switch.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SourcesSelectorComponent } from './components/sources-selector/sources-selector.component';
+import { HttpClient } from '@angular/common/http';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -47,6 +50,10 @@ const materialModules = [
   MatProgressSpinnerModule,
   MatProgressBarModule
 ];
+
+function createTranslationLoader(httpClient: HttpClient): TranslateLoader {
+  return new TranslateHttpLoader(httpClient, './assets/translations/', '.json');
+}
 
 @NgModule({
   entryComponents: [MatSpinner],
@@ -68,6 +75,11 @@ const materialModules = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
+    TranslateModule.forRoot({ loader: {
+      provide: TranslateLoader,
+      useFactory: createTranslationLoader,
+      deps: [HttpClient]
+    }}),
     BrowserAnimationsModule,
     ...materialModules,
     FontAwesomeModule,

@@ -1,6 +1,7 @@
 import { Component, Self, Optional, Input, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
+import { TranslateService } from '@ngx-translate/core';
 import { MatSelect } from '@angular/material/select';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
@@ -21,7 +22,8 @@ export class SourcesSelectorComponent implements
 
   public constructor(
     @Optional() @Self() public ngControl: NgControl,
-    private readonly store: Store<RootStateModel>
+    private readonly store: Store<RootStateModel>,
+    private readonly translateService: TranslateService
   ) {
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
@@ -57,11 +59,16 @@ export class SourcesSelectorComponent implements
   }
 
   public get hint(): string {
-    if (this.countryValue && this.categoryValue)
-      return `${this.categoryValue} news sources in ${this.countryValue}`;
-    else if (this.countryValue) return `News sources in ${this.countryValue}`;
-    else if (this.categoryValue) return `${this.categoryValue} news sources`;
-    else return '';
+    if (!this.countryValue && !this.categoryValue) return '';
+
+    let label: string;
+    if (!this.categoryValue) label = 'sources-hint-country';
+    else if (!this.countryValue) label = 'sources-hint-category';
+    else label = 'sources-hint-category-country';
+    return this.translateService.instant(
+      `filter.${label}`,
+      { category: this.categoryValue, country: this.countryValue }
+    );
   }
 
   public ngOnInit(): void {

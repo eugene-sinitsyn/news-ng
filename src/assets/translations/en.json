@@ -1,0 +1,28 @@
+{
+  "shared": {
+    "coming-soon": "Coming soon",
+    "any": "Any",
+    "open": "Open",
+    "close": "Close",
+    "clear": "Clear",
+    "apply": "Apply"
+  },
+  "header": {
+    "title": "NEWS",
+    "top-articles": "Top Articles",
+    "search": "Search",
+    "filter-applied": "Filter is applied",
+    "filter-close": "Close filter",
+    "filter-open": "Open filter",
+    "language-change": "Change language"
+  },
+  "filter": {
+    "category": "Category",
+    "country": "Country",
+    "search-term": "Search term",
+    "sources": "Sources",
+    "sources-hint-category-country": "{{category}} news sources in {{country}}",
+    "sources-hint-country": "News sources in {{country}}",
+    "sources-hint-category": "{{category}} news sources"
+  }
+}

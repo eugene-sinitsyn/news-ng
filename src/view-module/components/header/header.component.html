@@ -1,20 +1,20 @@
-<h1 class="title" color="primary">NEWS</h1>
+<h1 class="title" color="primary">{{ 'header.title' | translate }}</h1>
 
 <a routerLink="/"
   routerLinkActive="active"
   [routerLinkActiveOptions]="{ exact: true }"
   class="action"
   mat-button
->Top Articles</a>
+>{{ 'header.top-articles' | translate }}</a>
 
 <a routerLink="/search"
   routerLinkActive="active"
   class="action"
   mat-button
   disabled
-  matTooltip="coming soon"
+  [matTooltip]="'shared.coming-soon' | translate"
   [matTooltipShowDelay]="viewConfig.tooltipDelay"
->Search</a>
+>{{ 'header.search' | translate }}</a>
 
 <span class="spacer"></span>
 
