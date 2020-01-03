@@ -25,6 +25,15 @@
     "sources-hint-country": "News sources in {{country}}(de)",
     "sources-hint-category": "{{category}} news sources(de)"
   },
+  "categories": {
+    "business": "Business(de)",
+    "entertainment": "Entertainment(de)",
+    "general": "General(de)",
+    "health": "Health(de)",
+    "science": "Science(de)",
+    "sports": "Sports(de)",
+    "technology": "Technology(de)"
+  },
   "countries": {
     "ae": "UAE(de)",
     "ar": "Argentine(de)",

@@ -5,7 +5,7 @@
       <mat-select formControlName="category">
         <mat-option [value]="null">{{ 'shared.any' | translate }}</mat-option>
         <mat-option *ngFor="let category of categories" [value]="category">
-          {{ category }}
+          {{ 'categories.' + category | translate }}
         </mat-option>
       </mat-select>
     </mat-form-field>
