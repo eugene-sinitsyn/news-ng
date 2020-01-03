@@ -15,7 +15,7 @@
       <mat-select formControlName="country">
         <mat-option [value]="null">{{ 'shared.any' | translate }}</mat-option>
         <mat-option *ngFor="let country of countries" [value]="country">
-          {{ country }}
+          {{ 'countries.' + country | translate }}
         </mat-option>
       </mat-select>
     </mat-form-field>

@@ -1,5 +1,5 @@
 export enum CountryEnum {
-  unitedArabEmirates = 'ae',
+  uae = 'ae',
   argentine = 'ar',
   austria = 'at',
   australia = 'au',
@@ -50,7 +50,7 @@ export enum CountryEnum {
   turkey = 'tr',
   taiwan = 'tw',
   ukraine = 'ua',
-  unitesStatesOfAmerica = 'us',
+  usa = 'us',
   yemen = 've',
   southAfrica = 'za'
 }

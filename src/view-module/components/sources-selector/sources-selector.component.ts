@@ -65,9 +65,12 @@ export class SourcesSelectorComponent implements
     if (!this.categoryValue) label = 'sources-hint-country';
     else if (!this.countryValue) label = 'sources-hint-category';
     else label = 'sources-hint-category-country';
+
+    const country = this.translateService
+      .instant(`countries.${this.countryValue}`);
     return this.translateService.instant(
       `filter.${label}`,
-      { category: this.categoryValue, country: this.countryValue }
+      { category: this.categoryValue, country }
     );
   }
 
