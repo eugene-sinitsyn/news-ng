@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -32,7 +33,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FilterSwitchComponent } from './components/filter-switch/filter-switch.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SourcesSelectorComponent } from './components/sources-selector/sources-selector.component';
-import { HttpClient } from '@angular/common/http';
+import { FilterListComponent } from './components/filter-list/filter-list.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -58,7 +59,7 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
 }
 
 @NgModule({
-  entryComponents: [MatSpinner],
+  entryComponents: [MatSpinner, FilterListComponent],
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -72,7 +73,8 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
     LanguageSelectorComponent,
     FilterSwitchComponent,
     SpinnerComponent,
-    SourcesSelectorComponent
+    SourcesSelectorComponent,
+    FilterListComponent
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,11 @@
     "sources": "Sources(de)",
     "sources-hint-category-country": "{{category}} news sources in {{country}}(de)",
     "sources-hint-country": "News sources in {{country}}(de)",
-    "sources-hint-category": "{{category}} news sources(de)"
+    "sources-hint-category": "{{category}} news sources(de)",
+    "browse": "Browse filters(de)",
+    "save": "Save filter(de)",
+    "no-saved-filters": "No saved filters found(de)",
+    "select-filter": "Select filter(de)"
   },
   "categories": {
     "business": "Business(de)",

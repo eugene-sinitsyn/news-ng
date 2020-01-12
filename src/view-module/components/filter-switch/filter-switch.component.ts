@@ -1,11 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { IconDefinition, faFilter, faSave, faFolderOpen, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { RootStateModel } from '@state';
 import { uiActions } from '@state';
 import { ViewConfiguration } from '@view/config';
+import { FilterListComponent } from '../filter-list/filter-list.component';
 
 @Component({
   selector: 'news-filter-switch',
@@ -17,14 +19,17 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
     public readonly viewConfig: ViewConfiguration,
     private readonly store: Store<RootStateModel>,
     private translateService: TranslateService,
+    private readonly dialogService: MatDialog,
   ) {}
 
   private subscription: Subscription;
   private filterIsOpened: boolean;
+
   public readonly faFilter: IconDefinition = faFilter;
   public readonly faEllipsisV: IconDefinition = faEllipsisV;
   public readonly faSave: IconDefinition = faSave;
   public readonly faFolderOpen: IconDefinition = faFolderOpen;
+
   public filterIsApplied: boolean = false;
 
   public get tooltipText(): string {
@@ -52,5 +57,9 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
   public toggleFilter(): void {
     const opened = !this.filterIsOpened;
     this.store.dispatch(uiActions.toggleFilter({ opened }));
+  }
+
+  public openFilterListDialog(): void {
+    this.dialogService.open(FilterListComponent);
   }
 }

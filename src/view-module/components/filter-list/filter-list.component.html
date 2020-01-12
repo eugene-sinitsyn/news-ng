@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>{{ title | translate }}</h1>
+
+<div mat-dialog-content *ngFor="let filterName of filterNames">
+  <button
+    type="button"
+    mat-button
+    class="filter-apply"
+    (click)="applyFilter(filterName)"
+  >{{ filterName }}</button>
+  <button
+    type="button"
+    mat-button
+    class="filter-delete"
+    (click)="deleteFilter(filterName)"
+  ><fa-icon [icon]="faTrash"></fa-icon>
+  </button>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close cdkFocusInitial>
+    {{ 'shared.close' | translate }}
+  </button>
+</div>

@@ -19,13 +19,16 @@
 <mat-menu #filterMenu="matMenu" xPosition="before">
   <button
     mat-menu-item
-    type="button">
-    <fa-icon [icon]="faFolderOpen"></fa-icon>
+    type="button"
+    (click)="openFilterListDialog()">
+    <fa-icon [icon]="faFolderOpen" [fixedWidth]="true"></fa-icon>
+    {{ 'filter.browse' | translate }}
   </button>
   <button
     mat-menu-item
     type="button"
     [disabled]="!filterIsApplied">
-    <fa-icon [icon]="faSave"></fa-icon>
+    <fa-icon [icon]="faSave" [fixedWidth]="true"></fa-icon>
+    {{ 'filter.save' | translate }}
   </button>
 </mat-menu>

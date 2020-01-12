@@ -1,0 +1,21 @@
+:host {
+  display: block;
+
+  [mat-dialog-actions] {
+    flex-direction: row-reverse;
+  }
+
+  [mat-dialog-content] {
+    display: flex;
+
+    .filter-apply {
+      flex-grow: 1;
+      text-align: left;
+    }
+
+    .filter-delete {
+      padding: 0;
+      min-width: 40px;
+    }
+  }
+}
