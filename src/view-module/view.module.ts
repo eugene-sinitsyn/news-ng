@@ -33,7 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FilterSwitchComponent } from './components/filter-switch/filter-switch.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SourcesSelectorComponent } from './components/sources-selector/sources-selector.component';
-import { FilterListComponent } from './components/filter-list/filter-list.component';
+import { FilterListDialogComponent } from './components/filter-list-dialog/filter-list-dialog.component';
+import { InputDialogComponent } from './components/input-dialog/input-dialog.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -59,7 +60,7 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
 }
 
 @NgModule({
-  entryComponents: [MatSpinner, FilterListComponent],
+  entryComponents: [MatSpinner, FilterListDialogComponent, InputDialogComponent],
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -74,7 +75,8 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
     FilterSwitchComponent,
     SpinnerComponent,
     SourcesSelectorComponent,
-    FilterListComponent
+    FilterListDialogComponent,
+    InputDialogComponent
   ],
   imports: [
     BrowserModule,

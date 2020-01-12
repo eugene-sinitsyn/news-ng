@@ -5,7 +5,9 @@
     "open": "Open",
     "close": "Close",
     "clear": "Clear",
-    "apply": "Apply"
+    "apply": "Apply",
+    "ok": "OK",
+    "cancel": "Cancel"
   },
   "header": {
     "title": "NEWS",
@@ -27,7 +29,8 @@
     "browse": "Browse filters",
     "save": "Save filter",
     "no-saved-filters": "No saved filters found",
-    "select-filter": "Select filter"
+    "select-filter": "Select filter",
+    "enter-name": "Enter filter name"
   },
   "categories": {
     "business": "Business",

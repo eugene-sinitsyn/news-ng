@@ -5,7 +5,9 @@
     "open": "Open(fr)",
     "close": "Close(fr)",
     "clear": "Clear(fr)",
-    "apply": "Apply(fr)"
+    "apply": "Apply(fr)",
+    "ok": "OK(fr)",
+    "cancel": "Cancel(fr)"
   },
   "header": {
     "title": "NEWS(fr)",
@@ -27,7 +29,8 @@
     "browse": "Browse filters(fr)",
     "save": "Save filter(fr)",
     "no-saved-filters": "No saved filters found(fr)",
-    "select-filter": "Select filter(fr)"
+    "select-filter": "Select filter(fr)",
+    "enter-name": "Enter filter name(fr)"
   },
   "categories": {
     "business": "Business(fr)",

@@ -4,13 +4,13 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { TopFilterStateModel } from '@state';
 
 @Component({
-  selector: 'news-filter-list',
-  templateUrl: './filter-list.component.html',
-  styleUrls: ['./filter-list.component.scss']
+  selector: 'news-filter-list-dialog',
+  templateUrl: './filter-list-dialog.component.html',
+  styleUrls: ['./filter-list-dialog.component.scss']
 })
-export class FilterListComponent {
+export class FilterListDialogComponent {
   public constructor(
-    private readonly dialogRef: MatDialogRef<FilterListComponent>
+    private readonly dialogRef: MatDialogRef<FilterListDialogComponent>
   ) {}
 
   public readonly faTrash: IconDefinition = faTrash;
@@ -38,4 +38,9 @@ export class FilterListComponent {
     // TODO: delete filter
     console.log(`deleteFilter(${filterName})`);
   }
+
+  // private applyFilter(filterState: TopFilterStateModel): void {
+  //   this.store.dispatch(topArticlesActions.storeFilter({ filterState }));
+  //   this.store.dispatch(topArticlesActions.fetchArticles());
+  // }
 }

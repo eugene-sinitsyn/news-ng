@@ -10,3 +10,7 @@ body {
 .mat-menu-content fa-icon {
   margin-right: 8px;
 }
+
+mat-dialog-container [mat-dialog-actions] {
+  flex-direction: row-reverse;
+}

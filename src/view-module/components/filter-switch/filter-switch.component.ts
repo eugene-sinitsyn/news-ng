@@ -1,13 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { IconDefinition, faFilter, faSave, faFolderOpen, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { RootStateModel } from '@state';
 import { uiActions } from '@state';
 import { ViewConfiguration } from '@view/config';
-import { FilterListComponent } from '../filter-list/filter-list.component';
+import { FilterListDialogComponent } from '../filter-list-dialog/filter-list-dialog.component';
+import { InputDialogComponent } from '../input-dialog/input-dialog.component';
 
 @Component({
   selector: 'news-filter-switch',
@@ -60,6 +61,17 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
   }
 
   public openFilterListDialog(): void {
-    this.dialogService.open(FilterListComponent);
+    this.dialogService.open(FilterListDialogComponent);
+  }
+
+  public openFilterNameDialog(): void {
+    const subscription = this.dialogService
+      .open(InputDialogComponent, { data: 'filter.enter-name' })
+      .afterClosed()
+      .subscribe(value => {
+        subscription.unsubscribe();
+        // TODO: save filter
+        console.log(value);
+      });
   }
 }

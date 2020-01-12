@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>{{ title | translate }}</h1>
+
+<form mat-dialog-content [formGroup]="formGroup">
+  <mat-form-field>
+    <input
+      matInput
+      formControlName="value"
+      autocomplete="off"
+      (keyup.enter)="trySubmit()"
+    />
+  </mat-form-field>
+</form>
+
+<div mat-dialog-actions>
+  <button
+    type="button"
+    mat-raised-button
+    [mat-dialog-close]="value"
+    [disabled]="!value"
+  >{{ 'shared.ok' | translate }}</button>
+  <button type="button" mat-button [mat-dialog-close]="null"
+  >{{ 'shared.cancel' | translate }}</button>
+</div>
