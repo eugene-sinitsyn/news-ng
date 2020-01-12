@@ -5,7 +5,9 @@
     "open": "Open",
     "close": "Close",
     "clear": "Clear",
-    "apply": "Apply"
+    "apply": "Apply",
+    "ok": "OK",
+    "cancel": "Cancel"
   },
   "header": {
     "title": "NEWS",
@@ -23,7 +25,12 @@
     "sources": "Sources",
     "sources-hint-category-country": "{{category}} news sources in {{country}}",
     "sources-hint-country": "News sources in {{country}}",
-    "sources-hint-category": "{{category}} news sources"
+    "sources-hint-category": "{{category}} news sources",
+    "browse": "Browse filters",
+    "save": "Save filter",
+    "no-saved-filters": "No saved filters found",
+    "select-filter": "Select filter",
+    "enter-name": "Enter filter name"
   },
   "categories": {
     "business": "Business",
