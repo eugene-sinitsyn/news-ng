@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, HostBinding } from "@angular/core";
 import { Store } from '@ngrx/store';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -24,9 +24,12 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
   }
 
   private subscription: Subscription;
+
   public readonly LanguageEnum: typeof LanguageEnum = LanguageEnum;
   public readonly languages: string[] =
     Object.keys(LanguageEnum).map(key => LanguageEnum[key]);
+
+  @HostBinding('class.focused') public focusedClass: boolean = false;
   public control: FormControl;
 
   public ngOnInit(): void {
@@ -43,6 +46,10 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
       this.subscription = null;
     }
+  }
+
+  public toggleFocusedClass(focused: boolean): void {
+    this.focusedClass = focused;
   }
 
   private setupControl(language: LanguageEnum): Subscription {

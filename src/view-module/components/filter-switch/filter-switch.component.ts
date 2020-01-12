@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
@@ -31,6 +31,7 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
   public readonly faSave: IconDefinition = faSave;
   public readonly faFolderOpen: IconDefinition = faFolderOpen;
 
+  @HostBinding('class.focused') public focusedClass: boolean = false;
   public filterIsApplied: boolean = false;
 
   public get tooltipText(): string {
@@ -53,6 +54,10 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
     this.subscription = null;
+  }
+
+  public toggleFocusedClass(focused: boolean): void {
+    this.focusedClass = focused;
   }
 
   public toggleFilter(): void {
