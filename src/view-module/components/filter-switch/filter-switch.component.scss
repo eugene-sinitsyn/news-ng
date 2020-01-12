@@ -1,3 +1,22 @@
 :host {
   display: block;
+
+  border: 2px solid transparent;
+  border-radius: 4px;
+  &:hover {
+    border: 2px solid rgb(255, 255, 255, 0.04);
+  }
+
+  .filter-button {
+    border-radius: 0px;
+    padding: 0;
+    min-width: 50px;
+  }
+
+  .filter-menu-button {
+    border-radius: 0px;
+    padding: 0;
+    min-width: 20px;
+    opacity: 0.7;
+  }
 }

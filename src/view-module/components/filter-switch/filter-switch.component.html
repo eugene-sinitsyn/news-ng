@@ -1,4 +1,5 @@
 <button
+  class="filter-button"
   type="button"
   mat-button
   [matTooltip]="tooltipText"
@@ -7,3 +8,24 @@
   <fa-icon [icon]="faFilter"></fa-icon>
   <span *ngIf="filterIsApplied" matBadge="!" matBadgeSize="small"></span>
 </button>
+<button
+  class="filter-menu-button"
+  type="button"
+  mat-button
+  [matMenuTriggerFor]="filterMenu">
+  <fa-icon [icon]="faEllipsisV"></fa-icon>
+</button>
+
+<mat-menu #filterMenu="matMenu" xPosition="before">
+  <button
+    mat-menu-item
+    type="button">
+    <fa-icon [icon]="faFolderOpen"></fa-icon>
+  </button>
+  <button
+    mat-menu-item
+    type="button"
+    [disabled]="!filterIsApplied">
+    <fa-icon [icon]="faSave"></fa-icon>
+  </button>
+</mat-menu>

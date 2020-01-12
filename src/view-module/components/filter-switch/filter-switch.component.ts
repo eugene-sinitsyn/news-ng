@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
-import { faFilter, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition, faFilter, faSave, faFolderOpen, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { RootStateModel } from '@state';
 import { uiActions } from '@state';
@@ -22,6 +22,9 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private filterIsOpened: boolean;
   public readonly faFilter: IconDefinition = faFilter;
+  public readonly faEllipsisV: IconDefinition = faEllipsisV;
+  public readonly faSave: IconDefinition = faSave;
+  public readonly faFolderOpen: IconDefinition = faFolderOpen;
   public filterIsApplied: boolean = false;
 
   public get tooltipText(): string {
