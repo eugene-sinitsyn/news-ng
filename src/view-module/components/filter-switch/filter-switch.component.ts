@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { IconDefinition, faFilter, faSave, faFolderOpen, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
-import { RootStateModel } from '@state';
+import { RootStateModel, topArticlesActions } from '@state';
 import { uiActions } from '@state';
 import { ViewConfiguration } from '@view/config';
 import { FilterListDialogComponent } from '../filter-list-dialog/filter-list-dialog.component';
@@ -19,7 +19,7 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
   public constructor(
     public readonly viewConfig: ViewConfiguration,
     private readonly store: Store<RootStateModel>,
-    private translateService: TranslateService,
+    private readonly translateService: TranslateService,
     private readonly dialogService: MatDialog,
   ) {}
 
@@ -73,10 +73,11 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
     const subscription = this.dialogService
       .open(InputDialogComponent, { data: 'filter.enter-name' })
       .afterClosed()
-      .subscribe(value => {
+      .subscribe(filterName => {
         subscription.unsubscribe();
-        // TODO: save filter
-        console.log(value);
+        if (filterName) this.store.dispatch(
+          topArticlesActions.saveFilterToStorage({ filterName })
+        );
       });
   }
 }

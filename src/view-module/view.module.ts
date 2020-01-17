@@ -81,16 +81,16 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
+    ReactiveFormsModule,
+    ...materialModules,
+    BrowserAnimationsModule,
+    FontAwesomeModule,
     TranslateModule.forRoot({ loader: {
       provide: TranslateLoader,
       useFactory: createTranslationLoader,
       deps: [HttpClient]
     }}),
-    BrowserAnimationsModule,
-    ...materialModules,
-    FontAwesomeModule,
     StateModule,
-    ReactiveFormsModule
   ],
   providers: [
     { provide: ViewConfiguration, useValue: new ViewConfiguration() }

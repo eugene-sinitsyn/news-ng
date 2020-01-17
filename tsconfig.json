@@ -19,12 +19,13 @@
       "dom"
     ],
     "paths": {
-      "@view": ["src/view-module"],
-      "@view/config": ["src/view-module/config/view-config"],
-      "@state": ["src/state-module"],
-      "@network": ["src/network-module"],
+      "@environment": ["src/environments/environment"],
       "@domain": ["src/domain-module"],
-      "@environment": ["src/environments/environment"]
+      "@network": ["src/network-module"],
+      "@storage": ["src/storage-module"],
+      "@state": ["src/state-module"],
+      "@view/config": ["src/view-module/config/view-config"],
+      "@view": ["src/view-module"],
     }
   },
   "include": [

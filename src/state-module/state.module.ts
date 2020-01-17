@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { NetworkModule } from '@network';
+import { StorageModule } from '@storage';
 import { RootStateModel } from './models/root-state.model';
 import { uiReducer } from './reducers/ui.reducer';
 import { preferencesReducer } from './reducers/preferences.reducer';
@@ -16,6 +17,7 @@ import { PreferencesEffects } from './effects/preferences.effects';
 @NgModule({
   imports: [
     NetworkModule,
+    StorageModule,
     StoreModule.forRoot<RootStateModel>({
       ui: uiReducer,
       preferences: preferencesReducer,
