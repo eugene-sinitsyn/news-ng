@@ -3,7 +3,7 @@ import { IconDefinition, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { MatDialogRef } from '@angular/material/dialog';
 import { TopFiltersDictionary } from '@domain';
 import { Store } from '@ngrx/store';
-import { RootStateModel, topArticlesActions } from '@state';
+import { RootStateModel, topArticlesActions, TopFilterStateModel, preferencesActions } from '@state';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -44,8 +44,13 @@ export class FilterListDialogComponent implements OnInit, OnDestroy {
   }
 
   public applyFilter(filterName: string): void {
-    // TODO: apply filter
-    console.log(`applyFilter(${filterName})`);
+    const language = this.filters[filterName].language;
+    const filterState = new TopFilterStateModel(this.filters[filterName]);
+
+    this.store.dispatch(preferencesActions.storeLanguage({ language }));
+    this.store.dispatch(topArticlesActions.storeFilter({ filterState }));
+    this.store.dispatch(topArticlesActions.fetchArticles());
+
     this.dialogRef.close();
   }
 
@@ -53,9 +58,4 @@ export class FilterListDialogComponent implements OnInit, OnDestroy {
     this.store.dispatch(topArticlesActions.deleteSavedFilter({ filterName }));
     this.store.dispatch(topArticlesActions.readSavedFilters());
   }
-
-  // private applyFilter(filterState: TopFilterStateModel): void {
-  //   this.store.dispatch(topArticlesActions.storeFilter({ filterState }));
-  //   this.store.dispatch(topArticlesActions.fetchArticles());
-  // }
 }
