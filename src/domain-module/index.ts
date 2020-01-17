@@ -4,6 +4,7 @@ export * from './models/sources-request.model';
 export * from './models/article.model';
 export * from './models/top-articles-request.model';
 export * from './models/search-articles-request.model';
+export * from './models/top-filters-dictionary.model';
 
 export * from './enums/country.enum';
 export * from './enums/language.enum';

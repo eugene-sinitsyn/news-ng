@@ -1,22 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IconDefinition, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { MatDialogRef } from '@angular/material/dialog';
-import { TopFilterStateModel } from '@state';
+import { TopFiltersDictionary } from '@domain';
+import { Store } from '@ngrx/store';
+import { RootStateModel, topArticlesActions } from '@state';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'news-filter-list-dialog',
   templateUrl: './filter-list-dialog.component.html',
   styleUrls: ['./filter-list-dialog.component.scss']
 })
-export class FilterListDialogComponent {
+export class FilterListDialogComponent implements OnInit, OnDestroy {
   public constructor(
+    private readonly store: Store<RootStateModel>,
     private readonly dialogRef: MatDialogRef<FilterListDialogComponent>
   ) {}
 
-  public readonly faTrash: IconDefinition = faTrash;
+  private subscription: Subscription = new Subscription();
 
-  // TODO: get saved filters from localStorage
-  public filters: { [name: string]: TopFilterStateModel } = {};
+  public readonly faTrash: IconDefinition = faTrash;
+  public filters: TopFiltersDictionary = {};
 
   public get title(): string {
     return !this.filters || !this.filterNames.length
@@ -26,6 +30,17 @@ export class FilterListDialogComponent {
 
   public get filterNames(): string[] {
     return this.filters ? Object.keys(this.filters) : [];
+  }
+
+  public ngOnInit(): void {
+    this.store.dispatch(topArticlesActions.readSavedFiltersFromStorage());
+    this.subscription.add(this.store
+      .select(state => state.top.savedFilters)
+      .subscribe(filters => this.filters = filters));
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   public applyFilter(filterName: string): void {

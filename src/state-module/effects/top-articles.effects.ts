@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 import { mergeMap, withLatestFrom, tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { TopArticlesRequestModel } from '@domain';
 import { ArticlesService } from '@network';
 import { TopFiltersStorageService } from '@storage';
@@ -26,6 +26,13 @@ export class TopArticlesEffects {
     )
   );
 
+  public readonly readSavedFilters$: Observable<Action> = createEffect(
+    () => this.actions$.pipe(
+      ofType(topArticlesActions.readSavedFiltersFromStorage),
+      mergeMap(() => this.maptoStoreSavedFiltersAction())
+    )
+  );
+
   public readonly saveFilterToStorage$: Observable<any> = createEffect(
     () => this.actions$.pipe(
       ofType(topArticlesActions.saveFilterToStorage),
@@ -43,6 +50,11 @@ export class TopArticlesEffects {
     return this.articlesService.fetchTop(request)
       .then(articles => topArticlesActions.storeArticles({ articles }));
       // TODO: .catch(error => )
+  }
+
+  private maptoStoreSavedFiltersAction(): Observable<Action> {
+    const filters = this.topFiltersStorageService.getAll();
+    return of(topArticlesActions.storeSavedFilters({ filters }));
   }
 
   private toTopArticlesRequest(state: RootStateModel): TopArticlesRequestModel {

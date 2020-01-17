@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TopArticlesRequestModel } from '@domain';
+import { TopArticlesRequestModel, TopFiltersDictionary } from '@domain';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
@@ -7,8 +7,8 @@ export class TopFiltersStorageService {
   public constructor(
     private readonly localStorageService: LocalStorageService
   ) {
-    const topFilters = localStorageService.get(this.namespace);
-    if (!topFilters || typeof topFilters !== 'object')
+    const filters = localStorageService.get(this.namespace);
+    if (!filters || typeof filters !== 'object')
       localStorageService.store(this.namespace, {});
   }
 
@@ -16,20 +16,28 @@ export class TopFiltersStorageService {
 
   public store(name: string, filter: TopArticlesRequestModel): void {
     if (!name || !filter) return;
-    const topFilters = this.localStorageService.get(this.namespace);
-    topFilters[name] = filter;
-    this.localStorageService.store(this.namespace, topFilters);
+    const filters = this.localStorageService.get(this.namespace);
+    filters[name] = filter;
+    this.localStorageService.store(this.namespace, filters);
+  }
+
+  public getAll(): TopFiltersDictionary {
+    const filters = this.localStorageService.get(this.namespace);
+    return Object.keys(filters).reduce((dictionary, filterName) => {
+      dictionary[filterName] = new TopArticlesRequestModel(filters[filterName]);
+      return dictionary;
+    }, {});
   }
 
   public get(name: string): TopArticlesRequestModel {
-    const topFilters = this.localStorageService.get(this.namespace);
-    return topFilters[name] ? new TopArticlesRequestModel(topFilters[name]) : null;
+    const filters = this.localStorageService.get(this.namespace);
+    return filters[name] ? new TopArticlesRequestModel(filters[name]) : null;
   }
 
   public delete(name: string): void {
-    const topFilters = this.localStorageService.get(this.namespace);
-    delete topFilters[name];
-    this.localStorageService.store(this.namespace, topFilters);
+    const filters = this.localStorageService.get(this.namespace);
+    delete filters[name];
+    this.localStorageService.store(this.namespace, filters);
   }
 
   public deleteAll(): void {
