@@ -12,10 +12,14 @@ export const topArticlesActions = {
     'top-filter-store',
     props<{ filterState: TopFilterStateModel }>()
   ),
-  readSavedFiltersFromStorage: createAction('top-filters-read-from-storage'),
+  readSavedFilters: createAction('top-filters-read-saved'),
   storeSavedFilters: createAction(
     'top-filters-store-saved',
     props<{ filters: TopFiltersDictionary }>()
+  ),
+  deleteSavedFilter: createAction(
+    'top-filter-delete-saved',
+    props<{ filterName: string }>()
   ),
   saveFilterToStorage: createAction(
     'top-filter-save-to-storage',

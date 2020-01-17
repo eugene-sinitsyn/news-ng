@@ -28,9 +28,17 @@ export class TopArticlesEffects {
 
   public readonly readSavedFilters$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
-      ofType(topArticlesActions.readSavedFiltersFromStorage),
+      ofType(topArticlesActions.readSavedFilters),
       mergeMap(() => this.maptoStoreSavedFiltersAction())
     )
+  );
+
+  public readonly deleteSavedFilter$: Observable<any> = createEffect(
+    () => this.actions$.pipe(
+      ofType(topArticlesActions.deleteSavedFilter),
+      tap(action => this.topFiltersStorageService.delete(action.filterName))
+    ),
+    { dispatch: false }
   );
 
   public readonly saveFilterToStorage$: Observable<any> = createEffect(

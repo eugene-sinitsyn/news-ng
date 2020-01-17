@@ -33,7 +33,7 @@ export class FilterListDialogComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.store.dispatch(topArticlesActions.readSavedFiltersFromStorage());
+    this.store.dispatch(topArticlesActions.readSavedFilters());
     this.subscription.add(this.store
       .select(state => state.top.savedFilters)
       .subscribe(filters => this.filters = filters));
@@ -50,8 +50,8 @@ export class FilterListDialogComponent implements OnInit, OnDestroy {
   }
 
   public deleteFilter(filterName: string): void {
-    // TODO: delete filter
-    console.log(`deleteFilter(${filterName})`);
+    this.store.dispatch(topArticlesActions.deleteSavedFilter({ filterName }));
+    this.store.dispatch(topArticlesActions.readSavedFilters());
   }
 
   // private applyFilter(filterState: TopFilterStateModel): void {
