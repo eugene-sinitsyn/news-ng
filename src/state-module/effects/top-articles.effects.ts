@@ -3,11 +3,12 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 import { mergeMap, withLatestFrom, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { TopArticlesRequestModel } from '@domain';
+import { TopArticlesRequestModel, NotificationEnum } from '@domain';
 import { ArticlesService } from '@network';
 import { TopFiltersStorageService } from '@storage';
 import { topArticlesActions } from '../actions/top-articles.actions';
 import { RootStateModel } from '../models/root-state.model';
+import { uiActions } from '../actions/ui.actions';
 
 @Injectable()
 export class TopArticlesEffects {
@@ -41,16 +42,14 @@ export class TopArticlesEffects {
     { dispatch: false }
   );
 
-  public readonly saveFilterToStorage$: Observable<any> = createEffect(
+  public readonly saveFilterToStorage$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(topArticlesActions.saveFilterToStorage),
       withLatestFrom(this.store),
-      tap(([action, state]) => {
-        const filter = this.toTopArticlesRequest(state);
-        this.topFiltersStorageService.store(action.filterName, filter);
+      mergeMap(([action, state]) => {
+        return this.mapToFilterSavedNotifyAction(state, action.filterName);
       })
     ),
-    { dispatch: false }
   );
 
   private mapToStoreTopArticlesAction(state: RootStateModel): Promise<Action> {
@@ -63,6 +62,15 @@ export class TopArticlesEffects {
   private maptoStoreSavedFiltersAction(): Observable<Action> {
     const filters = this.topFiltersStorageService.getAll();
     return of(topArticlesActions.storeSavedFilters({ filters }));
+  }
+
+  private mapToFilterSavedNotifyAction(
+    state: RootStateModel,
+    filterName: string
+  ): Observable<Action> {
+    const filter = this.toTopArticlesRequest(state);
+    this.topFiltersStorageService.store(filterName, filter);
+    return of(uiActions.notify({ label: NotificationEnum.saved }));
   }
 
   private toTopArticlesRequest(state: RootStateModel): TopArticlesRequestModel {

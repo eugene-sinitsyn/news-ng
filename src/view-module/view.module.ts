@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,9 +18,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatMenuModule } from '@angular/material/menu';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 import { StateModule } from '@state';
 import { ViewConfiguration } from './config/view-config';
+
 import { AppComponent } from './root.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -35,6 +39,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SourcesSelectorComponent } from './components/sources-selector/sources-selector.component';
 import { FilterListDialogComponent } from './components/filter-list-dialog/filter-list-dialog.component';
 import { InputDialogComponent } from './components/input-dialog/input-dialog.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -52,7 +57,8 @@ const materialModules = [
   MatDialogModule,
   MatProgressSpinnerModule,
   MatProgressBarModule,
-  MatMenuModule
+  MatMenuModule,
+  MatSnackBarModule
 ];
 
 export function createTranslationLoader(httpClient: HttpClient): TranslateLoader {
@@ -76,7 +82,8 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
     SpinnerComponent,
     SourcesSelectorComponent,
     FilterListDialogComponent,
-    InputDialogComponent
+    InputDialogComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

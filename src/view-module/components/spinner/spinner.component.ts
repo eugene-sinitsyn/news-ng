@@ -9,7 +9,7 @@ import { RootStateModel } from '@state';
 @Component({
   selector: 'news-spinner',
   template: '',
-  styleUrls: ['./spinner.component.scss']
+  styles: [':host { display: none; }']
 })
 export class SpinnerComponent implements OnInit, OnDestroy {
   public constructor(

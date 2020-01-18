@@ -12,6 +12,13 @@ const reducer = createReducer<UiStateModel, Action>(
   }),
   on(uiActions.toggleFilter, (state, action) => {
     return { ...state, filterOpened: action.opened };
+  }),
+  on(uiActions.notify, (state, action) => {
+    const notification = !action.label ? null : {
+      label: action.label,
+      duration: action.duration
+    };
+    return { ...state, notification };
   })
 );
 
