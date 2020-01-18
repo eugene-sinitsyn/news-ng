@@ -7,7 +7,8 @@
     "clear": "Clear(fr)",
     "apply": "Apply(fr)",
     "ok": "OK(fr)",
-    "cancel": "Cancel(fr)"
+    "cancel": "Cancel(fr)",
+    "dismiss": "Dismiss(fr)"
   },
   "header": {
     "title": "NEWS(fr)",
@@ -17,6 +18,9 @@
     "filter-close": "Close filter(fr)",
     "filter-open": "Open filter(fr)",
     "language-change": "Change language(fr)"
+  },
+  "notifications": {
+    "saved": "Saved(fr)"
   },
   "filter": {
     "category": "Category(fr)",

@@ -7,7 +7,8 @@
     "clear": "Clear",
     "apply": "Apply",
     "ok": "OK",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "dismiss": "Dismiss"
   },
   "header": {
     "title": "NEWS",
@@ -17,6 +18,9 @@
     "filter-close": "Close filter",
     "filter-open": "Open filter",
     "language-change": "Change language"
+  },
+  "notifications": {
+    "saved": "Saved"
   },
   "filter": {
     "category": "Category",
