@@ -8,7 +8,8 @@
     "apply": "Apply(fr)",
     "ok": "OK(fr)",
     "cancel": "Cancel(fr)",
-    "dismiss": "Dismiss(fr)"
+    "dismiss": "Dismiss(fr)",
+    "read-later": "Read later(fr)"
   },
   "header": {
     "title": "NEWS(fr)",
@@ -20,7 +21,8 @@
     "language-change": "Change language(fr)"
   },
   "notifications": {
-    "saved": "Saved(fr)"
+    "saved": "Saved(fr)",
+    "removed": "Removed(fr)"
   },
   "filter": {
     "category": "Category(fr)",

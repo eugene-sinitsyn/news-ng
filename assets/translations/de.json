@@ -8,7 +8,8 @@
     "apply": "Apply(de)",
     "ok": "OK(de)",
     "cancel": "Cancel(de)",
-    "dismiss": "Dismiss(de)"
+    "dismiss": "Dismiss(de)",
+    "read-later": "Read later(de)"
   },
   "header": {
     "title": "NEWS(de)",
@@ -20,7 +21,8 @@
     "language-change": "Change language(de)"
   },
   "notifications": {
-    "saved": "Saved(de)"
+    "saved": "Saved(de)",
+    "removed": "Removed(de)"
   },
   "filter": {
     "category": "Category(de)",
