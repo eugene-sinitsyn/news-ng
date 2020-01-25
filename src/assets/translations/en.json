@@ -21,7 +21,8 @@
     "language-change": "Change language"
   },
   "notifications": {
-    "saved": "Saved"
+    "saved": "Saved",
+    "removed": "Removed"
   },
   "filter": {
     "category": "Category",

@@ -16,7 +16,7 @@ export class TopArticlesEffects {
     private readonly actions$: Actions,
     private readonly store: Store<RootStateModel>,
     private readonly articlesService: ArticlesService,
-    private readonly topFiltersStorageService: TopFiltersStorageService,
+    private readonly topFiltersStorageService: TopFiltersStorageService
   ) {}
 
   public readonly fetchTopArticles$: Observable<Action> = createEffect(

@@ -1,3 +1,4 @@
 export enum NotificationEnum {
-  saved ='saved'
+  saved ='saved',
+  removed = 'removed'
 }
