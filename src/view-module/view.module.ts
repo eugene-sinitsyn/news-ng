@@ -40,10 +40,12 @@ import { SourcesSelectorComponent } from './components/sources-selector/sources-
 import { FilterListDialogComponent } from './components/filter-list-dialog/filter-list-dialog.component';
 import { InputDialogComponent } from './components/input-dialog/input-dialog.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { ReadLaterComponent } from './pages/read-later/read-later.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
-  { path: 'search', component: SearchArticlesComponent }
+  { path: 'search', component: SearchArticlesComponent },
+  { path: 'readlater', component: ReadLaterComponent }
   // TODO: 404 page
 ];
 const materialModules = [
@@ -83,7 +85,8 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
     SourcesSelectorComponent,
     FilterListDialogComponent,
     InputDialogComponent,
-    NotificationComponent
+    NotificationComponent,
+    ReadLaterComponent
   ],
   imports: [
     BrowserModule,

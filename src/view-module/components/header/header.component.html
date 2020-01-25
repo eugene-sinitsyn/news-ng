@@ -16,6 +16,15 @@
   [matTooltipShowDelay]="viewConfig.tooltipDelay"
 >{{ 'header.search' | translate }}</a>
 
+<a routerLink="/readlater"
+  routerLinkActive="active"
+  class="action"
+  mat-button
+  disabled
+  [matTooltip]="'shared.coming-soon' | translate"
+  [matTooltipShowDelay]="viewConfig.tooltipDelay"
+>{{ 'shared.read-later' | translate }}</a>
+
 <span class="spacer"></span>
 
 <news-filter-switch></news-filter-switch>
