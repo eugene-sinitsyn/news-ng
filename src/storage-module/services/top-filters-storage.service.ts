@@ -34,13 +34,13 @@ export class TopFiltersStorageService {
     return filters[name] ? new TopArticlesRequestModel(filters[name]) : null;
   }
 
+  public deleteAll(): void {
+    this.localStorageService.store(this.namespace, {});
+  }
+
   public delete(name: string): void {
     const filters = this.localStorageService.get(this.namespace);
     delete filters[name];
     this.localStorageService.store(this.namespace, filters);
-  }
-
-  public deleteAll(): void {
-    this.localStorageService.store(this.namespace, {});
   }
 }
