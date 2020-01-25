@@ -4,11 +4,19 @@
   padding: 10px;
 
   mat-card-actions {
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
 
     fa-icon {
-      margin-left: 6px;
-      font-size: 11px;
+      font-size: 13px;
+
+      &.icon-read-later {
+        margin-right: 6px;
+      }
+
+      &.icon-open {
+        margin-left: 6px;
+      }
     }
   }
 }

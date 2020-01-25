@@ -16,9 +16,13 @@
   </mat-card-content>
 
   <mat-card-actions>
+    <button mat-button>
+      <fa-icon [icon]="faClock" class="icon-read-later"></fa-icon>
+      {{ 'shared.read-later' | translate }}
+    </button>
     <a [href]="article.url" target="_blank" mat-button>
       {{ 'shared.open' | translate }}
-      <fa-icon [icon]="faExternalLinkAlt"></fa-icon>
+      <fa-icon [icon]="faExternalLinkAlt" class="icon-open"></fa-icon>
     </a>
   </mat-card-actions>
 </mat-card>
