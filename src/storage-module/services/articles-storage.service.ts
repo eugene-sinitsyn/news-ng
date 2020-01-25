@@ -17,7 +17,9 @@ export class ArticlesStorageService {
   public store(article: ArticleModel): void {
     if (!article) return;
     const articles = this.getAll();
-    articles.push(article);
+    const index = articles.findIndex(a => a.url === article.url);
+    if (index >= 0) articles[index] = article;
+    else articles.push(article);
     this.localStorageService.store(this.namespace, articles);
   }
 

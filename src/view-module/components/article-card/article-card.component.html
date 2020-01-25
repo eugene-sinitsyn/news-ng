@@ -16,7 +16,7 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-button>
+    <button mat-button (click)="addToReadLater()">
       <fa-icon [icon]="faClock" class="icon-read-later"></fa-icon>
       {{ 'shared.read-later' | translate }}
     </button>
