@@ -2,4 +2,4 @@
   *ngIf="filterOpened$ | async"
   (onApplyFilter)="dispatchSearch()"
 ></news-top-filter>
-<news-articles [articles]="articles"></news-articles>
+<news-articles [articles]="articles" withReadLaterAction></news-articles>

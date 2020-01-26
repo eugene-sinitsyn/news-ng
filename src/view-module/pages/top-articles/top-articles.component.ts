@@ -15,23 +15,26 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
     this.filterOpened$ = store.select(state => state.ui.filterOpened);
   }
 
-  private subscription: Subscription;
+  private readonly subscription: Subscription = new Subscription();
 
   public readonly filterOpened$: Observable<boolean>;
   public articles: ArticleModel[];
 
   public ngOnInit(): void {
-    this.subscription = this.store.select(state => state.top.articles)
-      .subscribe(articles => this.articles = articles);
-    this.subscription.add(this.store.select(state => state.preferences.language)
-      .pipe(skip(1))
-      .subscribe(() => this.store.dispatch(topArticlesActions.fetchArticles())));
+    this.subscription.add(
+      this.store.select(state => state.top.articles)
+        .subscribe(articles => this.articles = articles)
+    );
+    this.subscription.add(
+      this.store.select(state => state.preferences.language)
+        .pipe(skip(1))
+        .subscribe(() => this.store.dispatch(topArticlesActions.fetchArticles()))
+    );
 
     if (!this.articles) this.store.dispatch(topArticlesActions.fetchArticles());
   }
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.subscription = null;
   }
 }

@@ -30,7 +30,7 @@ export class SourcesSelectorComponent implements
     }
   }
 
-  private subscription: Subscription;
+  private readonly subscription: Subscription = new Subscription();
   private componentInitiaized: boolean = false;
   private busyValue: boolean = false;
   private countryValue: CountryEnum;
@@ -72,16 +72,19 @@ export class SourcesSelectorComponent implements
   }
 
   public ngOnInit(): void {
-    this.subscription = this.store.select(state => state.sources)
-      .subscribe(sources => this.handleSources(sources));
-    this.subscription.add(this.store.select(state => state.preferences.language)
-      .subscribe(() => this.reset()));
+    this.subscription.add(
+      this.store.select(state => state.sources)
+        .subscribe(sources => this.handleSources(sources))
+    );
+    this.subscription.add(
+      this.store.select(state => state.preferences.language)
+        .subscribe(() => this.reset())
+    );
     this.componentInitiaized = true;
   }
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.subscription = null;
   }
 
   public fetchSources(): void {

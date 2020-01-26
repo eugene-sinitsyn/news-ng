@@ -23,7 +23,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     translateService.use(LanguageEnum.english);
   }
 
-  private subscription: Subscription;
+  private readonly subscription: Subscription = new Subscription();
 
   public readonly LanguageEnum: typeof LanguageEnum = LanguageEnum;
   public readonly languages: string[] =
@@ -36,7 +36,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     const languageSubscription = this.store
       .select(state => state.preferences.language)
       .subscribe(language => {
-        this.subscription = this.setupControl(language);
+        this.subscription.add(this.setupControl(language));
       });
     languageSubscription.unsubscribe();
   }
@@ -44,7 +44,6 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
-      this.subscription = null;
     }
   }
 

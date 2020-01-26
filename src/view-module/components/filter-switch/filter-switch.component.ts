@@ -23,7 +23,7 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
     private readonly dialogService: MatDialog,
   ) {}
 
-  private subscription: Subscription;
+  private readonly subscription: Subscription = new Subscription();
   private filterIsOpened: boolean;
 
   public readonly faFilter: IconDefinition = faFilter;
@@ -43,17 +43,18 @@ export class FilterSwitchComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.subscription = this.store
-      .select(state => state.ui.filterOpened)
-      .subscribe(opened => this.filterIsOpened = opened);
-    this.subscription.add(this.store
-      .select(state => state.top.filter)
-      .subscribe(filter => this.filterIsApplied = !!filter));
+    this.subscription.add(
+      this.store.select(state => state.ui.filterOpened)
+        .subscribe(opened => this.filterIsOpened = opened)
+    );
+    this.subscription.add(
+      this.store.select(state => state.top.filter)
+        .subscribe(filter => this.filterIsApplied = !!filter)
+    );
   }
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.subscription = null;
   }
 
   public toggleFocusedClass(focused: boolean): void {

@@ -5,16 +5,21 @@
 
   mat-card-actions {
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
+
+    button {
+      margin: 0;
+    }
 
     fa-icon {
       font-size: 13px;
 
-      &.icon-read-later {
+      &.icon-left {
         margin-right: 6px;
       }
 
-      &.icon-open {
+      &.icon-right {
         margin-left: 6px;
       }
     }

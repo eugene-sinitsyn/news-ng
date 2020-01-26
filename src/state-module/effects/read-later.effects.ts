@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, tap } from 'rxjs/operators';
 import { ArticleModel, NotificationEnum } from '@domain';
 import { ArticlesStorageService } from '@storage';
 import { readLaterActions } from '../actions/read-later.actions';
@@ -32,8 +32,9 @@ export class ReadLaterEffects {
   public readonly removeFromReadLater$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(readLaterActions.removeFromReadLater),
-      mergeMap(action => this.mapToArticleRemovedNotifyAction(action.url))
-    )
+      tap(action => this.readLaterStorageService.delete(action.url))
+    ),
+    { dispatch: false }
   )
 
   private mapToStoreReadLaterArticlesAction(): Observable<Action> {
@@ -46,10 +47,5 @@ export class ReadLaterEffects {
   ): Observable<Action> {
     this.readLaterStorageService.store(article);
     return of(uiActions.notify({ label: NotificationEnum.saved }));
-  }
-
-  private mapToArticleRemovedNotifyAction(url: string): Observable<Action> {
-    this.readLaterStorageService.delete(url);
-    return of(uiActions.notify({ label: NotificationEnum.removed }));
   }
 }

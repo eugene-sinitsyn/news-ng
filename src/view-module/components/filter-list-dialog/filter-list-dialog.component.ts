@@ -17,7 +17,7 @@ export class FilterListDialogComponent implements OnInit, OnDestroy {
     private readonly dialogRef: MatDialogRef<FilterListDialogComponent>
   ) {}
 
-  private subscription: Subscription = new Subscription();
+  private readonly subscription: Subscription = new Subscription();
 
   public readonly faTrash: IconDefinition = faTrash;
   public filters: TopFiltersDictionary = {};

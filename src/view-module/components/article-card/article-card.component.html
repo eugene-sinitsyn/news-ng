@@ -16,13 +16,27 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-button (click)="addToReadLater()">
-      <fa-icon [icon]="faClock" class="icon-read-later"></fa-icon>
-      {{ 'shared.read-later' | translate }}
-    </button>
     <a [href]="article.url" target="_blank" mat-button>
       {{ 'shared.open' | translate }}
-      <fa-icon [icon]="faExternalLinkAlt" class="icon-open"></fa-icon>
+      <fa-icon [icon]="faExternalLinkAlt" class="icon-right"></fa-icon>
     </a>
+
+    <button
+      *ngIf="isReadLaterActionVisible"
+      mat-button
+      (click)="addToReadLater()"
+    >
+      <fa-icon [icon]="faClock" class="icon-left"></fa-icon>
+      {{ 'shared.read-later' | translate }}
+    </button>
+
+    <button
+      *ngIf="isRemoveActionVisible"
+      mat-button
+      (click)="removeFromReadLater()"
+    >
+      <fa-icon [icon]="faTrash" class="icon-left"></fa-icon>
+      {{ 'shared.remove' | translate }}
+    </button>
   </mat-card-actions>
 </mat-card>

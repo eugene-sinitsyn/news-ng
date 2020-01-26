@@ -17,19 +17,19 @@ export class SpinnerComponent implements OnInit, OnDestroy {
     private readonly dialogService: MatDialog
   ) {}
 
-  private subscription: Subscription;
+  private readonly subscription: Subscription = new Subscription();
   private dialogRef: MatDialogRef<MatSpinner>;
 
   public ngOnInit(): void {
-    this.subscription = this.store
-      .select(state => state.ui.spinner)
-      .pipe(map(spinner => !!spinner), distinctUntilChanged())
-      .subscribe(visible => visible ? this.show() : this.hide());
+    this.subscription.add(
+      this.store.select(state => state.ui.spinner)
+        .pipe(map(spinner => !!spinner), distinctUntilChanged())
+        .subscribe(visible => visible ? this.show() : this.hide())
+    );
   }
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.subscription = null;
   }
 
   private show(): void {
