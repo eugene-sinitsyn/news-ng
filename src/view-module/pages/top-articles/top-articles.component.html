@@ -1,5 +1,16 @@
+<news-header>
+  <news-top-filter-switch
+    [filterOpened]="filterOpened"
+    [filterApplied]="filterApplied"
+    (toggle)="toggleFilter($event)">
+  </news-top-filter-switch>
+  <news-language-selector></news-language-selector>
+</news-header>
+
 <news-top-filter
-  *ngIf="filterOpened$ | async"
+  *ngIf="filterOpened"
+  (close)="toggleFilter(false)"
   (onApplyFilter)="dispatchSearch()"
 ></news-top-filter>
+
 <news-articles [articles]="articles" withReadLaterAction></news-articles>

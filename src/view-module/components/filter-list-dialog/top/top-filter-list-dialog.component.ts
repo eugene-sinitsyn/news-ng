@@ -7,14 +7,14 @@ import { RootStateModel, topArticlesActions, TopFilterStateModel, preferencesAct
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'news-filter-list-dialog',
-  templateUrl: './filter-list-dialog.component.html',
-  styleUrls: ['./filter-list-dialog.component.scss']
+  selector: 'news-top-filter-list-dialog',
+  templateUrl: './top-filter-list-dialog.component.html',
+  styleUrls: ['./top-filter-list-dialog.component.scss']
 })
-export class FilterListDialogComponent implements OnInit, OnDestroy {
+export class TopFilterListDialogComponent implements OnInit, OnDestroy {
   public constructor(
     private readonly store: Store<RootStateModel>,
-    private readonly dialogRef: MatDialogRef<FilterListDialogComponent>
+    private readonly dialogRef: MatDialogRef<TopFilterListDialogComponent>
   ) {}
 
   private readonly subscription: Subscription = new Subscription();

@@ -11,16 +11,19 @@ import { RootStateModel, topArticlesActions } from '@state';
   styleUrls: ['./top-articles.component.scss']
 })
 export class TopArticlesComponent implements OnInit, OnDestroy {
-  public constructor(private readonly store: Store<RootStateModel>) {
-    this.filterOpened$ = store.select(state => state.ui.filterOpened);
-  }
+  public constructor(private readonly store: Store<RootStateModel>) {}
 
   private readonly subscription: Subscription = new Subscription();
 
-  public readonly filterOpened$: Observable<boolean>;
+  public filterOpened: boolean;
+  public filterApplied: boolean;
   public articles: ArticleModel[];
 
   public ngOnInit(): void {
+    this.subscription.add(
+      this.store.select(state => state.top.filter)
+        .subscribe(filter => this.filterApplied = !!filter)
+    );
     this.subscription.add(
       this.store.select(state => state.top.articles)
         .subscribe(articles => this.articles = articles)
@@ -36,5 +39,9 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  public toggleFilter(opened: boolean): void {
+    this.filterOpened = opened;
   }
 }

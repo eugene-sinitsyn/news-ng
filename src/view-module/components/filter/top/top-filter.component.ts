@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { CategoryEnum, CountryEnum } from '@domain';
@@ -14,6 +14,8 @@ export class TopFilterComponent implements OnInit {
     private readonly store: Store<RootStateModel>,
     private readonly formBuilder: FormBuilder,
   ) {}
+
+  @Output() public readonly close: EventEmitter<void> = new EventEmitter<void>();
 
   public readonly categories: any[] = this.toOptionList(CategoryEnum);
   public readonly countries: any[] = this.toOptionList(CountryEnum);
@@ -40,7 +42,7 @@ export class TopFilterComponent implements OnInit {
   }
 
   public closeFilter(): void {
-    this.store.dispatch(uiActions.toggleFilter({ opened: false }));
+    this.close.emit();
   }
 
   public clearFilter(): void {

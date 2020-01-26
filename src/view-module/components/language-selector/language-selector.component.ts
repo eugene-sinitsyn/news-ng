@@ -18,10 +18,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     private readonly store: Store<RootStateModel>,
     private readonly formBuilder: FormBuilder,
     private readonly translateService: TranslateService
-  ) {
-    translateService.setDefaultLang(LanguageEnum.english);
-    translateService.use(LanguageEnum.english);
-  }
+  ) {}
 
   private readonly subscription: Subscription = new Subscription();
 

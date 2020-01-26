@@ -8,7 +8,7 @@
   (focus)="toggleFocusedClass(true)"
   (blur)="toggleFocusedClass(false)">
   <fa-icon [icon]="faFilter"></fa-icon>
-  <span *ngIf="filterIsApplied" matBadge="!" matBadgeSize="small"></span>
+  <span *ngIf="filterApplied" matBadge="!" matBadgeSize="small"></span>
 </button>
 <button
   class="filter-menu-button"
@@ -31,7 +31,7 @@
   <button
     mat-menu-item
     type="button"
-    [disabled]="!filterIsApplied"
+    [disabled]="!filterApplied"
     (click)="openFilterNameDialog()">
     <fa-icon [icon]="faSave" [fixedWidth]="true"></fa-icon>
     {{ 'filter.save' | translate }}

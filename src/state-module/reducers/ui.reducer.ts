@@ -10,9 +10,6 @@ const reducer = createReducer<UiStateModel, Action>(
     if (spinner < 0) spinner = 0;
     return { ...state, spinner };
   }),
-  on(uiActions.toggleFilter, (state, action) => {
-    return { ...state, filterOpened: action.opened };
-  }),
   on(uiActions.notify, (state, action) => {
     const notification = !action.label ? null : {
       label: action.label,
