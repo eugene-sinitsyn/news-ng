@@ -6,16 +6,15 @@
     "close": "Close",
     "clear": "Clear",
     "apply": "Apply",
-    "remove": "Remove",
     "ok": "OK",
     "cancel": "Cancel",
-    "dismiss": "Dismiss",
-    "read-later": "Read later"
+    "dismiss": "Dismiss"
   },
   "header": {
     "title": "NEWS",
     "top-articles": "Top Articles",
     "search": "Search",
+    "read-later": "Read later",
     "filter-applied": "Filter is applied",
     "filter-close": "Close filter",
     "filter-open": "Open filter",
@@ -38,6 +37,10 @@
     "no-saved-filters": "No saved filters found",
     "select-filter": "Select filter",
     "enter-name": "Enter filter name"
+  },
+  "read-later": {
+    "add": "Save to \"Read later\"",
+    "remove": "Remove from \"Read later\""
   },
   "categories": {
     "business": "Business",

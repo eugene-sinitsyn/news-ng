@@ -18,25 +18,27 @@
   <mat-card-actions>
     <a [href]="article.url" target="_blank" mat-button>
       {{ 'shared.open' | translate }}
-      <fa-icon [icon]="faExternalLinkAlt" class="icon-right"></fa-icon>
+      <fa-icon [icon]="faExternalLinkAlt" class="icon-open"></fa-icon>
     </a>
 
     <button
       *ngIf="isReadLaterActionVisible"
       mat-button
       (click)="addToReadLater()"
+      [matTooltip]="'read-later.add' | translate"
+      [matTooltipShowDelay]="viewConfig.tooltipDelay"
     >
-      <fa-icon [icon]="faClock" class="icon-left"></fa-icon>
-      {{ 'shared.read-later' | translate }}
+      <fa-icon [icon]="faClock"></fa-icon>
     </button>
 
     <button
       *ngIf="isRemoveActionVisible"
       mat-button
       (click)="removeFromReadLater()"
+      [matTooltip]="'read-later.remove' | translate"
+      [matTooltipShowDelay]="viewConfig.tooltipDelay"
     >
-      <fa-icon [icon]="faTrash" class="icon-left"></fa-icon>
-      {{ 'shared.remove' | translate }}
+      <fa-icon [icon]="faTrash"></fa-icon>
     </button>
   </mat-card-actions>
 </mat-card>

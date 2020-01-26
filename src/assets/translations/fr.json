@@ -6,16 +6,15 @@
     "close": "Close(fr)",
     "clear": "Clear(fr)",
     "apply": "Apply(fr)",
-    "remove": "Remove(fr)",
     "ok": "OK(fr)",
     "cancel": "Cancel(fr)",
-    "dismiss": "Dismiss(fr)",
-    "read-later": "Read later(fr)"
+    "dismiss": "Dismiss(fr)"
   },
   "header": {
     "title": "NEWS(fr)",
     "top-articles": "Top Articles(fr)",
     "search": "Search(fr)",
+    "read-later": "Read later(fr)",
     "filter-applied": "Filter is applied(fr)",
     "filter-close": "Close filter(fr)",
     "filter-open": "Open filter(fr)",
@@ -38,6 +37,10 @@
     "no-saved-filters": "No saved filters found(fr)",
     "select-filter": "Select filter(fr)",
     "enter-name": "Enter filter name(fr)"
+  },
+  "read-later": {
+    "add": "Save to \"Read later\"(fr)",
+    "remove": "Remove from \"Read later\"(fr)"
   },
   "categories": {
     "business": "Business(fr)",

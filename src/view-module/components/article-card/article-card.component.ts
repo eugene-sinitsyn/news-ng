@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { ArticleModel } from '@domain';
 import { RootStateModel, readLaterActions } from '@state';
+import { ViewConfiguration } from '@view/config';
 
 @Component({
   selector: 'news-article-card',
@@ -16,7 +17,10 @@ import { RootStateModel, readLaterActions } from '@state';
   styleUrls: ['./article-card.component.scss']
 })
 export class ArticleCardComponent {
-  public constructor(private readonly store: Store<RootStateModel>) {}
+  public constructor(
+    public readonly viewConfig: ViewConfiguration,
+    private readonly store: Store<RootStateModel>
+  ) {}
 
   @Input() public article: ArticleModel;
   @Input() public set withReadLaterAction(value: any) {
