@@ -4,9 +4,14 @@ import { TopFilterStateModel } from '../models/top-filter-state.model';
 
 export const topArticlesActions = {
   fetchArticles: createAction('top-articles-fetch'),
+  fetchMoreArticles: createAction('top-aricles-fetch'),
   storeArticles: createAction(
     'top-articles-store',
-    props<{ articles: Page<ArticleModel> }>()
+    props<{ page: Page<ArticleModel> }>()
+  ),
+  storeMoreArticles: createAction(
+    'top-articles-store-more',
+    props<{ page: Page<ArticleModel> }>()
   ),
   storeFilter: createAction(
     'top-filter-store',

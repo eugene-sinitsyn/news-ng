@@ -12,8 +12,8 @@ const reducer = createReducer<SearchArticlesStateModel, Action>(
   on(searchArticlesActions.storeArticles, (state, action) => {
     return {
       ...state,
-      articles: action.articles.toArray(),
-      total: action.articles.total
+      articles: action.page.array,
+      total: action.page.total
     };
   })
 );

@@ -27,6 +27,14 @@ export class TopArticlesEffects {
     )
   );
 
+  public readonly fetchMoreArticles$: Observable<Action> = createEffect(
+    () => this.actions$.pipe(
+      ofType(topArticlesActions.fetchMoreArticles),
+      withLatestFrom(this.store),
+      mergeMap(([action, state]) => this.mapToStoreMoreTopArticlesAction(state))
+    )
+  );
+
   public readonly readSavedFilters$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(topArticlesActions.readSavedFilters),
@@ -55,7 +63,16 @@ export class TopArticlesEffects {
   private mapToStoreTopArticlesAction(state: RootStateModel): Promise<Action> {
     const request = this.toTopArticlesRequest(state);
     return this.articlesService.fetchTop(request)
-      .then(articles => topArticlesActions.storeArticles({ articles }));
+      .then(page => topArticlesActions.storeArticles({ page }));
+      // TODO: .catch(error => )
+  }
+
+  private mapToStoreMoreTopArticlesAction(state: RootStateModel): Promise<Action> {
+    const request = this.toTopArticlesRequest(state);
+    const loaded = (state.top.articles && state.top.articles.length) || 0;
+    request.page =  Math.floor(loaded / request.pageSize) + 1;
+    return this.articlesService.fetchTop(request)
+      .then(page => topArticlesActions.storeMoreArticles({ page }));
       // TODO: .catch(error => )
   }
 
@@ -76,6 +93,7 @@ export class TopArticlesEffects {
   private toTopArticlesRequest(state: RootStateModel): TopArticlesRequestModel {
     const request = new TopArticlesRequestModel();
     request.language = state.preferences.language;
+    request.pageSize = state.preferences.pageSize;
     if (state.top.filter) {
       request.searchString = state.top.filter.searchString;
       if (state.top.filter.sources && state.top.filter.sources.length) {

@@ -53,4 +53,8 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
   public toggleFilter(opened: boolean): void {
     this.filterOpened = opened;
   }
+
+  public loadMore(): void {
+    this.store.dispatch(topArticlesActions.fetchMoreArticles());
+  }
 }

@@ -8,6 +8,6 @@ export const searchArticlesActions = {
   ),
   storeArticles: createAction(
     'search-articles-store',
-    props<{ articles: Page<ArticleModel> }>()
+    props<{ page: Page<ArticleModel> }>()
   )
 }

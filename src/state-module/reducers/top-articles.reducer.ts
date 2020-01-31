@@ -13,8 +13,15 @@ const reducer = createReducer<TopArticlesStateModel, Action>(
   on(topArticlesActions.storeArticles, (state, action) => {
     return {
       ...state,
-      articles: distinctByUrl(action.articles.toArray()),
-      total: action.articles.total
+      articles: action.page.array,
+      total: action.page.total
+    };
+  }),
+  on(topArticlesActions.storeMoreArticles, (state, action) => {
+    return {
+      ...state,
+      articles: [...state.articles, ...action.page.array],
+      total: action.page.total
     };
   }),
   on(topArticlesActions.storeFilter, (state, action) => {
@@ -30,10 +37,4 @@ export function topArticlesReducer(
   action: Action
 ): TopArticlesStateModel {
   return reducer(state, action);
-}
-
-function distinctByUrl(articles: ArticleModel[]): ArticleModel[] {
-  const dictionary = {};
-  for (const article of articles) dictionary[article.url] = article;
-  return Object.keys(dictionary).map(key => dictionary[key]);
 }

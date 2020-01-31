@@ -1,10 +1,9 @@
 export class Page<T> {
-  public constructor(
-    private readonly array: T[],
-    public readonly total: number
-  ) {}
-
-  public toArray(): T[] {
-    return this.array;
+  public constructor(array?: T[], total?: number) {
+    this.array = array || [];
+    this.total = total || 0;
   }
+
+  public array: T[];
+  public total: number;
 }

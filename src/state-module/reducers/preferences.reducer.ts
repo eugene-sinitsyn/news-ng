@@ -4,7 +4,10 @@ import { LanguageEnum } from '@domain';
 import { preferencesActions } from '../actions/preferences.actions';
 
 const reducer = createReducer<PreferencesStateModel, Action>(
-  { language: LanguageEnum.english },
+  {
+    language: LanguageEnum.english,
+    pageSize: 20
+  },
   on(preferencesActions.storeLanguage, (state, action) => {
     return { ...state, language: action.language };
   })
