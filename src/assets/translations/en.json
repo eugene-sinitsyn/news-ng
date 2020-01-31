@@ -40,7 +40,8 @@
   },
   "pager": {
     "load-more": "Load more",
-    "of": "{{loaded}} of {{total}}"
+    "of": "{{loaded}} of {{total}}",
+    "no-results": "No results"
   },
   "read-later": {
     "add": "Save to \"Read later\"",
