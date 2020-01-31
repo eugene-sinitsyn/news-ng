@@ -7,6 +7,8 @@ import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-transla
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -44,6 +46,7 @@ import { NotificationComponent } from './components/notification/notification.co
 import { ReadLaterComponent } from './pages/read-later/read-later.component';
 import { SearchFilterListDialogComponent } from './components/filter-list-dialog/search/search-filter-list-dialog.component';
 import { SearchFilterSwitchComponent } from './components/filter-switch/search/search-filter-switch.component';
+import { PagerComponent } from './components/pager/pager.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -52,6 +55,7 @@ const routes: Routes = [
   // TODO: 404 page
 ];
 const materialModules = [
+  ScrollingModule,
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule,
@@ -91,7 +95,8 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
     SearchFilterListDialogComponent,
     InputDialogComponent,
     NotificationComponent,
-    ReadLaterComponent
+    ReadLaterComponent,
+    PagerComponent
   ],
   imports: [
     BrowserModule,
@@ -113,9 +118,7 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
   bootstrap: [AppComponent]
 })
 export class ViewModule {
-  public constructor(
-    private readonly translateService: TranslateService
-  ) {
+  public constructor(translateService: TranslateService) {
     translateService.setDefaultLang(LanguageEnum.english);
     translateService.use(LanguageEnum.english);
   }

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { ArticleModel } from '@domain';

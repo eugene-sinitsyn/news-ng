@@ -38,6 +38,10 @@
     "select-filter": "Select filter(fr)",
     "enter-name": "Enter filter name(fr)"
   },
+  "pager": {
+    "load-more": "Load more(de)",
+    "of": "{{loaded}} of {{total}}(de)"
+  },
   "read-later": {
     "add": "Save to \"Read later\"(fr)",
     "remove": "Remove from \"Read later\"(fr)"
