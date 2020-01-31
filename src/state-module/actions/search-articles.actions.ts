@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { SearchArticlesRequestModel, ArticleModel } from '@domain';
+import { SearchArticlesRequestModel, ArticleModel, Page } from '@domain';
 
 export const searchArticlesActions = {
   fetchArticles: createAction(
@@ -8,6 +8,6 @@ export const searchArticlesActions = {
   ),
   storeArticles: createAction(
     'search-articles-store',
-    props<{ articles: ArticleModel[] }>()
+    props<{ articles: Page<ArticleModel> }>()
   )
 }

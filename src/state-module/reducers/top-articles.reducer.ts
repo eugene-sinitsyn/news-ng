@@ -6,11 +6,16 @@ import { ArticleModel } from '@domain';
 const reducer = createReducer<TopArticlesStateModel, Action>(
   {
     filter: null,
+    savedFilters: {},
     articles: null,
-    savedFilters: {}
+    total: 0
   },
   on(topArticlesActions.storeArticles, (state, action) => {
-    return { ...state, articles: distinctByUrl(action.articles) };
+    return {
+      ...state,
+      articles: distinctByUrl(action.articles.toArray()),
+      total: action.articles.total
+    };
   }),
   on(topArticlesActions.storeFilter, (state, action) => {
     return { ...state, filter: action.filterState };

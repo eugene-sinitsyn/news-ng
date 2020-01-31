@@ -14,4 +14,4 @@
 ></news-top-filter>
 
 <news-articles [articles]="articles" withReadLaterAction></news-articles>
-<news-pager [loaded]="20" [total]="89"></news-pager>
+<news-pager *ngIf="articles" [loaded]="loaded" [total]="total"></news-pager>

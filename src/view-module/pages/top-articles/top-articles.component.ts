@@ -18,6 +18,8 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
   public filterOpened: boolean;
   public filterApplied: boolean;
   public articles: ArticleModel[];
+  public loaded: number = 0;
+  public total: number = 0;
 
   public ngOnInit(): void {
     this.subscription.add(
@@ -26,7 +28,14 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
     );
     this.subscription.add(
       this.store.select(state => state.top.articles)
-        .subscribe(articles => this.articles = articles)
+        .subscribe(articles => {
+          this.articles = articles;
+          this.loaded = (articles && articles.length) || 0;
+        })
+    );
+    this.subscription.add(
+      this.store.select(state => state.top.total)
+        .subscribe(total => this.total = total)
     );
     this.subscription.add(
       this.store.select(state => state.preferences.language)

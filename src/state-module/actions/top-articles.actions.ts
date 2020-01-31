@@ -1,12 +1,12 @@
 import { createAction, props } from '@ngrx/store';
-import { ArticleModel, TopFiltersDictionary } from '@domain';
+import { ArticleModel, TopFiltersDictionary, Page } from '@domain';
 import { TopFilterStateModel } from '../models/top-filter-state.model';
 
 export const topArticlesActions = {
   fetchArticles: createAction('top-articles-fetch'),
   storeArticles: createAction(
     'top-articles-store',
-    props<{ articles: ArticleModel[] }>()
+    props<{ articles: Page<ArticleModel> }>()
   ),
   storeFilter: createAction(
     'top-filter-store',

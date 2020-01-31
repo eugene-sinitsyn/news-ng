@@ -1,6 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { HttpService } from '../http/http.service';
-import { TopArticlesRequestModel, ArticleModel, SearchArticlesRequestModel, LanguageEnum } from '@domain';
+import {
+  TopArticlesRequestModel,
+  ArticleModel,
+  SearchArticlesRequestModel,
+  LanguageEnum,
+  Page
+} from '@domain';
 import { environment } from '@environment';
 import { Injectable } from '@angular/core';
 import { ArticlesResponseModel } from '../models/articles-response.model';
@@ -12,22 +18,22 @@ export class ArticlesService extends HttpService {
     super(httpClient);
   }
 
-  public async fetchTop(request: TopArticlesRequestModel): Promise<ArticleModel[]> {
+  public async fetchTop(request: TopArticlesRequestModel): Promise<Page<ArticleModel>> {
     let params = this.createBaseParams(request.language);
     params = this.setTopArticlesParams(params, request);
     const response: ArticlesResponseModel = await this.httpGet('top-headlines', params);
 
     if (response.status === ResponseStatus.error) throw new Error(response.message);
-    else return response.articles || [];
+    else return new Page<ArticleModel>(response.articles || [], response.totalResults);
   }
 
-  public async search(request: SearchArticlesRequestModel): Promise<ArticleModel[]> {
+  public async search(request: SearchArticlesRequestModel): Promise<Page<ArticleModel>> {
     let params = this.createBaseParams(request.language);
     params = this.setSearchArticlesParams(params, request);
     const response: ArticlesResponseModel = await this.httpGet('everything', params);
 
     if (response.status === ResponseStatus.error) throw new Error(response.message);
-    else return response.articles || [];
+    else return new Page<ArticleModel>(response.articles || [], response.totalResults);
   }
 
   private createBaseParams(language: LanguageEnum): HttpParams {
