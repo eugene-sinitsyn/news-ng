@@ -15,23 +15,17 @@ body {
   margin-right: 8px;
 }
 
+/* navigation menu */
+.mat-menu-content a {
+  display: block;
+  text-align: left;
+  border-radius: 0;
+}
+.mat-menu-content a.active {
+  color: #e91e63;
+}
+
 /* filter dialog */
 mat-dialog-container [mat-dialog-actions] {
   flex-direction: row-reverse;
-}
-
-/* navigation menu */
-nav {
-  padding-left: 8px;
-  padding-right: 8px;
-}
-nav a.action {
-  border-bottom: 3px solid transparent;
-  border-radius: 0;
-}
-nav a.active {
-  border-bottom-color: #e91e63;
-}
-.mat-menu-panel {
-  max-width: 400px !important;
 }

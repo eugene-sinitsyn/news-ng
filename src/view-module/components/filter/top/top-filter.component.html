@@ -44,19 +44,21 @@
       </mat-hint>
     </mat-form-field>
 
-    <button mat-button type="button" (click)="closeFilter()"
-    >{{ 'shared.close' | translate }}</button>
-    <button
-      mat-button
-      type="button"
-      [disabled]="formIsEmpty"
-      (click)="clearFilter()"
-    >{{ 'shared.clear' | translate }}</button>
-    <button
-      mat-raised-button
-      type="button"
-      [disabled]="this.formGroup.pristine"
-      (click)="applyFilter()"
-    >{{ 'shared.apply' | translate }}</button>
+    <div class="filter-actions">
+      <button mat-button type="button" (click)="closeFilter()"
+      >{{ 'shared.close' | translate }}</button>
+      <button
+        mat-button
+        type="button"
+        [disabled]="formIsEmpty"
+        (click)="clearFilter()"
+      >{{ 'shared.clear' | translate }}</button>
+      <button
+        mat-raised-button
+        type="button"
+        [disabled]="this.formGroup.pristine"
+        (click)="applyFilter()"
+      >{{ 'shared.apply' | translate }}</button>
+    </div>
   </div>
 </form>

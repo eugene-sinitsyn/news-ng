@@ -17,17 +17,14 @@
         flex-grow: 1;
         min-width: 100px;
       }
-
       .field-country {
         flex-grow: 1;
         min-width: 100px;
       }
-
       .field-search-string {
         flex-grow: 2;
         min-width: 100px;
       }
-
       .field-sources {
         flex-grow: 1;
 
@@ -38,6 +35,16 @@
             padding-right: 1em;
           }
         }
+      }
+      .filter-actions {
+        text-align: right;
+      }
+    }
+
+    // mobile filter
+    @media screen and (max-width: 700px) {
+      .filter-row {
+        flex-direction: column;
       }
     }
   }
