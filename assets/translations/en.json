@@ -39,8 +39,7 @@
     "enter-name": "Enter filter name"
   },
   "pager": {
-    "load-more": "Load more",
-    "of": "{{loaded}} of {{total}}",
+    "show-more": "Show more",
     "no-results": "No results"
   },
   "read-later": {
