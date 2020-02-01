@@ -4,22 +4,21 @@
   padding: 16px;
 
   .title {
-    padding-right: 36px;
+    padding-right: 16px;
     color: #e91e63;
     font-weight: bold;
-    margin: 0;
+    margin: 0 8px;
   }
 
-  .mobile-menu-button fa-icon {
+  .mobile-menu-button {
+    min-width: 20px;
+    padding: 0 8px;
     font-size: 24px;
-  }
+    border: 2px solid rgb(255, 255, 255, 0.04);
+  } 
 
   .spacer {
     flex-grow: 1;
-  }
-
-  news-filter-switch { // TODO: move out
-    margin-right: 20px;
   }
 
   nav a {
