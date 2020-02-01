@@ -4,8 +4,7 @@ import {
   TopArticlesRequestModel,
   ArticleModel,
   SearchArticlesRequestModel,
-  LanguageEnum,
-  Page
+  LanguageEnum
 } from '@domain';
 import { environment } from '@environment';
 import { Injectable } from '@angular/core';
@@ -18,22 +17,22 @@ export class ArticlesService extends HttpService {
     super(httpClient);
   }
 
-  public async fetchTop(request: TopArticlesRequestModel): Promise<Page<ArticleModel>> {
+  public async fetchTop(request: TopArticlesRequestModel): Promise<ArticleModel[]> {
     let params = this.createBaseParams(request.language);
     params = this.setTopArticlesParams(params, request);
     const response: ArticlesResponseModel = await this.httpGet('top-headlines', params);
 
     if (response.status === ResponseStatus.error) throw new Error(response.message);
-    else return new Page<ArticleModel>(response.articles || [], response.totalResults);
+    else return response.articles || [];
   }
 
-  public async search(request: SearchArticlesRequestModel): Promise<Page<ArticleModel>> {
+  public async search(request: SearchArticlesRequestModel): Promise<ArticleModel[]> {
     let params = this.createBaseParams(request.language);
     params = this.setSearchArticlesParams(params, request);
     const response: ArticlesResponseModel = await this.httpGet('everything', params);
 
     if (response.status === ResponseStatus.error) throw new Error(response.message);
-    else return new Page<ArticleModel>(response.articles || [], response.totalResults);
+    else return response.articles || [];
   }
 
   private createBaseParams(language: LanguageEnum): HttpParams {

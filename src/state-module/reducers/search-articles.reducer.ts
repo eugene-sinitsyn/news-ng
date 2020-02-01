@@ -7,14 +7,9 @@ const reducer = createReducer<SearchArticlesStateModel, Action>(
   {
     filter: new SearchArticlesRequestModel,
     articles: null,
-    total: 0
   },
   on(searchArticlesActions.storeArticles, (state, action) => {
-    return {
-      ...state,
-      articles: action.page.array,
-      total: action.page.total
-    };
+    return { ...state, articles: action.articles };
   })
 );
 

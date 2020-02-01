@@ -6,15 +6,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./pager.component.scss']
 })
 export class PagerComponent {
-  @Input() public loaded: number = 0;
   @Input() public total: number = 0;
-  @Output() public readonly loadMore: EventEmitter<void> = new EventEmitter<void>();
+  @Input() public visible: number = 0;
+  @Output() public readonly showMore: EventEmitter<void> = new EventEmitter<void>();
 
-  public get status(): { loaded: number; total: number } {
-    return { loaded: this.loaded, total: this.total };
-  }
-
-  public get loadAvailable(): boolean {
-    return this.total && this.loaded < this.total;
+  public get moreAvailable(): boolean {
+    return this.total && this.total > this.visible;
   }
 }

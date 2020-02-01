@@ -6,7 +6,7 @@ import { preferencesActions } from '../actions/preferences.actions';
 const reducer = createReducer<PreferencesStateModel, Action>(
   {
     language: LanguageEnum.english,
-    pageSize: 20
+    pageSize: 12
   },
   on(preferencesActions.storeLanguage, (state, action) => {
     return { ...state, language: action.language };

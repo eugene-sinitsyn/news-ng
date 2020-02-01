@@ -23,7 +23,7 @@ export class SearchArticlesEffects {
 
   private mapToStoreArticles(request: SearchArticlesRequestModel): Promise<Action> {
     return this.articlesService.search(request)
-      .then(page => searchArticlesActions.storeArticles({ page }));
+      .then(articles => searchArticlesActions.storeArticles({ articles }));
       // TODO: .catch(error => )
   }
 }

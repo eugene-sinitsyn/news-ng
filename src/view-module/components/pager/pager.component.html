@@ -1,8 +1,4 @@
-<p *ngIf="total; else noResults">{{ 'pager.of' | translate:status }}</p>
-<ng-template #noResults>
-  <p>{{ 'pager.no-results' | translate }}</p>
-</ng-template>
-
-<button *ngIf="loadAvailable" mat-raised-button (click)="loadMore.emit()">
-  {{ 'pager.load-more' | translate }}
+<p *ngIf="!total">{{ 'pager.no-results' | translate }}</p>
+<button *ngIf="moreAvailable" mat-raised-button (click)="showMore.emit()">
+  {{ 'pager.show-more' | translate }}
 </button>

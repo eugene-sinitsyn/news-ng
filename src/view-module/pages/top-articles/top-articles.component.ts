@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, combineLatest } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { ArticleModel } from '@domain';
@@ -18,8 +18,8 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
   public filterOpened: boolean;
   public filterApplied: boolean;
   public articles: ArticleModel[];
-  public loaded: number = 0;
   public total: number = 0;
+  public articlesVisible: number = 0;
 
   public ngOnInit(): void {
     this.subscription.add(
@@ -27,15 +27,15 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
         .subscribe(filter => this.filterApplied = !!filter)
     );
     this.subscription.add(
-      this.store.select(state => state.top.articles)
-        .subscribe(articles => {
-          this.articles = articles;
-          this.loaded = (articles && articles.length) || 0;
-        })
-    );
-    this.subscription.add(
-      this.store.select(state => state.top.total)
-        .subscribe(total => this.total = total)
+      combineLatest(
+        this.store.select(state => state.top.articles),
+        this.store.select(state => state.top.page),
+        this.store.select(state => state.preferences.pageSize)
+      ).subscribe(([articles, page, pageSize]) => {
+        this.articles = articles && articles.slice(0, page * pageSize);
+        this.total = (articles && articles.length) || 0;
+        this.articlesVisible = (this.articles && this.articles.length) || 0;
+      })
     );
     this.subscription.add(
       this.store.select(state => state.preferences.language)
@@ -54,7 +54,7 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
     this.filterOpened = opened;
   }
 
-  public loadMore(): void {
-    this.store.dispatch(topArticlesActions.fetchMoreArticles());
+  public showMore(): void {
+    this.store.dispatch(topArticlesActions.showMoreArticles());
   }
 }

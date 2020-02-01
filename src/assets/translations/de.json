@@ -39,8 +39,7 @@
     "enter-name": "Enter filter name(de)"
   },
   "pager": {
-    "load-more": "Load more(de)",
-    "of": "{{loaded}} of {{total}}(de)",
+    "show-more": "Show more(de)",
     "no-results": "No results(de)"
   },
   "read-later": {
