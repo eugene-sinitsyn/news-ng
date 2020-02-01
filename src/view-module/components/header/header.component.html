@@ -1,27 +1,40 @@
 <h1 class="title" color="primary">{{ 'header.title' | translate }}</h1>
 
-<a routerLink="/"
-  routerLinkActive="active"
-  [routerLinkActiveOptions]="{ exact: true }"
-  class="action"
-  mat-button
->{{ 'header.top-articles' | translate }}</a>
+<button mat-button class="mobile-menu-button" [matMenuTriggerFor]="pagesMenu">
+  <fa-icon [icon]="faBars"></fa-icon>
+</button>
+<mat-menu #pagesMenu="matMenu">
+  <ng-template matMenuContent>
+      <ng-container *ngTemplateOutlet="pageLinks"></ng-container>
+  </ng-template>
+</mat-menu>
 
-<a routerLink="/search"
-  routerLinkActive="active"
-  class="action"
-  mat-button
-  disabled
-  [matTooltip]="'shared.coming-soon' | translate"
-  [matTooltipShowDelay]="viewConfig.tooltipDelay"
->{{ 'header.search' | translate }}</a>
-
-<a routerLink="/readlater"
-  routerLinkActive="active"
-  class="action"
-  mat-button
->{{ 'header.read-later' | translate }}</a>
-
+<div class="fullsize-menu">
+  <ng-container *ngTemplateOutlet="pageLinks"></ng-container>
+</div>
 <span class="spacer"></span>
-
 <ng-content></ng-content>
+
+<ng-template #pageLinks>
+  <nav>
+    <a routerLink="/"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="action"
+      mat-button
+    >{{ 'header.top-articles' | translate }}</a>
+    <a routerLink="/search"
+      routerLinkActive="active"
+      class="action"
+      mat-button
+      disabled
+      [matTooltip]="'shared.coming-soon' | translate"
+      [matTooltipShowDelay]="viewConfig.tooltipDelay"
+    >{{ 'header.search' | translate }}</a>
+    <a routerLink="/readlater"
+      routerLinkActive="active"
+      class="action"
+      mat-button
+    >{{ 'header.read-later' | translate }}</a>
+  </nav>
+</ng-template>

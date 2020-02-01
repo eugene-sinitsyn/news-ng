@@ -1,28 +1,37 @@
 :host {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   padding: 16px;
 
   .title {
     padding-right: 36px;
     color: #e91e63;
     font-weight: bold;
+    margin: 0;
   }
 
-  .action {
-    border-bottom: 3px solid transparent;
-    border-radius: 0;
-
-    &.active {
-      border-bottom-color: #e91e63;
-    }
+  .mobile-menu-button fa-icon {
+    font-size: 24px;
   }
 
   .spacer {
     flex-grow: 1;
   }
 
-  news-filter-switch {
+  news-filter-switch { // TODO: move out
     margin-right: 20px;
+  }
+
+  // responsive menu
+  .mobile-menu-button {
+    display: none;
+  }
+  @media screen and (max-width: 700px) {
+    .fullsize-menu {
+      display: none;
+    }
+    .mobile-menu-button {
+      display: block;
+    }
   }
 }

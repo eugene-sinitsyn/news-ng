@@ -10,10 +10,28 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+/* filter menu */
 .mat-menu-content fa-icon {
   margin-right: 8px;
 }
 
+/* filter dialog */
 mat-dialog-container [mat-dialog-actions] {
   flex-direction: row-reverse;
+}
+
+/* navigation menu */
+nav {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+nav a.action {
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+}
+nav a.active {
+  border-bottom-color: #e91e63;
+}
+.mat-menu-panel {
+  max-width: 400px !important;
 }
