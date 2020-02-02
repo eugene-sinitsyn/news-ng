@@ -14,4 +14,10 @@
 ></news-top-filter>
 
 <news-articles [articles]="articles" withReadLaterAction></news-articles>
-<news-pager *ngIf="articles" [total]="total" [visible]="articlesVisible" (showMore)="showMore()"></news-pager>
+<news-pager
+  *ngIf="articles"
+  infinite
+  [totalCount]="totalCount"
+  [visibleCount]="visibleCount"
+  (showMore)="showMore()"
+></news-pager>

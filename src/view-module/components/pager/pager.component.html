@@ -1,4 +1,4 @@
-<p *ngIf="!total">{{ 'pager.no-results' | translate }}</p>
+<p *ngIf="!totalCount">{{ 'pager.no-results' | translate }}</p>
 <button *ngIf="moreAvailable" mat-raised-button (click)="showMore.emit()">
   {{ 'pager.show-more' | translate }}
 </button>

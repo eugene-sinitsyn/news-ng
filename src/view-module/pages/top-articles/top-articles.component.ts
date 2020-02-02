@@ -18,8 +18,8 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
   public filterOpened: boolean;
   public filterApplied: boolean;
   public articles: ArticleModel[];
-  public total: number = 0;
-  public articlesVisible: number = 0;
+  public totalCount: number = 0;
+  public visibleCount: number = 0;
 
   public ngOnInit(): void {
     this.subscription.add(
@@ -35,8 +35,8 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
         this.store.select(state => state.preferences.pageSize)
       ).subscribe(([articles, page, pageSize]) => {
         this.articles = articles && articles.slice(0, page * pageSize);
-        this.total = (articles && articles.length) || 0;
-        this.articlesVisible = (this.articles && this.articles.length) || 0;
+        this.totalCount = (articles && articles.length) || 0;
+        this.visibleCount = (this.articles && this.articles.length) || 0;
       })
     );
     this.subscription.add(
