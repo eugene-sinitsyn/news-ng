@@ -61,7 +61,6 @@ export class TopFilterComponent implements OnInit, OnDestroy {
     if (filterState.isEmpty) filterState = null;
     this.store.dispatch(topArticlesActions.storeFilter({ filterState }));
     this.store.dispatch(topArticlesActions.fetchArticles());
-    this.closeFilter();
   }
 
   private setupFormGroup(filterState: TopFilterStateModel): void {

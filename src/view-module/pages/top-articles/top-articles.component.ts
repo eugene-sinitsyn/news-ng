@@ -23,8 +23,10 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.subscription.add(
-      this.store.select(state => state.top.filter)
-        .subscribe(filter => this.filterApplied = !!filter)
+      this.store.select(state => state.top.filter).subscribe(filter => {
+        this.filterApplied = !!filter;
+        this.toggleFilter(false);
+      })
     );
     this.subscription.add(
       combineLatest(
