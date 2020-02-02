@@ -4,9 +4,9 @@ import { MatFormFieldControl } from '@angular/material/form-field';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSelect } from '@angular/material/select';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-import { SourceDetailsModel, CountryEnum, CategoryEnum } from '@domain';
-import { RootStateModel, sourcesActions } from '@state';
+import { Observable, Subscription, combineLatest, BehaviorSubject } from 'rxjs';
+import { SourceDetailsModel, CountryEnum, CategoryEnum, LanguageEnum } from '@domain';
+import { RootStateModel } from '@state';
 
 @Component({
   selector: 'news-sources-selector',
@@ -30,92 +30,72 @@ export class SourcesSelectorComponent implements
     }
   }
 
-  private readonly subscription: Subscription = new Subscription();
-  private componentInitiaized: boolean = false;
-  private busyValue: boolean = false;
-  private countryValue: CountryEnum;
-  private categoryValue: CategoryEnum;
-
-  public sources: SourceDetailsModel[];
-
   @Input() public set country(value: CountryEnum) {
-    if (this.componentInitiaized) this.reset();
-    this.countryValue = value;
+    this.country$.next(value);
   }
-
   @Input() public set category(value: CategoryEnum) {
-    if (this.componentInitiaized) this.reset();
-    this.categoryValue = value;
+    this.category$.next(value);
   }
 
   @ViewChild(MatSelect, { static: true }) public matSelect: MatSelect;
 
-  private get hasOptions(): boolean {
-    return this.sources && this.sources.length > 0;
-  }
-
-  public get busy(): boolean {
-    return this.busyValue;
-  }
-
-  public get hint(): string {
-    if (!this.countryValue && !this.categoryValue) return '';
-
-    let label: string;
-    if (!this.categoryValue) label = 'sources-hint-country';
-    else if (!this.countryValue) label = 'sources-hint-category';
-    else label = 'sources-hint-category-country';
-    return this.translateService.instant(`filter.${label}`, {
-      category: this.translateService.instant(`categories.${this.categoryValue}`),
-      country: this.translateService.instant(`countries.${this.countryValue}`)
-    });
-  }
+  private readonly subscription: Subscription = new Subscription();
+  private country$: BehaviorSubject<CountryEnum> =
+    new BehaviorSubject<CountryEnum>(null);
+  private category$: BehaviorSubject<CategoryEnum> =
+    new BehaviorSubject<CategoryEnum>(null);
+  
+  public sources: SourceDetailsModel[];
+  public hint: string = '';
 
   public ngOnInit(): void {
     this.subscription.add(
-      this.store.select(state => state.sources)
-        .subscribe(sources => this.handleSources(sources))
+      combineLatest(
+        this.store.select(state => state.sources),
+        this.store.select(state => state.preferences.language),
+        this.country$,
+        this.category$
+      ).subscribe(([sources, language, country, category]) => {
+        this.hint = this.getHint(country, category);
+        this.sources = sources && sources.filter(
+          source => this.fitsCriteria(source, language, country, category)
+        );
+        // update value after sources are "change detected"
+        setTimeout(() => this.writeValue(this.ngControl.value));
+      })
     );
-    this.subscription.add(
-      this.store.select(state => state.preferences.language)
-        .subscribe(() => this.reset())
-    );
-    this.componentInitiaized = true;
   }
 
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  public fetchSources(): void {
-    this.busyValue = true;
-    this.store.dispatch(sourcesActions.fetchSources({
-      country: this.countryValue,
-      category: this.categoryValue
-    }));
-  }
+  private getHint(country: CountryEnum, category: CategoryEnum): string {
+    if (!country && !category) return '';
 
-  private handleSources(sources: SourceDetailsModel[]): void {
-    this.sources = sources;
-    // write value and open mat-select
-    // after source options are "change-detected"
-    setTimeout(() => {
-      if (this.ngControl.value) this.writeValue(this.ngControl.value);
-      if (this.busyValue) {
-        this.matSelect.open();
-        this.busyValue = false;
-      }
+    let label: string;
+    if (!category) label = 'sources-hint-country';
+    else if (!country) label = 'sources-hint-category';
+    else label = 'sources-hint-category-country';
+
+    return this.translateService.instant(`filter.${label}`, {
+      category: this.translateService.instant(`categories.${category}`),
+      country: this.translateService.instant(`countries.${country}`)
     });
   }
 
-  private reset(): void {
-    const control = this.ngControl.control;
-    if (control.value && control.value.length) control.setValue([]);
-    if (this.sources && this.sources.length)
-      this.store.dispatch(sourcesActions.storeSources({ sources: [] }));
+  private fitsCriteria(
+    source: SourceDetailsModel,
+    language: LanguageEnum,
+    country: CountryEnum,
+    category: CategoryEnum
+  ): boolean {
+    return source.language === language &&
+      (!country || source.country === country) &&
+      (!category || source.category === category);
   }
 
-  // MatFormFieldControl implementation:
+  // MatFormFieldControl:
 
   public set value(value: any) {
     if (this.matSelect) this.matSelect.value = value;
@@ -169,11 +149,10 @@ export class SourcesSelectorComponent implements
   }
 
   public onContainerClick(event: MouseEvent): void {
-    if (!this.hasOptions) this.fetchSources();
     if (this.matSelect) this.matSelect.onContainerClick();
   }
 
-  // ControlValueAccessor implementation:
+  // ControlValueAccessor:
 
   public writeValue(value: any): void {
     if (this.matSelect) this.matSelect.writeValue(value);

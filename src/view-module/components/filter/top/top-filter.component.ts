@@ -1,22 +1,24 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { merge, Subscription } from 'rxjs';
 import { CategoryEnum, CountryEnum } from '@domain';
-import { RootStateModel, TopFilterStateModel, uiActions, topArticlesActions } from '@state';
+import { RootStateModel, TopFilterStateModel, topArticlesActions } from '@state';
 
 @Component({
   selector: 'news-top-filter',
   templateUrl: './top-filter.component.html',
   styleUrls: ['./top-filter.component.scss']
 })
-export class TopFilterComponent implements OnInit {
+export class TopFilterComponent implements OnInit, OnDestroy {
   public constructor(
     private readonly store: Store<RootStateModel>,
-    private readonly formBuilder: FormBuilder,
+    private readonly formBuilder: FormBuilder
   ) {}
 
   @Output() public readonly close: EventEmitter<void> = new EventEmitter<void>();
 
+  private formSubscription: Subscription;
   public readonly categories: any[] = this.toOptionList(CategoryEnum);
   public readonly countries: any[] = this.toOptionList(CountryEnum);
   public formGroup: FormGroup;
@@ -41,6 +43,10 @@ export class TopFilterComponent implements OnInit {
     stateSubscription.unsubscribe();
   }
 
+  public ngOnDestroy(): void {
+    if (this.formSubscription) this.formSubscription.unsubscribe();
+  }
+
   public closeFilter(): void {
     this.close.emit();
   }
@@ -58,10 +64,6 @@ export class TopFilterComponent implements OnInit {
     this.closeFilter();
   }
 
-  public fetchSources(opened: boolean): void {
-    console.log(opened);
-  }
-
   private setupFormGroup(filterState: TopFilterStateModel): void {
     if (!filterState) filterState = new TopFilterStateModel();
     this.formGroup = this.formBuilder.group({
@@ -70,6 +72,12 @@ export class TopFilterComponent implements OnInit {
       sources: [filterState.sources],
       searchString: [filterState.searchString]
     });
+
+    if (this.formSubscription) this.formSubscription.unsubscribe();
+    this.formSubscription = merge(
+      this.formGroup.get('country').valueChanges,
+      this.formGroup.get('category').valueChanges
+    ).subscribe(() => this.formGroup.get('sources').setValue([]));
   }
 
   private toOptionList(enumType: any): any[] {
