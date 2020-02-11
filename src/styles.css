@@ -30,3 +30,8 @@ body {
 mat-dialog-container [mat-dialog-actions] {
   flex-direction: row-reverse;
 }
+
+/* TODO: remove this workaround */
+.header-actions>* {
+  margin-right: 8px;
+}

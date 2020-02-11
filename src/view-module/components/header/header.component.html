@@ -13,7 +13,10 @@
   <ng-container *ngTemplateOutlet="pageLinks"></ng-container>
 </div>
 <span class="spacer"></span>
-<ng-content></ng-content>
+
+<div class="header-actions">
+  <ng-content></ng-content>
+</div>
 
 <ng-template #pageLinks>
   <nav>
