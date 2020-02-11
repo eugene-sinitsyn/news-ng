@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { mergeMap, tap } from 'rxjs/operators';
+import { tap, concatMap } from 'rxjs/operators';
 import { ArticleModel, NotificationEnum } from '@domain';
 import { ArticlesStorageService } from '@storage';
 import { readLaterActions } from '../actions/read-later.actions';
@@ -18,14 +18,14 @@ export class ReadLaterEffects {
   public readonly loadReadLaterArticles$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(readLaterActions.loadReadLaterArticles),
-      mergeMap(() => this.mapToStoreReadLaterArticlesAction())
+      concatMap(() => this.mapToStoreReadLaterArticlesAction())
     )
   );
 
   public readonly addToReadLater$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(readLaterActions.addToReadlater),
-      mergeMap(action => this.mapToArticleSavedNotifyAction(action.article))
+      concatMap(action => this.mapToArticleSavedNotifyAction(action.article))
     )
   );
 

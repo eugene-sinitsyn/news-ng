@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
-import { mergeMap, withLatestFrom, tap } from 'rxjs/operators';
+import { withLatestFrom, tap, concatMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { TopArticlesRequestModel, NotificationEnum } from '@domain';
 import { ArticlesService } from '@network';
@@ -23,14 +23,14 @@ export class TopArticlesEffects {
     () => this.actions$.pipe(
       ofType(topArticlesActions.fetchArticles),
       withLatestFrom(this.store),
-      mergeMap(([action, state]) => this.mapToStoreTopArticlesAction(state))
+      concatMap(([action, state]) => this.mapToStoreTopArticlesAction(state))
     )
   );
 
   public readonly readSavedFilters$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(topArticlesActions.readSavedFilters),
-      mergeMap(() => this.maptoStoreSavedFiltersAction())
+      concatMap(() => this.maptoStoreSavedFiltersAction())
     )
   );
 
@@ -46,7 +46,7 @@ export class TopArticlesEffects {
     () => this.actions$.pipe(
       ofType(topArticlesActions.saveFilterToStorage),
       withLatestFrom(this.store),
-      mergeMap(([action, state]) => {
+      concatMap(([action, state]) => {
         return this.mapToFilterSavedNotifyAction(state, action.filterName);
       })
     ),
