@@ -4,7 +4,6 @@ import {
   Output,
   EventEmitter,
   Inject,
-  OnInit,
   NgZone,
   OnDestroy
 } from '@angular/core'

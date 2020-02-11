@@ -1,7 +1,7 @@
-import { LanguageEnum } from '@domain';
+import { LanguageEnum, PageSizeEnum } from '@domain';
 
 export class PreferencesStateModel {
   public language: LanguageEnum;
-  public pageSize: number;
+  public pageSize: PageSizeEnum;
   public infiniteScroll: boolean;
 }

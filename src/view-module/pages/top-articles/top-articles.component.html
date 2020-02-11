@@ -17,7 +17,7 @@
 <news-articles [articles]="articles" withReadLaterAction></news-articles>
 <news-pager
   *ngIf="articles"
-  infinite
+  [infinite]="infiniteScrollEnabled"
   [totalCount]="totalCount"
   [visibleCount]="visibleCount"
   (showMore)="showMore()"

@@ -21,10 +21,13 @@ import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { LanguageEnum } from '@domain';
 import { StateModule } from '@state';
 import { ViewConfiguration } from './config/view-config';
+
+import { PreferencesFormService } from './services/preferences-form.service';
 
 import { AppComponent } from './root.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -49,6 +52,7 @@ import { SearchFilterSwitchComponent } from './components/filter-switch/search/s
 import { PagerComponent } from './components/pager/pager.component';
 import { PreferencesComponent } from './pages/preferences/preferences.component';
 import { PreferencesLinkComponent } from './components/preferences-link/preferences-link.component';
+import { PreferencesFormComponent } from './components/preferences-form/preferences-form.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -70,7 +74,8 @@ const materialModules = [
   MatProgressSpinnerModule,
   MatProgressBarModule,
   MatMenuModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSlideToggleModule
 ];
 
 export function createTranslationLoader(httpClient: HttpClient): TranslateLoader {
@@ -101,7 +106,8 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
     NotificationComponent,
     ReadLaterComponent,
     PagerComponent,
-    PreferencesLinkComponent
+    PreferencesLinkComponent,
+    PreferencesFormComponent
   ],
   imports: [
     BrowserModule,
@@ -118,7 +124,8 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
     StateModule,
   ],
   providers: [
-    { provide: ViewConfiguration, useValue: new ViewConfiguration() }
+    { provide: ViewConfiguration, useValue: new ViewConfiguration() },
+    PreferencesFormService
   ],
   bootstrap: [AppComponent]
 })

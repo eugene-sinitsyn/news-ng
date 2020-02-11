@@ -47,7 +47,17 @@
     "remove": "Remove from \"Read later\"(de)"
   },
   "preferences": {
-    "title": "Preferences(de)"
+    "title": "Preferences(de)",
+    "default-language": "Default language(de)",
+    "page-size": "Page size(de)",
+    "articles": "articles(de)",
+    "infinite-scrolling": "Infinite scrolling(de)",
+    "save": "Save preferences(de)"
+  },
+  "languages": {
+    "en": "English(de)",
+    "fr": "French(de)",
+    "de": "Deutsch(de)"
   },
   "categories": {
     "business": "Business(de)",

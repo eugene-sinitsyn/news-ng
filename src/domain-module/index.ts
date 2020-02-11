@@ -11,5 +11,6 @@ export * from './enums/language.enum';
 export * from './enums/category.enum';
 export * from './enums/sort-order.enum';
 export * from './enums/notification.enum';
+export * from './enums/page-size.enum';
 
 export * from './metadata/query-string-name.decorator';

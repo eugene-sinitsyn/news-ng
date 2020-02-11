@@ -13,19 +13,28 @@ export class PreferencesEffects {
     private readonly preferencesStorageService: PreferencesStorageService
   ) {}
 
+  public readonly savePreferencesToStorage$: Observable<Action> = createEffect(
+    () => this.actions$.pipe(
+      ofType(preferencesActions.savePreferencesToStorage),
+      concatMap(action => {
+        const preferences = action.preferences;
+        this.preferencesStorageService.store(preferences);
+        return of(preferencesActions.storePreferences({ preferences }));
+      })
+    )
+  );
+
   public readonly readSavedPreferences$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(preferencesActions.readSavedPreferences),
-      concatMap(() => this.mapToStorePreferencesAction())
+      concatMap(() => {
+        const preferences = this.preferencesStorageService.get();
+        return of(preferencesActions.storePreferences({ preferences }));
+      })
     )
   );
 
   public readonly readSavedPreferencesImmediately$ = createEffect(
     () => defer(() => of(preferencesActions.readSavedPreferences()))
   );
-
-  private mapToStorePreferencesAction(): Observable<Action> {
-    const preferences = this.preferencesStorageService.get();
-    return of(preferencesActions.storePreferences({ preferences }));
-  }
 }

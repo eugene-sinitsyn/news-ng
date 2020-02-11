@@ -1,12 +1,12 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { PreferencesStateModel } from '../models/preferences-state.model';
-import { LanguageEnum } from '@domain';
+import { LanguageEnum, PageSizeEnum } from '@domain';
 import { preferencesActions } from '../actions/preferences.actions';
 
 const reducer = createReducer<PreferencesStateModel, Action>(
   {
     language: LanguageEnum.english,
-    pageSize: 12,
+    pageSize: PageSizeEnum.small,
     infiniteScroll: true
   },
   on(preferencesActions.storePreferences, (state, action) => {
