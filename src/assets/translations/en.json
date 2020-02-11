@@ -46,6 +46,9 @@
     "add": "Save to \"Read later\"",
     "remove": "Remove from \"Read later\""
   },
+  "preferences": {
+    "title": "Preferences"
+  },
   "categories": {
     "business": "Business",
     "entertainment": "Entertainment",

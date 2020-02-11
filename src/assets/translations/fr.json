@@ -46,6 +46,9 @@
     "add": "Save to \"Read later\"(fr)",
     "remove": "Remove from \"Read later\"(fr)"
   },
+  "preferences": {
+    "title": "Preferences(fr)"
+  },
   "categories": {
     "business": "Business(fr)",
     "entertainment": "Entertainment(fr)",

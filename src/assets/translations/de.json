@@ -46,6 +46,9 @@
     "add": "Save to \"Read later\"(de)",
     "remove": "Remove from \"Read later\"(de)"
   },
+  "preferences": {
+    "title": "Preferences(de)"
+  },
   "categories": {
     "business": "Business(de)",
     "entertainment": "Entertainment(de)",

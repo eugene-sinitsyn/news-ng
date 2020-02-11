@@ -47,11 +47,14 @@ import { ReadLaterComponent } from './pages/read-later/read-later.component';
 import { SearchFilterListDialogComponent } from './components/filter-list-dialog/search/search-filter-list-dialog.component';
 import { SearchFilterSwitchComponent } from './components/filter-switch/search/search-filter-switch.component';
 import { PagerComponent } from './components/pager/pager.component';
+import { PreferencesComponent } from './pages/preferences/preferences.component';
+import { PreferencesLinkComponent } from './components/preferences-link/preferences-link.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
   { path: 'search', component: SearchArticlesComponent },
-  { path: 'readlater', component: ReadLaterComponent }
+  { path: 'readlater', component: ReadLaterComponent },
+  { path: 'preferences', component: PreferencesComponent }
   // TODO: 404 page
 ];
 const materialModules = [
@@ -83,6 +86,7 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
     ArticleCardComponent,
     TopArticlesComponent,
     SearchArticlesComponent,
+    PreferencesComponent,
     ArticlesComponent,
     SearchFilterComponent,
     TopFilterComponent,
@@ -96,7 +100,8 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
     InputDialogComponent,
     NotificationComponent,
     ReadLaterComponent,
-    PagerComponent
+    PagerComponent,
+    PreferencesLinkComponent
   ],
   imports: [
     BrowserModule,
