@@ -52,7 +52,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     this.control = this.formBuilder.control(language);
     return this.control.valueChanges.subscribe(language => {
       this.translateService.use(language);
-      this.store.dispatch(preferencesActions.storeLanguage({ language }));
+      this.store.dispatch(preferencesActions.switchLanguage({ language }));
     });
   }
 }

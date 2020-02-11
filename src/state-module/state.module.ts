@@ -14,6 +14,7 @@ import { SourcesEffects } from './effects/sources.effects';
 import { TopArticlesEffects } from './effects/top-articles.effects';
 import { SearchArticlesEffects } from './effects/search-articles.effects';
 import { ReadLaterEffects } from './effects/read-later.effects';
+import { PreferencesEffects } from './effects/preferences.effects';
 
 @NgModule({
   imports: [
@@ -28,10 +29,11 @@ import { ReadLaterEffects } from './effects/read-later.effects';
       sources: sourcesReducer
     }),
     EffectsModule.forRoot([
+      PreferencesEffects,
       TopArticlesEffects,
       SearchArticlesEffects,
       ReadLaterEffects,
-      SourcesEffects
+      SourcesEffects,
     ])
   ],
   exports: [

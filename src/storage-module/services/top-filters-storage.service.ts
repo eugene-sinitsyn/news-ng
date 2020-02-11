@@ -4,9 +4,7 @@ import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class TopFiltersStorageService {
-  public constructor(
-    private readonly localStorageService: LocalStorageService
-  ) {
+  public constructor(private readonly localStorageService: LocalStorageService) {
     const filters = localStorageService.get(this.namespace);
     if (!filters || typeof filters !== 'object')
       localStorageService.store(this.namespace, {});

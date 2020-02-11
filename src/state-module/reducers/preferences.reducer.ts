@@ -6,10 +6,17 @@ import { preferencesActions } from '../actions/preferences.actions';
 const reducer = createReducer<PreferencesStateModel, Action>(
   {
     language: LanguageEnum.english,
-    pageSize: 12
+    pageSize: 12,
+    infiniteScroll: true
   },
-  on(preferencesActions.storeLanguage, (state, action) => {
+  on(preferencesActions.storePreferences, (state, action) => {
+    return { ...state, ...action.preferences };
+  }),
+  on(preferencesActions.switchLanguage, (state, action) => {
     return { ...state, language: action.language };
+  }),
+  on(preferencesActions.toggleInfiniteScroll, (state, action) => {
+    return { ...state, infiniteScroll: action.enabled };
   })
 );
 
