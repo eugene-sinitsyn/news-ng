@@ -46,6 +46,19 @@
     "add": "Save to \"Read later\"",
     "remove": "Remove from \"Read later\""
   },
+  "preferences": {
+    "title": "Preferences",
+    "default-language": "Default language",
+    "page-size": "Page size",
+    "articles": "articles",
+    "infinite-scrolling": "Infinite scrolling",
+    "save": "Save preferences"
+  },
+  "languages": {
+    "en": "English",
+    "fr": "French",
+    "de": "Deutsch"
+  },
   "categories": {
     "business": "Business",
     "entertainment": "Entertainment",
