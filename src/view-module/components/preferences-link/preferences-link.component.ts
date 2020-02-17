@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { IconDefinition, faCog } from '@fortawesome/free-solid-svg-icons';
 import { ViewConfiguration } from '@view/config';
 
@@ -11,4 +11,5 @@ export class PreferencesLinkComponent {
   public constructor(public readonly viewConfig: ViewConfiguration) {}
 
   public readonly faCog: IconDefinition = faCog;
+  @HostBinding('class.menu-action-border') public readonly borderClass: boolean = true;
 }

@@ -4,4 +4,5 @@ export class PreferencesStateModel {
   public language: LanguageEnum;
   public pageSize: PageSizeEnum;
   public infiniteScroll: boolean;
+  public darkTheme?: boolean;
 }

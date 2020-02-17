@@ -26,6 +26,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
   public readonly LanguageEnum: typeof LanguageEnum = LanguageEnum;
   public readonly languages: string[] = UtilitiesService.enumToList(LanguageEnum);
 
+  @HostBinding('class.menu-action-border') public readonly borderClass: boolean = true;
   @HostBinding('class.focused') public focusedClass: boolean = false;
   public control: FormControl;
 

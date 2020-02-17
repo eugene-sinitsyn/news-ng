@@ -10,7 +10,8 @@ export class PreferencesFormService {
     return this.formBuilder.group({
       language: [preferences.language],
       pageSize: [preferences.pageSize],
-      infiniteScroll: [preferences.infiniteScroll]
+      infiniteScroll: [preferences.infiniteScroll],
+      darkTheme: [preferences.darkTheme]
     });
   }
 }

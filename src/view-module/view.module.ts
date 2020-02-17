@@ -28,6 +28,7 @@ import { StateModule } from '@state';
 import { ViewConfiguration } from './config/view-config';
 
 import { PreferencesFormService } from './services/preferences-form.service';
+import { ThemeService } from './services/theme.service';
 
 import { AppComponent } from './root.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -53,6 +54,7 @@ import { PagerComponent } from './components/pager/pager.component';
 import { PreferencesComponent } from './pages/preferences/preferences.component';
 import { PreferencesLinkComponent } from './components/preferences-link/preferences-link.component';
 import { PreferencesFormComponent } from './components/preferences-form/preferences-form.component';
+import { ThemeComponent } from './components/theme/theme.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -106,7 +108,8 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
     ReadLaterComponent,
     PagerComponent,
     PreferencesLinkComponent,
-    PreferencesFormComponent
+    PreferencesFormComponent,
+    ThemeComponent
   ],
   imports: [
     BrowserModule,
@@ -124,7 +127,8 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
   ],
   providers: [
     { provide: ViewConfiguration, useValue: new ViewConfiguration() },
-    PreferencesFormService
+    PreferencesFormService,
+    ThemeService
   ],
   bootstrap: [AppComponent]
 })

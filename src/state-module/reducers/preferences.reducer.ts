@@ -7,7 +7,8 @@ const reducer = createReducer<PreferencesStateModel, Action>(
   {
     language: LanguageEnum.english,
     pageSize: PageSizeEnum.small,
-    infiniteScroll: true
+    infiniteScroll: true,
+    darkTheme: true
   },
   on(preferencesActions.storePreferences, (state, action) => {
     return { ...state, ...action.preferences };

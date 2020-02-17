@@ -11,6 +11,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.menu-action-border {
+  border-radius: 4px;
+  border: 2px solid rgb(128, 128, 128, 0.15);
+}
+
 /* filter menu */
 .mat-menu-content fa-icon {
   margin-right: 8px;

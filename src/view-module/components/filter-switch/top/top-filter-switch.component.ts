@@ -32,6 +32,7 @@ export class TopFilterSwitchComponent {
   public readonly faSave: IconDefinition = faSave;
   public readonly faFolderOpen: IconDefinition = faFolderOpen;
 
+  @HostBinding('class.menu-action-border') public readonly borderClass: boolean = true;
   @HostBinding('class.focused') public focusedClass: boolean = false;
   @Input() public filterOpened: boolean = false;
   @Input() public filterApplied: boolean = false;
