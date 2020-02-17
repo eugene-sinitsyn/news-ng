@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "scripts": {
     "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build --prod --stats-json",
     "lint": "ng lint",
     "publish": "gh-pages -d dist -m Publish",
-    "deploy": "npm run build && npm run publish"
+    "deploy": "npm run build && npm run publish",
+    "stats": "npx webpack-bundle-analyzer dist/stats-es2015.json"
   },
   "private": true,
   "dependencies": {
