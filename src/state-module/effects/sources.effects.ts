@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, defer, of } from 'rxjs';
@@ -5,6 +6,7 @@ import { concatMap } from 'rxjs/operators';
 import { SourcesService } from '@network';
 import { sourcesActions } from '../actions/sources.actions';
 
+@Injectable()
 export class SourcesEffects {
   public constructor(
     private readonly actions$: Actions,
