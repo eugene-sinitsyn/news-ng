@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { merge, Subscription } from 'rxjs';
 import { CategoryEnum, CountryEnum } from '@domain';
 import { RootStateModel, TopFilterStateModel, topArticlesActions } from '@state';
+import { UtilitiesService } from '../../../services/utilities.service';
 
 @Component({
   selector: 'news-top-filter',
@@ -19,8 +20,8 @@ export class TopFilterComponent implements OnInit, OnDestroy {
   @Output() public readonly close: EventEmitter<void> = new EventEmitter<void>();
 
   private formSubscription: Subscription;
-  public readonly categories: any[] = this.toOptionList(CategoryEnum);
-  public readonly countries: any[] = this.toOptionList(CountryEnum);
+  public readonly categories: any[] = UtilitiesService.enumToList(CategoryEnum);
+  public readonly countries: any[] = UtilitiesService.enumToList(CountryEnum);
   public formGroup: FormGroup;
 
   public get formIsEmpty(): boolean {
@@ -77,9 +78,5 @@ export class TopFilterComponent implements OnInit, OnDestroy {
       this.formGroup.get('country').valueChanges,
       this.formGroup.get('category').valueChanges
     ).subscribe(() => this.formGroup.get('sources').setValue([]));
-  }
-
-  private toOptionList(enumType: any): any[] {
-    return Object.keys(enumType).map(key => enumType[key]);
   }
 }

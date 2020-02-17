@@ -17,7 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -83,7 +83,6 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
 }
 
 @NgModule({
-  entryComponents: [MatSpinner, TopFilterListDialogComponent, InputDialogComponent],
   declarations: [
     AppComponent,
     HeaderComponent,

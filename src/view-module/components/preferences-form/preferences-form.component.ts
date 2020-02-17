@@ -5,6 +5,7 @@ import { delay } from 'rxjs/operators'
 import { PageSizeEnum, LanguageEnum, NotificationEnum } from '@domain';
 import { RootStateModel, preferencesActions, uiActions } from '@state';
 import { PreferencesFormService } from '../../services/preferences-form.service';
+import { UtilitiesService } from '../../services/utilities.service';
 
 @Component({
   selector: 'news-preferences-form',
@@ -17,10 +18,8 @@ export class PreferencesFormComponent implements OnInit {
     private readonly formService: PreferencesFormService
   ) {}
 
-  public readonly languages: string[] =
-    Object.keys(LanguageEnum).map(key => LanguageEnum[key]);
-  public readonly pageSizes: PageSizeEnum[] =
-    [PageSizeEnum.small, PageSizeEnum.medium, PageSizeEnum.large];
+  public readonly languages: string[] = UtilitiesService.enumToList(LanguageEnum);
+  public readonly pageSizes: PageSizeEnum[] = UtilitiesService.enumToList(PageSizeEnum);
   public formGroup: FormGroup;
 
   public ngOnInit(): void {

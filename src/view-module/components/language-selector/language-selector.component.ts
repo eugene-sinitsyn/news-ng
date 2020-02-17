@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { LanguageEnum } from '@domain';
 import { RootStateModel, preferencesActions } from '@state';
 import { ViewConfiguration } from '@view/config';
+import { UtilitiesService } from '../../services/utilities.service';
 
 @Component({
   selector: 'news-language-selector',
@@ -23,8 +24,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
 
   public readonly LanguageEnum: typeof LanguageEnum = LanguageEnum;
-  public readonly languages: string[] =
-    Object.keys(LanguageEnum).map(key => LanguageEnum[key]);
+  public readonly languages: string[] = UtilitiesService.enumToList(LanguageEnum);
 
   @HostBinding('class.focused') public focusedClass: boolean = false;
   public control: FormControl;
