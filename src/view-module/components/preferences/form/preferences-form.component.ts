@@ -33,7 +33,8 @@ export class PreferencesFormComponent implements OnInit {
 
   public save(): void {
     const preferences = this.formGroup.value;
-    this.store.dispatch(preferencesActions.savePreferencesToStorage({ preferences }));
+    this.store.dispatch(preferencesActions.storePreferences({ preferences }))
+    this.store.dispatch(preferencesActions.savePreferencesToStorage());
     this.store.dispatch(uiActions.notify({ label: NotificationEnum.saved }));
     this.formGroup.markAsPristine();
   }

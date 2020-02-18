@@ -15,9 +15,6 @@ const reducer = createReducer<PreferencesStateModel, Action>(
   }),
   on(preferencesActions.switchLanguage, (state, action) => {
     return { ...state, language: action.language };
-  }),
-  on(preferencesActions.toggleInfiniteScroll, (state, action) => {
-    return { ...state, infiniteScroll: action.enabled };
   })
 );
 

@@ -34,7 +34,7 @@ export class TopArticlesEffects {
     )
   );
 
-  public readonly deleteSavedFilter$: Observable<any> = createEffect(
+  public readonly deleteSavedFilter$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(topArticlesActions.deleteSavedFilter),
       tap(action => this.topFiltersStorageService.delete(action.filterName))
