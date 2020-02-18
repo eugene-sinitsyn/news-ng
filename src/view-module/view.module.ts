@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -36,29 +37,23 @@ import { ThemeLoaderDirective } from './directives/theme-loader.directive';
 import { AppComponent } from './root.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ArticleCardComponent } from './components/article-card/article-card.component';
+import { ArticleCardComponent } from './components/articles/card/article-card.component';
 import { TopArticlesComponent } from './pages/top-articles/top-articles.component';
-import { SearchArticlesComponent } from './pages/search-articles/search-articles.component';
-import { ArticlesComponent } from './components/articles/articles.component';
-import { SearchFilterComponent } from './components/filter/search/search-filter.component';
-import { TopFilterComponent } from './components/filter/top/top-filter.component';
+import { ArticlesListComponent } from './components/articles/list/articles-list.component';
+import { TopFilterComponent } from './components/top-filter/filter/top-filter.component';
+import { TopFilterSwitchComponent } from './components/top-filter/filter-switch/top-filter-switch.component';
+import { TopFilterListDialogComponent } from './components/top-filter/filter-list-dialog/top-filter-list-dialog.component';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { TopFilterSwitchComponent } from './components/filter-switch/top/top-filter-switch.component';
 import { SourcesSelectorComponent } from './components/sources-selector/sources-selector.component';
-import { TopFilterListDialogComponent } from './components/filter-list-dialog/top/top-filter-list-dialog.component';
 import { InputDialogComponent } from './components/input-dialog/input-dialog.component';
 import { ReadLaterComponent } from './pages/read-later/read-later.component';
-import { SearchFilterListDialogComponent } from './components/filter-list-dialog/search/search-filter-list-dialog.component';
-import { SearchFilterSwitchComponent } from './components/filter-switch/search/search-filter-switch.component';
 import { PagerComponent } from './components/pager/pager.component';
 import { PreferencesComponent } from './pages/preferences/preferences.component';
-import { PreferencesLinkComponent } from './components/preferences-link/preferences-link.component';
-import { PreferencesFormComponent } from './components/preferences-form/preferences-form.component';
+import { PreferencesLinkComponent } from './components/preferences/link/preferences-link.component';
+import { PreferencesFormComponent } from './components/preferences/form/preferences-form.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
-  { path: 'search', component: SearchArticlesComponent },
   { path: 'readlater', component: ReadLaterComponent },
   { path: 'preferences', component: PreferencesComponent }
   // TODO: 404 page
@@ -90,17 +85,13 @@ const newsComponents = [
   FooterComponent,
   ArticleCardComponent,
   TopArticlesComponent,
-  SearchArticlesComponent,
   PreferencesComponent,
-  ArticlesComponent,
-  SearchFilterComponent,
+  ArticlesListComponent,
   TopFilterComponent,
   LanguageSelectorComponent,
   TopFilterSwitchComponent,
-  SearchFilterSwitchComponent,
   SourcesSelectorComponent,
   TopFilterListDialogComponent,
-  SearchFilterListDialogComponent,
   InputDialogComponent,
   ReadLaterComponent,
   PagerComponent,

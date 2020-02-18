@@ -11,8 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { IconDefinition, faFilter, faSave, faFolderOpen, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { RootStateModel, topArticlesActions } from '@state';
 import { ViewConfiguration } from '@view/config';
-import { TopFilterListDialogComponent } from '../../filter-list-dialog/top/top-filter-list-dialog.component';
 import { InputDialogComponent } from '../../input-dialog/input-dialog.component';
+import { TopFilterListDialogComponent } from '../filter-list-dialog/top-filter-list-dialog.component';
 
 @Component({
   selector: 'news-top-filter-switch',

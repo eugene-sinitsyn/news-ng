@@ -3,11 +3,11 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { ArticleModel } from '@domain';
 
 @Component({
-  selector: 'news-articles',
-  templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.scss']
+  selector: 'news-articles-list',
+  templateUrl: './articles-list.component.html',
+  styleUrls: ['./articles-list.component.scss']
 })
-export class ArticlesComponent {
+export class ArticlesListComponent {
   @Input() articles: ArticleModel[];
   @Input() public set withReadLaterAction(value: any) {
     this.isReadLaterActionVisible = coerceBooleanProperty(value);

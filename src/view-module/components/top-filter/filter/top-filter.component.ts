@@ -2,9 +2,8 @@ import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/cor
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { merge, Subscription } from 'rxjs';
-import { CategoryEnum, CountryEnum } from '@domain';
+import { CategoryEnum, CountryEnum, UtilitiesService } from '@domain';
 import { RootStateModel, TopFilterStateModel, topArticlesActions } from '@state';
-import { UtilitiesService } from '../../../services/utilities.service';
 
 @Component({
   selector: 'news-top-filter',

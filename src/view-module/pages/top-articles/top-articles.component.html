@@ -14,7 +14,8 @@
   (onApplyFilter)="dispatchSearch()"
 ></news-top-filter>
 
-<news-articles [articles]="articles" withReadLaterAction></news-articles>
+<news-articles-list [articles]="articles" withReadLaterAction
+></news-articles-list>
 <news-pager
   *ngIf="articles"
   [infinite]="infiniteScrollEnabled"

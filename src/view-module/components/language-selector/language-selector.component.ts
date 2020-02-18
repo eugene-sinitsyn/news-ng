@@ -3,10 +3,9 @@ import { Store } from '@ngrx/store';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { LanguageEnum } from '@domain';
+import { LanguageEnum, UtilitiesService } from '@domain';
 import { RootStateModel, preferencesActions } from '@state';
 import { ViewConfiguration } from '@view/config';
-import { UtilitiesService } from '../../services/utilities.service';
 
 @Component({
   selector: 'news-language-selector',

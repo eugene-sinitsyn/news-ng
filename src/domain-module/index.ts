@@ -3,7 +3,6 @@ export * from './models/source-details.model';
 export * from './models/sources-request.model';
 export * from './models/article.model';
 export * from './models/top-articles-request.model';
-export * from './models/search-articles-request.model';
 export * from './models/top-filters-dictionary.model';
 
 export * from './enums/country.enum';
@@ -13,4 +12,6 @@ export * from './enums/sort-order.enum';
 export * from './enums/notification.enum';
 export * from './enums/page-size.enum';
 
-export * from './metadata/query-string-name.decorator';
+export * from './decorators/metadata.decorator';
+
+export * from './services/utilities.service';

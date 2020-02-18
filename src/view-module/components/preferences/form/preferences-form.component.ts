@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { delay } from 'rxjs/operators'
-import { PageSizeEnum, LanguageEnum, NotificationEnum } from '@domain';
+import { PageSizeEnum, LanguageEnum, NotificationEnum, UtilitiesService } from '@domain';
 import { RootStateModel, preferencesActions, uiActions } from '@state';
-import { PreferencesFormService } from '../../services/preferences-form.service';
-import { UtilitiesService } from '../../services/utilities.service';
+import { PreferencesFormService } from '../../../services/preferences-form.service';
 
 @Component({
   selector: 'news-preferences-form',

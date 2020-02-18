@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ArticleModel } from '@domain';
-import { LocalStorageService } from './local-storage.service';
+import { LocalStorageService } from '../local-storage/local-storage.service';
 
 @Injectable()
 export class ArticlesStorageService {
