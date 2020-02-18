@@ -28,7 +28,10 @@ import { StateModule } from '@state';
 import { ViewConfiguration } from './config/view-config';
 
 import { PreferencesFormService } from './services/preferences-form.service';
-import { ThemeService } from './services/theme.service';
+
+import { SpinnerDirective } from './directives/spinner.directive';
+import { NotificationDirective } from './directives/notification.directive';
+import { ThemeLoaderDirective } from './directives/theme-loader.directive';
 
 import { AppComponent } from './root.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -42,11 +45,9 @@ import { TopFilterComponent } from './components/filter/top/top-filter.component
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TopFilterSwitchComponent } from './components/filter-switch/top/top-filter-switch.component';
-import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SourcesSelectorComponent } from './components/sources-selector/sources-selector.component';
 import { TopFilterListDialogComponent } from './components/filter-list-dialog/top/top-filter-list-dialog.component';
 import { InputDialogComponent } from './components/input-dialog/input-dialog.component';
-import { NotificationComponent } from './components/notification/notification.component';
 import { ReadLaterComponent } from './pages/read-later/read-later.component';
 import { SearchFilterListDialogComponent } from './components/filter-list-dialog/search/search-filter-list-dialog.component';
 import { SearchFilterSwitchComponent } from './components/filter-switch/search/search-filter-switch.component';
@@ -54,7 +55,6 @@ import { PagerComponent } from './components/pager/pager.component';
 import { PreferencesComponent } from './pages/preferences/preferences.component';
 import { PreferencesLinkComponent } from './components/preferences-link/preferences-link.component';
 import { PreferencesFormComponent } from './components/preferences-form/preferences-form.component';
-import { ThemeComponent } from './components/theme/theme.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -79,38 +79,40 @@ const materialModules = [
   MatSnackBarModule,
   MatSlideToggleModule
 ];
+const newsDirectives = [
+  SpinnerDirective,
+  NotificationDirective,
+  ThemeLoaderDirective
+];
+const newsComponents = [
+  AppComponent,
+  HeaderComponent,
+  FooterComponent,
+  ArticleCardComponent,
+  TopArticlesComponent,
+  SearchArticlesComponent,
+  PreferencesComponent,
+  ArticlesComponent,
+  SearchFilterComponent,
+  TopFilterComponent,
+  LanguageSelectorComponent,
+  TopFilterSwitchComponent,
+  SearchFilterSwitchComponent,
+  SourcesSelectorComponent,
+  TopFilterListDialogComponent,
+  SearchFilterListDialogComponent,
+  InputDialogComponent,
+  ReadLaterComponent,
+  PagerComponent,
+  PreferencesLinkComponent,
+  PreferencesFormComponent
+];
 
 export function createTranslationLoader(httpClient: HttpClient): TranslateLoader {
   return new TranslateHttpLoader(httpClient, './assets/translations/', '.json');
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    ArticleCardComponent,
-    TopArticlesComponent,
-    SearchArticlesComponent,
-    PreferencesComponent,
-    ArticlesComponent,
-    SearchFilterComponent,
-    TopFilterComponent,
-    LanguageSelectorComponent,
-    TopFilterSwitchComponent,
-    SearchFilterSwitchComponent,
-    SpinnerComponent,
-    SourcesSelectorComponent,
-    TopFilterListDialogComponent,
-    SearchFilterListDialogComponent,
-    InputDialogComponent,
-    NotificationComponent,
-    ReadLaterComponent,
-    PagerComponent,
-    PreferencesLinkComponent,
-    PreferencesFormComponent,
-    ThemeComponent
-  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
@@ -126,10 +128,10 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
     StateModule,
   ],
   providers: [
-    { provide: ViewConfiguration, useValue: new ViewConfiguration() },
-    PreferencesFormService,
-    ThemeService
+    ViewConfiguration,
+    PreferencesFormService
   ],
+  declarations: [...newsDirectives, ...newsComponents],
   bootstrap: [AppComponent]
 })
 export class ViewModule {

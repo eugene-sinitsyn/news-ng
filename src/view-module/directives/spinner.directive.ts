@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Directive } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSpinner } from '@angular/material/progress-spinner';
 import { Store } from '@ngrx/store';
@@ -6,12 +6,8 @@ import { Subscription } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { RootStateModel } from '@state';
 
-@Component({
-  selector: 'news-spinner',
-  template: '',
-  styles: [':host { display: none; }']
-})
-export class SpinnerComponent implements OnInit, OnDestroy {
+@Directive({ selector: '[newsSpinner]' })
+export class SpinnerDirective {
   public constructor(
     private readonly store: Store<RootStateModel>,
     private readonly dialogService: MatDialog
@@ -22,9 +18,10 @@ export class SpinnerComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.subscription.add(
-      this.store.select(state => state.ui.spinner)
-        .pipe(map(spinner => !!spinner), distinctUntilChanged())
-        .subscribe(visible => visible ? this.show() : this.hide())
+      this.store.select(state => state.ui.spinner).pipe(
+        map(spinner => !!spinner),
+        distinctUntilChanged()
+      ).subscribe(visible => visible ? this.show() : this.hide())
     );
   }
 
