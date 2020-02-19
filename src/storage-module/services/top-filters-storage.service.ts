@@ -16,7 +16,7 @@ export class TopFiltersStorageService {
     this.localStorageService.store(this.namespace, filters);
   }
 
-  public getAll(): TopFiltersDictionary {
+  public get(): TopFiltersDictionary {
     const filters = this.localStorageService.get(this.namespace);
     return Object.keys(filters).reduce((dictionary, filterName) => {
       dictionary[filterName] = new TopArticlesRequestModel(filters[filterName]);

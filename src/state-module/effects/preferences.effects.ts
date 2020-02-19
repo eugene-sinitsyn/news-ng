@@ -26,7 +26,7 @@ export class PreferencesEffects {
 
   public readonly readSavedPreferences$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
-      ofType(preferencesActions.readSavedPreferences),
+      ofType(preferencesActions.readPreferencesFromStorage),
       concatMap(() => {
         const preferences = this.preferencesStorageService.get();
         return of(preferencesActions.storePreferences({ preferences }));
@@ -35,6 +35,6 @@ export class PreferencesEffects {
   );
 
   public readonly readSavedPreferencesImmediately$ = createEffect(
-    () => defer(() => of(preferencesActions.readSavedPreferences()))
+    () => defer(() => of(preferencesActions.readPreferencesFromStorage()))
   );
 }

@@ -4,9 +4,20 @@
     >{{ 'preferences.default-language' | translate }}</label>
     <mat-form-field>
       <mat-select id="pref-lang" formControlName="language">
-        <mat-option *ngFor="let language of languages" [value]="language">
-          {{ 'languages.' + language | translate }}
-        </mat-option>
+        <mat-option *ngFor="let language of languages" [value]="language"
+        >{{ 'languages.' + language | translate }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form-field">
+    <label for="pref-fltr"
+    >{{ 'preferences.default-filter' | translate }}</label>
+    <mat-form-field>
+      <mat-select id="pref-fltr" formControlName="topFilter">
+        <mat-option [value]="null">{{ 'shared.none' | translate }}</mat-option>
+        <mat-option *ngFor="let filterName of filterNames" [value]="filterName"
+        >{{ filterName }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -16,9 +27,8 @@
     >{{ 'preferences.page-size' | translate }}</label>
     <mat-form-field>
       <mat-select id="pref-page-size" formControlName="pageSize">
-        <mat-option *ngFor="let pageSize of pageSizes" [value]="pageSize">
-          {{ pageSize }} {{ 'preferences.articles' | translate }}
-        </mat-option>
+        <mat-option *ngFor="let pageSize of pageSizes" [value]="pageSize"
+        >{{ pageSize }} {{ 'preferences.articles' | translate }}</mat-option>
       </mat-select>
     </mat-form-field>
   </div>

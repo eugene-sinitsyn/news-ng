@@ -4,7 +4,7 @@ import { readLaterActions } from '../actions/read-later.actions';
 
 const reducer = createReducer<ArticleModel[], Action>(
   [],
-  on(readLaterActions.storeReadLaterArticles, (state, action) => {
+  on(readLaterActions.storeArticles, (state, action) => {
     return action.articles;
   })
 );

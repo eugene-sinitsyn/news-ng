@@ -36,7 +36,7 @@ export class TopArticlesEffects {
     () => this.actions$.pipe(
       ofType(topActions.readFiltersFromStorage),
       concatMap(() => {
-        const filters = this.topFiltersStorageService.getAll();
+        const filters = this.topFiltersStorageService.get();
         return of(topActions.storeFilters({ filters }));
       })
     )

@@ -2,6 +2,7 @@
   "shared": {
     "coming-soon": "Coming soon(d)",
     "any": "Any(d)",
+    "none": "None(d)",
     "open": "Open(d)",
     "close": "Close(d)",
     "clear": "Clear(d)",
@@ -48,6 +49,7 @@
   "preferences": {
     "title": "Preferences(d)",
     "default-language": "Default language(d)",
+    "default-filter": "Default filter(d)",
     "page-size": "Page size(d)",
     "articles": "articles(d)",
     "infinite-scrolling": "Infinite scrolling(d)",

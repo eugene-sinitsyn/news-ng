@@ -19,6 +19,7 @@ export class PreferencesFormComponent implements OnInit {
 
   public readonly languages: string[] = UtilitiesService.enumToList(LanguageEnum);
   public readonly pageSizes: PageSizeEnum[] = UtilitiesService.enumToList(PageSizeEnum);
+  public filterNames: string[] = [];
   public formGroup: FormGroup;
 
   public ngOnInit(): void {
@@ -27,7 +28,9 @@ export class PreferencesFormComponent implements OnInit {
       withLatestFrom(this.store.select(state => state.top.savedFilters))
     ).subscribe(([preferences, savedFilters]) => {
       preferencesSubscription.unsubscribe();
+      this.filterNames = Object.keys(savedFilters);
       this.formGroup = this.formService.buildForm(preferences);
+      console.dir(this.formGroup.value);
     })
   }
 

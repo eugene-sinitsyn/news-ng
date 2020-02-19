@@ -36,15 +36,14 @@ export class ArticleCardComponent {
   public isReadLaterActionVisible: boolean = false;
   public isRemoveActionVisible: boolean = false;
 
-  public addToReadLater(): void {
+  public saveToReadLater(): void {
     this.store.dispatch(
-      readLaterActions.addToReadlater({ article: this.article })
+      readLaterActions.saveToReadlater({ article: this.article })
     );
   }
 
   public removeFromReadLater(): void {
     const url = this.article && this.article.url;
-    this.store.dispatch(readLaterActions.removeFromReadLater({ url }));
-    this.store.dispatch(readLaterActions.loadReadLaterArticles());
+    this.store.dispatch(readLaterActions.deleteFromReadLater({ url }));
   }
 }

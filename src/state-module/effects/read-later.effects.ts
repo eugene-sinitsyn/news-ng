@@ -1,45 +1,85 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { tap, concatMap } from 'rxjs/operators';
-import { NotificationEnum } from '@domain';
-import { ArticlesStorageService } from '@storage';
+import { Action, Store } from '@ngrx/store';
+import { Observable, of, defer } from 'rxjs';
+import { tap, concatMap, withLatestFrom, map } from 'rxjs/operators';
+import { NotificationEnum, ArticleModel } from '@domain';
+import { ReadLaterStorageService } from '@storage';
 import { readLaterActions } from '../actions/read-later.actions';
 import { uiActions } from '../actions/ui.actions';
+import { RootStateModel } from '../models/root-state.model';
 
 @Injectable()
 export class ReadLaterEffects {
   public constructor(
     private readonly actions$: Actions,
-    private readonly readLaterStorageService: ArticlesStorageService
+    private readonly store: Store<RootStateModel>,
+    private readonly readLaterStorageService: ReadLaterStorageService
   ) {}
 
-  public readonly loadReadLaterArticles$: Observable<Action> = createEffect(
+  public readonly readArticlesFromStorage$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
-      ofType(readLaterActions.loadReadLaterArticles),
+      ofType(readLaterActions.readArticlesFromStorage),
       concatMap(() => {
-        const articles = this.readLaterStorageService.getAll();
-        return of(readLaterActions.storeReadLaterArticles({ articles }));
+        const articles = this.readLaterStorageService.get();
+        return of(readLaterActions.storeArticles({ articles }));
       })
     )
   );
 
-  public readonly addToReadLater$: Observable<Action> = createEffect(
+  public readonly saveToReadlater$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
-      ofType(readLaterActions.addToReadlater),
-      concatMap(action => {
-        this.readLaterStorageService.store(action.article);
-        return of(uiActions.notify({ label: NotificationEnum.saved }));
+      ofType(readLaterActions.saveToReadlater),
+      map(action => action.article),
+      withLatestFrom(this.store.select(state => state.readLater)),
+      concatMap(([article, previousArticles]) => {
+        const articles = this.pushArticle(article, previousArticles);
+        return of(
+          readLaterActions.storeArticles({ articles }),
+          readLaterActions.saveArticlesToStorage(),
+          uiActions.notify({ label: NotificationEnum.saved })
+        );
       })
     )
   );
 
-  public readonly removeFromReadLater$: Observable<Action> = createEffect(
+  public readonly deleteFromReadLater$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
-      ofType(readLaterActions.removeFromReadLater),
-      tap(action => this.readLaterStorageService.delete(action.url))
+      ofType(readLaterActions.deleteFromReadLater),
+      map(action => action.url),
+      withLatestFrom(this.store.select(state => state.readLater)),
+      concatMap(([url, previousArticles]) => {
+        const articles = (previousArticles || [])
+          .filter(article => article.url !== url);
+        return of(
+          readLaterActions.storeArticles({ articles }),
+          readLaterActions.saveArticlesToStorage()
+        );
+      })
+    )
+  );
+
+  public readonly saveArticlesToStorage$: Observable<any> = createEffect(
+    () => this.actions$.pipe(
+      ofType(readLaterActions.saveArticlesToStorage),
+      withLatestFrom(this.store.select(state => state.readLater)),
+      tap(([action, articles]) => this.readLaterStorageService.store(articles))
     ),
     { dispatch: false }
   );
+
+  public readonly readArticlesFromStorageImmediately$: Observable<Action> = createEffect(
+    () => defer(() => of(readLaterActions.readArticlesFromStorage()))
+  );
+
+  private pushArticle(
+    article: ArticleModel,
+    previousArticles: ArticleModel[]
+  ): ArticleModel[] {
+    const index = previousArticles.findIndex(a => a.url === article.url);
+    const articles = [...previousArticles];
+    if (index >= 0) articles[index] = article;
+    else articles.push(article);
+    return articles;
+  }
 }

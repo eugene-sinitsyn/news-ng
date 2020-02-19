@@ -15,9 +15,6 @@ export class ReadLaterComponent implements OnInit, OnDestroy {
   public articles: ArticleModel[];
 
   public ngOnInit(): void {
-    if (!this.articles)
-      this.store.dispatch(readLaterActions.loadReadLaterArticles());
-
     this.subscription.add(
       this.store.select(state => state.readLater)
         .subscribe(articles => this.articles = articles)
