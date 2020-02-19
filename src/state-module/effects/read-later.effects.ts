@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { tap, concatMap } from 'rxjs/operators';
-import { ArticleModel, NotificationEnum } from '@domain';
+import { NotificationEnum } from '@domain';
 import { ArticlesStorageService } from '@storage';
 import { readLaterActions } from '../actions/read-later.actions';
 import { uiActions } from '../actions/ui.actions';
@@ -18,14 +18,20 @@ export class ReadLaterEffects {
   public readonly loadReadLaterArticles$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(readLaterActions.loadReadLaterArticles),
-      concatMap(() => this.mapToStoreReadLaterArticlesAction())
+      concatMap(() => {
+        const articles = this.readLaterStorageService.getAll();
+        return of(readLaterActions.storeReadLaterArticles({ articles }));
+      })
     )
   );
 
   public readonly addToReadLater$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(readLaterActions.addToReadlater),
-      concatMap(action => this.mapToArticleSavedNotifyAction(action.article))
+      concatMap(action => {
+        this.readLaterStorageService.store(action.article);
+        return of(uiActions.notify({ label: NotificationEnum.saved }));
+      })
     )
   );
 
@@ -35,17 +41,5 @@ export class ReadLaterEffects {
       tap(action => this.readLaterStorageService.delete(action.url))
     ),
     { dispatch: false }
-  )
-
-  private mapToStoreReadLaterArticlesAction(): Observable<Action> {
-    const articles = this.readLaterStorageService.getAll();
-    return of(readLaterActions.storeReadLaterArticles({ articles }));
-  }
-
-  private mapToArticleSavedNotifyAction(
-    article: ArticleModel
-  ): Observable<Action> {
-    this.readLaterStorageService.store(article);
-    return of(uiActions.notify({ label: NotificationEnum.saved }));
-  }
+  );
 }

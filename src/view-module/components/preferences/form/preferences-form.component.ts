@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { delay } from 'rxjs/operators'
+import { delay, withLatestFrom } from 'rxjs/operators'
 import { PageSizeEnum, LanguageEnum, NotificationEnum, UtilitiesService } from '@domain';
 import { RootStateModel, preferencesActions, uiActions } from '@state';
 import { PreferencesFormService } from '../../../services/preferences-form.service';
@@ -22,13 +22,13 @@ export class PreferencesFormComponent implements OnInit {
   public formGroup: FormGroup;
 
   public ngOnInit(): void {
-    const preferencesSubscription = this.store
-      .select(state => state.preferences)
-      .pipe(delay(0)) // execute subscription in separate task
-      .subscribe(preferences => {
-        preferencesSubscription.unsubscribe();
-        this.formGroup = this.formService.buildForm(preferences);
-      })
+    const preferencesSubscription = this.store.select(state => state.preferences).pipe(
+      delay(0), // execute subscription in separate task
+      withLatestFrom(this.store.select(state => state.top.savedFilters))
+    ).subscribe(([preferences, savedFilters]) => {
+      preferencesSubscription.unsubscribe();
+      this.formGroup = this.formService.buildForm(preferences);
+    })
   }
 
   public save(): void {

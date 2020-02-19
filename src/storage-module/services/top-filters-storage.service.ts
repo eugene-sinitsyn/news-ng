@@ -12,10 +12,7 @@ export class TopFiltersStorageService {
 
   private readonly namespace: string = 'topFilters';
 
-  public store(name: string, filter: TopArticlesRequestModel): void {
-    if (!name || !filter) return;
-    const filters = this.localStorageService.get(this.namespace);
-    filters[name] = filter;
+  public store(filters: TopFiltersDictionary): void {
     this.localStorageService.store(this.namespace, filters);
   }
 
@@ -25,20 +22,5 @@ export class TopFiltersStorageService {
       dictionary[filterName] = new TopArticlesRequestModel(filters[filterName]);
       return dictionary;
     }, {});
-  }
-
-  public get(name: string): TopArticlesRequestModel {
-    const filters = this.localStorageService.get(this.namespace);
-    return filters[name] ? new TopArticlesRequestModel(filters[name]) : null;
-  }
-
-  public deleteAll(): void {
-    this.localStorageService.store(this.namespace, {});
-  }
-
-  public delete(name: string): void {
-    const filters = this.localStorageService.get(this.namespace);
-    delete filters[name];
-    this.localStorageService.store(this.namespace, filters);
   }
 }

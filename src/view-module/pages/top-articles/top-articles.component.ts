@@ -3,7 +3,7 @@ import { Subscription, combineLatest } from 'rxjs';
 import { skip } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { ArticleModel } from '@domain';
-import { RootStateModel, topArticlesActions } from '@state';
+import { RootStateModel, topActions } from '@state';
 
 @Component({
   selector: 'news-top-articles',
@@ -44,14 +44,14 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.store.select(state => state.preferences.language)
         .pipe(skip(1))
-        .subscribe(() => this.store.dispatch(topArticlesActions.fetchArticles()))
+        .subscribe(() => this.store.dispatch(topActions.fetchArticles()))
     );
     this.subscription.add(
       this.store.select(state => state.preferences.infiniteScroll)
         .subscribe(infiniteScroll => this.infiniteScrollEnabled = infiniteScroll)
     );
 
-    if (!this.articles) this.store.dispatch(topArticlesActions.fetchArticles());
+    if (!this.articles) this.store.dispatch(topActions.fetchArticles());
   }
 
   public ngOnDestroy(): void {
@@ -63,6 +63,6 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
   }
 
   public showMore(): void {
-    this.store.dispatch(topArticlesActions.showMoreArticles());
+    this.store.dispatch(topActions.showMoreArticles());
   }
 }

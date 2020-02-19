@@ -1,6 +1,6 @@
 import { createReducer, Action, on } from '@ngrx/store';
-import { topArticlesActions } from '../actions/top-articles.actions';
-import { TopArticlesStateModel } from '../models/top-articles-state.model';
+import { topActions } from '../actions/top.actions';
+import { TopArticlesStateModel } from '../models/top-state.model';
 import { ArticleModel } from '@domain';
 
 const reducer = createReducer<TopArticlesStateModel, Action>(
@@ -10,16 +10,16 @@ const reducer = createReducer<TopArticlesStateModel, Action>(
     articles: null,
     page: 1,
   },
-  on(topArticlesActions.storeArticles, (state, action) => {
+  on(topActions.storeArticles, (state, action) => {
     return { ...state, articles: distinctByUrl(action.articles) };
   }),
-  on(topArticlesActions.showMoreArticles, (state, action) => {
+  on(topActions.showMoreArticles, (state, action) => {
     return { ...state, page: state.page + 1 };
   }),
-  on(topArticlesActions.storeFilter, (state, action) => {
+  on(topActions.storeFilter, (state, action) => {
     return { ...state, filter: action.filterState };
   }),
-  on(topArticlesActions.storeSavedFilters, (state, action) => {
+  on(topActions.storeFilters, (state, action) => {
     return { ...state, savedFilters: action.filters };
   })
 );

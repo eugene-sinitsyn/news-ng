@@ -9,6 +9,7 @@ export class PreferencesFormService {
   public buildForm(preferences: PreferencesStateModel): FormGroup {
     return this.formBuilder.group({
       language: [preferences.language],
+      topFilter: [preferences.topFilter],
       pageSize: [preferences.pageSize],
       infiniteScroll: [preferences.infiniteScroll],
       darkTheme: [preferences.darkTheme]

@@ -16,17 +16,15 @@ export class SourcesEffects {
   public readonly fetchSources$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(sourcesActions.fetchSources),
-      concatMap(() => this.mapToStoreSourcesAction())
+      concatMap(() => {
+        return this.sourcesService.search()
+          .then(sources => sourcesActions.storeSources({ sources }))
+        // TODO: .catch(error => )
+      })
     )
   );
 
   public readonly fetchSourcesImmediatly$: Observable<Action> = createEffect(
     () => defer(() => of(sourcesActions.fetchSources()))
   );
-
-  private mapToStoreSourcesAction(): Promise<Action> {
-    return this.sourcesService.search()
-      .then(sources => sourcesActions.storeSources({ sources }))
-      // TODO: .catch(error => )
-  }
 }

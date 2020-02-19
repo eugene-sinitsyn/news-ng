@@ -1,7 +1,7 @@
 import { SourceDetailsModel, ArticleModel } from '@domain';
 import { UiStateModel } from './ui-state.model';
 import { PreferencesStateModel } from './preferences-state.model';
-import { TopArticlesStateModel } from './top-articles-state.model';
+import { TopArticlesStateModel } from './top-state.model';
 
 export class RootStateModel {
   public ui: UiStateModel;

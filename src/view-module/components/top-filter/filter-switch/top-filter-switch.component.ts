@@ -9,7 +9,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
 import { IconDefinition, faFilter, faSave, faFolderOpen, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import { RootStateModel, topArticlesActions } from '@state';
+import { RootStateModel, topActions } from '@state';
 import { ViewConfiguration } from '@view/config';
 import { InputDialogComponent } from '../../input-dialog/input-dialog.component';
 import { TopFilterListDialogComponent } from '../filter-list-dialog/top-filter-list-dialog.component';
@@ -66,7 +66,7 @@ export class TopFilterSwitchComponent {
       .subscribe(filterName => {
         subscription.unsubscribe();
         if (filterName) this.store.dispatch(
-          topArticlesActions.saveFilterToStorage({ filterName })
+          topActions.saveFilter({ filterName })
         );
       });
   }

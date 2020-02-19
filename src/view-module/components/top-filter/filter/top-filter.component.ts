@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { merge, Subscription } from 'rxjs';
 import { CategoryEnum, CountryEnum, UtilitiesService } from '@domain';
-import { RootStateModel, TopFilterStateModel, topArticlesActions } from '@state';
+import { RootStateModel, TopFilterStateModel, topActions } from '@state';
 
 @Component({
   selector: 'news-top-filter',
@@ -59,8 +59,8 @@ export class TopFilterComponent implements OnInit, OnDestroy {
   public applyFilter(): void {
     let filterState = new TopFilterStateModel(this.formGroup.value);
     if (filterState.isEmpty) filterState = null;
-    this.store.dispatch(topArticlesActions.storeFilter({ filterState }));
-    this.store.dispatch(topArticlesActions.fetchArticles());
+    this.store.dispatch(topActions.storeFilter({ filterState }));
+    this.store.dispatch(topActions.fetchArticles());
   }
 
   private setupFormGroup(filterState: TopFilterStateModel): void {

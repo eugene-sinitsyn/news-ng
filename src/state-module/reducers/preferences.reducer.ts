@@ -6,6 +6,7 @@ import { preferencesActions } from '../actions/preferences.actions';
 const reducer = createReducer<PreferencesStateModel, Action>(
   {
     language: LanguageEnum.english,
+    topFilter: null,
     pageSize: PageSizeEnum.small,
     infiniteScroll: true,
     darkTheme: true

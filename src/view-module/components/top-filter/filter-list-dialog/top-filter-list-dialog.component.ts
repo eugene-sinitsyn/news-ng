@@ -3,7 +3,7 @@ import { IconDefinition, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { MatDialogRef } from '@angular/material/dialog';
 import { TopFiltersDictionary } from '@domain';
 import { Store } from '@ngrx/store';
-import { RootStateModel, topArticlesActions, TopFilterStateModel, preferencesActions } from '@state';
+import { RootStateModel, topActions, TopFilterStateModel, preferencesActions } from '@state';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -33,10 +33,10 @@ export class TopFilterListDialogComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.store.dispatch(topArticlesActions.readSavedFilters());
-    this.subscription.add(this.store
-      .select(state => state.top.savedFilters)
-      .subscribe(filters => this.filters = filters));
+    this.subscription.add(
+      this.store.select(state => state.top.savedFilters)
+        .subscribe(filters => this.filters = filters)
+    );
   }
 
   public ngOnDestroy(): void {
@@ -48,14 +48,13 @@ export class TopFilterListDialogComponent implements OnInit, OnDestroy {
     const filterState = new TopFilterStateModel(this.filters[filterName]);
 
     this.store.dispatch(preferencesActions.switchLanguage({ language }));
-    this.store.dispatch(topArticlesActions.storeFilter({ filterState }));
-    this.store.dispatch(topArticlesActions.fetchArticles());
+    this.store.dispatch(topActions.storeFilter({ filterState }));
+    this.store.dispatch(topActions.fetchArticles());
 
     this.dialogRef.close();
   }
 
   public deleteFilter(filterName: string): void {
-    this.store.dispatch(topArticlesActions.deleteSavedFilter({ filterName }));
-    this.store.dispatch(topArticlesActions.readSavedFilters());
+    this.store.dispatch(topActions.deleteFilter({ filterName }));
   }
 }
