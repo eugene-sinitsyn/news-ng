@@ -30,7 +30,6 @@ export class PreferencesFormComponent implements OnInit {
       preferencesSubscription.unsubscribe();
       this.filterNames = Object.keys(savedFilters);
       this.formGroup = this.formService.buildForm(preferences);
-      console.dir(this.formGroup.value);
     })
   }
 

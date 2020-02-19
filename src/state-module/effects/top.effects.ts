@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
-import { Observable, of, defer } from 'rxjs';
-import { withLatestFrom, tap, concatMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { withLatestFrom, tap, concatMap, map } from 'rxjs/operators';
 import { TopArticlesRequestModel, NotificationEnum } from '@domain';
 import { ArticlesService } from '@network';
 import { TopFiltersStorageService } from '@storage';
 import { topActions } from '../actions/top.actions';
 import { RootStateModel } from '../models/root-state.model';
 import { uiActions } from '../actions/ui.actions';
+import { preferencesActions } from '../actions/preferences.actions';
 
 @Injectable()
 export class TopArticlesEffects {
@@ -32,24 +33,15 @@ export class TopArticlesEffects {
     )
   );
 
-  public readonly readFiltersFromStorage$: Observable<Action> = createEffect(
-    () => this.actions$.pipe(
-      ofType(topActions.readFiltersFromStorage),
-      concatMap(() => {
-        const filters = this.topFiltersStorageService.get();
-        return of(topActions.storeFilters({ filters }));
-      })
-    )
-  );
-
   public readonly saveFilter$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(topActions.saveFilter),
+      map(action => action.filterName),
       withLatestFrom(this.store),
-      concatMap(([action, state]) => {
+      concatMap(([filterName, state]) => {
         const filter = this.toTopArticlesRequest(state);
         const filters = { ...state.top.savedFilters };
-        filters[action.filterName] = filter;
+        filters[filterName] = filter;
         return of(
           topActions.storeFilters({ filters }),
           topActions.saveFiltersToStorage(),
@@ -62,14 +54,25 @@ export class TopArticlesEffects {
   public readonly deleteFilter$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
       ofType(topActions.deleteFilter),
-      withLatestFrom(this.store.select(state => state.top.savedFilters)),
-      concatMap(([action, savedFilters]) => {
-        const filters = { ...savedFilters };
-        delete filters[action.filterName];
-        return of(
+      map(action => action.filterName),
+      withLatestFrom(this.store),
+      concatMap(([filterName, state]) => {
+        const filters = { ...state.top.savedFilters };
+        delete filters[filterName];
+        const actions: Action[] = [
           topActions.storeFilters({ filters }),
           topActions.saveFiltersToStorage()
-        );
+        ];
+
+        if (state.preferences.defaultTopFilterName === filterName) {
+          const preferences = { ...state.preferences, defaultTopFilterName: null };
+          actions.push(
+            preferencesActions.storePreferences({ preferences }),
+            preferencesActions.savePreferencesToStorage()
+          );
+        }
+
+        return of(...actions);
       })
     )
   );
@@ -83,13 +86,9 @@ export class TopArticlesEffects {
     { dispatch: false }
   );
 
-  public readonly readFiltersFromStorageImmediately$: Observable<Action> = createEffect(
-    () => defer(() => of(topActions.readFiltersFromStorage()))
-  );
-
   private toTopArticlesRequest(state: RootStateModel): TopArticlesRequestModel {
     const request = new TopArticlesRequestModel();
-    request.language = state.preferences.language;
+    request.language = state.preferences.defaultLanguage;
     request.pageSize = 100; // dev plan limitation
     if (state.top.filter) {
       request.searchString = state.top.filter.searchString;

@@ -11,7 +11,6 @@ export const topActions = {
   saveFilter: createAction('save-top-filter', props<{ filterName: string }>()),
   deleteFilter: createAction('delete-top-filter', props<{ filterName: string }>()),
 
-  readFiltersFromStorage: createAction('read-top-filters-from-storage'),
   storeFilters: createAction('store-top-filters', props<{ filters: TopFiltersDictionary }>()),
   saveFiltersToStorage: createAction('save-top-filters-to-storage')
 };

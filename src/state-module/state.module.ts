@@ -13,6 +13,7 @@ import { SourcesEffects } from './effects/sources.effects';
 import { TopArticlesEffects } from './effects/top.effects';
 import { ReadLaterEffects } from './effects/read-later.effects';
 import { PreferencesEffects } from './effects/preferences.effects';
+import { RootEffects } from './effects/root.effects';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { PreferencesEffects } from './effects/preferences.effects';
       TopArticlesEffects,
       ReadLaterEffects,
       SourcesEffects,
+      RootEffects
     ])
   ],
   exports: [

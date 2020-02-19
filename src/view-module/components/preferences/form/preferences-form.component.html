@@ -3,7 +3,7 @@
     <label for="pref-lang"
     >{{ 'preferences.default-language' | translate }}</label>
     <mat-form-field>
-      <mat-select id="pref-lang" formControlName="language">
+      <mat-select id="pref-lang" formControlName="defaultLanguage">
         <mat-option *ngFor="let language of languages" [value]="language"
         >{{ 'languages.' + language | translate }}</mat-option>
       </mat-select>
@@ -14,7 +14,7 @@
     <label for="pref-fltr"
     >{{ 'preferences.default-filter' | translate }}</label>
     <mat-form-field>
-      <mat-select id="pref-fltr" formControlName="topFilter">
+      <mat-select id="pref-fltr" formControlName="defaultTopFilterName">
         <mat-option [value]="null">{{ 'shared.none' | translate }}</mat-option>
         <mat-option *ngFor="let filterName of filterNames" [value]="filterName"
         >{{ filterName }}</mat-option>

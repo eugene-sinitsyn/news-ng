@@ -2,7 +2,6 @@ import { createAction, props } from '@ngrx/store';
 import { ArticleModel } from '@domain';
 
 export const readLaterActions = {
-  readArticlesFromStorage: createAction('read-articles-from-storage'),
   storeArticles: createAction('store-read-later-articles', props<{ articles: ArticleModel[] }>()),
   saveToReadlater: createAction('save-to-read-later', props<{ article: ArticleModel }>()),
   deleteFromReadLater: createAction('delete-from-read-later', props<{ url: string }>()),

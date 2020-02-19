@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
-import { Observable, of, defer } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap, concatMap, withLatestFrom, map } from 'rxjs/operators';
 import { NotificationEnum, ArticleModel } from '@domain';
 import { ReadLaterStorageService } from '@storage';
@@ -16,16 +16,6 @@ export class ReadLaterEffects {
     private readonly store: Store<RootStateModel>,
     private readonly readLaterStorageService: ReadLaterStorageService
   ) {}
-
-  public readonly readArticlesFromStorage$: Observable<Action> = createEffect(
-    () => this.actions$.pipe(
-      ofType(readLaterActions.readArticlesFromStorage),
-      concatMap(() => {
-        const articles = this.readLaterStorageService.get();
-        return of(readLaterActions.storeArticles({ articles }));
-      })
-    )
-  );
 
   public readonly saveToReadlater$: Observable<Action> = createEffect(
     () => this.actions$.pipe(
@@ -66,10 +56,6 @@ export class ReadLaterEffects {
       tap(([action, articles]) => this.readLaterStorageService.store(articles))
     ),
     { dispatch: false }
-  );
-
-  public readonly readArticlesFromStorageImmediately$: Observable<Action> = createEffect(
-    () => defer(() => of(readLaterActions.readArticlesFromStorage()))
   );
 
   private pushArticle(

@@ -31,7 +31,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     const languageSubscription = this.store
-      .select(state => state.preferences.language)
+      .select(state => state.preferences.defaultLanguage)
       .subscribe(language => {
         this.subscription.add(this.setupControl(language));
       });

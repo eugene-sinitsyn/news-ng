@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Action, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Observable, of, defer } from 'rxjs';
+import { Observable } from 'rxjs';
 import { preferencesActions } from '../actions/preferences.actions';
-import { concatMap, withLatestFrom, tap } from 'rxjs/operators';
+import { withLatestFrom, tap } from 'rxjs/operators';
 import { PreferencesStorageService } from '@storage';
 import { RootStateModel } from '../models/root-state.model';
 
@@ -22,19 +22,5 @@ export class PreferencesEffects {
       tap(([action, preferences]) => this.preferencesStorageService.store(preferences))
     ),
     { dispatch: false }
-  );
-
-  public readonly readSavedPreferences$: Observable<Action> = createEffect(
-    () => this.actions$.pipe(
-      ofType(preferencesActions.readPreferencesFromStorage),
-      concatMap(() => {
-        const preferences = this.preferencesStorageService.get();
-        return of(preferencesActions.storePreferences({ preferences }));
-      })
-    )
-  );
-
-  public readonly readSavedPreferencesImmediately$ = createEffect(
-    () => defer(() => of(preferencesActions.readPreferencesFromStorage()))
   );
 }

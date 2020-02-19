@@ -5,8 +5,8 @@ import { preferencesActions } from '../actions/preferences.actions';
 
 const reducer = createReducer<PreferencesStateModel, Action>(
   {
-    language: LanguageEnum.english,
-    topFilter: null,
+    defaultLanguage: LanguageEnum.english,
+    defaultTopFilterName: null,
     pageSize: PageSizeEnum.small,
     infiniteScroll: true,
     darkTheme: true
@@ -15,7 +15,7 @@ const reducer = createReducer<PreferencesStateModel, Action>(
     return { ...state, ...action.preferences };
   }),
   on(preferencesActions.switchLanguage, (state, action) => {
-    return { ...state, language: action.language };
+    return { ...state, defaultLanguage: action.language };
   })
 );
 

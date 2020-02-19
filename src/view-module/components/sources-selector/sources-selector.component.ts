@@ -52,7 +52,7 @@ export class SourcesSelectorComponent implements
     this.subscription.add(
       combineLatest(
         this.store.select(state => state.sources),
-        this.store.select(state => state.preferences.language),
+        this.store.select(state => state.preferences.defaultLanguage),
         this.country$,
         this.category$
       ).subscribe(([sources, language, country, category]) => {
