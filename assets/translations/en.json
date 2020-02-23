@@ -34,10 +34,12 @@
     "sources-hint-category-country": "{{category}} news sources in {{country}}",
     "sources-hint-country": "News sources in {{country}}",
     "sources-hint-category": "{{category}} news sources",
+    "sources-hint-found": "{{numberOfSources}} found",
     "browse": "Browse filters",
     "save": "Save filter",
+    "clear": "Clear filter",
     "no-saved-filters": "No saved filters found",
-    "select-filter": "Select filter",
+    "saved-filters": "Saved filters",
     "enter-name": "Enter filter name"
   },
   "pager": {
