@@ -1,4 +1,16 @@
 <p *ngIf="!totalCount">{{ 'pager.no-results' | translate }}</p>
+
 <button *ngIf="moreAvailable" mat-raised-button (click)="showMore.emit()">
   {{ 'pager.show-more' | translate }}
+</button>
+
+<button
+  type="button"
+  mat-mini-fab
+  class="scroll-to-top"
+  [matTooltip]="'pager.back-to-top' | translate"
+  [matTooltipShowDelay]="viewConfig.tooltipDelay"
+  [class.visible]="scrollToTopVisible"
+  (click)="scrollToTop()">
+  <fa-icon [icon]="faLongArrowAltUp"></fa-icon>
 </button>

@@ -44,7 +44,8 @@
   },
   "pager": {
     "show-more": "Show more(f)",
-    "no-results": "No results(f)"
+    "no-results": "No results(f)",
+    "back-to-top": "Back to top(f)"
   },
   "read-later": {
     "add": "Save to \"Read later\"(f)",

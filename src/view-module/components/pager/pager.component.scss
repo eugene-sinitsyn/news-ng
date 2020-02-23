@@ -4,3 +4,22 @@
   align-items: center;
   padding: 36px;
 }
+
+.scroll-to-top {
+  position: fixed;
+  left: 16px;
+  bottom: 24px;
+  font-size: 24px;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
+  &.visible {
+    visibility: visible;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
