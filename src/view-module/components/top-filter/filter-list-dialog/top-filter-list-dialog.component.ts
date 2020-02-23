@@ -25,7 +25,7 @@ export class TopFilterListDialogComponent implements OnInit, OnDestroy {
   public get title(): string {
     return !this.filters || !this.filterNames.length
       ? 'filter.no-saved-filters'
-      : 'filter.select-filter';
+      : 'filter.saved-filters';
   }
 
   public get filterNames(): string[] {

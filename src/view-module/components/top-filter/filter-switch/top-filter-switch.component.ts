@@ -8,7 +8,14 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
-import { IconDefinition, faFilter, faSave, faFolderOpen, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import {
+  IconDefinition,
+  faFilter,
+  faSave,
+  faFolderOpen,
+  faEllipsisV,
+  faEraser
+} from '@fortawesome/free-solid-svg-icons';
 import { RootStateModel, topActions } from '@state';
 import { ViewConfiguration } from '@view/config';
 import { InputDialogComponent } from '../../dialog/input/input-dialog.component';
@@ -31,6 +38,7 @@ export class TopFilterSwitchComponent {
   public readonly faEllipsisV: IconDefinition = faEllipsisV;
   public readonly faSave: IconDefinition = faSave;
   public readonly faFolderOpen: IconDefinition = faFolderOpen;
+  public readonly faEraser: IconDefinition = faEraser;
 
   @HostBinding('class.menu-action-border') public readonly borderClass: boolean = true;
   @HostBinding('class.focused') public focusedClass: boolean = false;
@@ -69,5 +77,10 @@ export class TopFilterSwitchComponent {
           topActions.saveFilter({ filterName })
         );
       });
+  }
+
+  public clearFilter(): void {
+    this.store.dispatch(topActions.storeFilter({ filterState: null }));
+    this.store.dispatch(topActions.fetchArticles());
   }
 }

@@ -37,8 +37,9 @@
     "sources-hint-found": "{{numberOfSources}} found(f)",
     "browse": "Browse filters(f)",
     "save": "Save filter(f)",
+    "clear": "Clear filter(f)",
     "no-saved-filters": "No saved filters found(f)",
-    "select-filter": "Select filter(f)",
+    "saved-filters": "Saved filters(f)",
     "enter-name": "Enter filter name(f)"
   },
   "pager": {
