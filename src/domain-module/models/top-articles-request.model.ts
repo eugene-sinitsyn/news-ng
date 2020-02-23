@@ -8,7 +8,6 @@ export class TopArticlesRequestModel {
       this.language = raw['language'];
       this.sources = raw['sources'];
       this.searchString = raw['searchString'];
-      this.pageSize = raw['pageSize'];
       this.page = raw['page'];
       this.country = raw['country'];
       this.category = raw['category'];
@@ -18,7 +17,6 @@ export class TopArticlesRequestModel {
   public language: LanguageEnum;
   public sources?: string[];
   public searchString?: string;
-  public pageSize?: number;
   public page?: number;
   public country?: CountryEnum;
   public category?: CategoryEnum;

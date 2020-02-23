@@ -87,19 +87,13 @@ export class TopArticlesEffects {
   );
 
   private toTopArticlesRequest(state: RootStateModel): TopArticlesRequestModel {
-    const request = new TopArticlesRequestModel();
-    request.language = state.preferences.defaultLanguage;
-    request.pageSize = 100; // dev plan limitation
-    if (state.top.filter) {
-      request.searchString = state.top.filter.searchString;
-      if (state.top.filter.sources && state.top.filter.sources.length) {
-        request.sources = state.top.filter.sources;
-      } else {
-        request.category = state.top.filter.category;
-        request.country = state.top.filter.country;
-      }
-    }
-
-    return request;
+    const filter = state.top.filter
+    return new TopArticlesRequestModel({
+      language: state.preferences.language,
+      searchString: filter && filter.searchString,
+      category: filter && filter.category,
+      country: filter && filter.country,
+      sources: filter && filter.sources
+    });
   }
 }

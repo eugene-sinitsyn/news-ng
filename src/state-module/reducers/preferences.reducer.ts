@@ -4,7 +4,7 @@ import { LanguageEnum, PageSizeEnum } from '@domain';
 import { preferencesActions } from '../actions/preferences.actions';
 
 export const defaultPreferences: PreferencesStateModel = {
-  defaultLanguage: LanguageEnum.english,
+  language: LanguageEnum.english,
   defaultTopFilterName: null,
   pageSize: PageSizeEnum.small,
   infiniteScroll: true,
@@ -16,8 +16,8 @@ const reducer = createReducer<PreferencesStateModel, Action>(
   on(preferencesActions.storePreferences, (state, action) => {
     return { ...state, ...action.preferences };
   }),
-  on(preferencesActions.switchLanguage, (state, action) => {
-    return { ...state, defaultLanguage: action.language };
+  on(preferencesActions.storeLanguage, (state, action) => {
+    return { ...state, language: action.language };
   })
 );
 

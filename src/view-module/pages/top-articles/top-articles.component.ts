@@ -42,7 +42,7 @@ export class TopArticlesComponent implements OnInit, OnDestroy {
       })
     );
     this.subscription.add(
-      this.store.select(state => state.preferences.defaultLanguage)
+      this.store.select(state => state.preferences.language)
         .pipe(skip(1))
         .subscribe(() => this.store.dispatch(topActions.fetchArticles()))
     );

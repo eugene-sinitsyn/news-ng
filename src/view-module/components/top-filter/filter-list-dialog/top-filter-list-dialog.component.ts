@@ -47,7 +47,7 @@ export class TopFilterListDialogComponent implements OnInit, OnDestroy {
     const language = this.filters[filterName].language;
     const filterState = new TopFilterStateModel(this.filters[filterName]);
 
-    this.store.dispatch(preferencesActions.switchLanguage({ language }));
+    this.store.dispatch(preferencesActions.storeLanguage({ language }));
     this.store.dispatch(topActions.storeFilter({ filterState }));
     this.store.dispatch(topActions.fetchArticles());
 

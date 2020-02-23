@@ -31,7 +31,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     const languageSubscription = this.store
-      .select(state => state.preferences.defaultLanguage)
+      .select(state => state.preferences.language)
       .subscribe(language => {
         this.subscription.add(this.setupControl(language));
       });
@@ -52,7 +52,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
     this.control = this.formBuilder.control(language);
     return this.control.valueChanges.subscribe(language => {
       this.translateService.use(language);
-      this.store.dispatch(preferencesActions.switchLanguage({ language }));
+      this.store.dispatch(preferencesActions.storeLanguage({ language }));
     });
   }
 }

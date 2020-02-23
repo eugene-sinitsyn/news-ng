@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { MatSelect } from '@angular/material/select';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription, combineLatest, BehaviorSubject } from 'rxjs';
-import { SourceDetailsModel, CountryEnum, CategoryEnum, LanguageEnum } from '@domain';
+import { SourceDetailsModel, CountryEnum, CategoryEnum } from '@domain';
 import { RootStateModel } from '@state';
 
 @Component({
@@ -52,12 +52,11 @@ export class SourcesSelectorComponent implements
     this.subscription.add(
       combineLatest(
         this.store.select(state => state.sources),
-        this.store.select(state => state.preferences.defaultLanguage),
         this.country$,
         this.category$
-      ).subscribe(([sources, language, country, category]) => {
+      ).subscribe(([sources, country, category]) => {
         this.sources = sources && sources.filter(
-          source => this.fitsCriteria(source, language, country, category)
+          source => this.fitsCriteria(source, country, category)
         );
         const numberOfSources = this.sources ? this.sources.length : 0;
         this.hint = this.getHint(country, category, numberOfSources);
@@ -97,12 +96,10 @@ export class SourcesSelectorComponent implements
 
   private fitsCriteria(
     source: SourceDetailsModel,
-    language: LanguageEnum,
     country: CountryEnum,
     category: CategoryEnum
   ): boolean {
-    return source.language === language &&
-      (!country || source.country === country) &&
+    return (!country || source.country === country) &&
       (!category || source.category === category);
   }
 

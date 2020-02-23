@@ -12,27 +12,32 @@ export class ArticlesService extends HttpService {
     super(httpClient);
   }
 
-  public async fetchTop(request: TopArticlesRequestModel): Promise<ArticleModel[]> {
+  public async fetchTop(
+    request: TopArticlesRequestModel
+  ): Promise<ArticleModel[]> {
     const params = this.createTopArticlesParams(request);
     const response: ArticlesResponseModel = await this.httpGet('top-headlines', params);
 
-    if (response.status === ResponseStatus.error) throw new Error(response.message);
+    if (response.status === ResponseStatus.error)
+      throw new Error(response.message);
     else return response.articles || [];
   }
 
   private createTopArticlesParams(request: TopArticlesRequestModel): HttpParams {
     let params: HttpParams = new HttpParams()
       .set('apiKey', environment.apiKey)
-      .set('language', request.language);
+      .set('pageSize', '100'); // dev plan limitation
 
-    if (request.country) params = params.set('country', request.country);
+    if (request.page) params = params.set('page', request.page.toString());
     if (request.category) params = params.set('category', request.category);
+    else if (request.searchString)
+      params = params.set('q', encodeURI(request.searchString));
+
+    // priority: 1: source, 2: country, 3: search string, 4: language
     if (request.sources && request.sources.length)
       params = params.set('sources', request.sources.join(','));
-    if (request.searchString)
-      params = params.set('q', encodeURI(request.searchString));
-    if (request.pageSize) params = params.set('pageSize', request.pageSize.toString());
-    if (request.page) params = params.set('page', request.page.toString());
+    else if (request.country) params = params.set('country', request.country);
+    else if (!request.searchString) params = params.set('language', request.language);
 
     return params;
   }

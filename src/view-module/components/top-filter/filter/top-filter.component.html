@@ -1,5 +1,10 @@
 <form *ngIf="formGroup" [formGroup]="formGroup">
   <div class="filter-row">
+    <mat-form-field class="field-search-string">
+      <mat-label>{{ 'filter.search-term' | translate }}</mat-label>
+      <input formControlName="searchString" matInput autocomplete="off" />
+    </mat-form-field>
+
     <mat-form-field class="field-category">
       <mat-label>{{ 'filter.category' | translate }}</mat-label>
       <mat-select formControlName="category">
@@ -18,11 +23,6 @@
           {{ 'countries.' + country | translate }}
         </mat-option>
       </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="field-search-string">
-      <mat-label>{{ 'filter.search-term' | translate }}</mat-label>
-      <input formControlName="searchString" matInput autocomplete="off" />
     </mat-form-field>
   </div>
 
