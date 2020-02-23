@@ -45,12 +45,13 @@ import { TopFilterSwitchComponent } from './components/top-filter/filter-switch/
 import { TopFilterListDialogComponent } from './components/top-filter/filter-list-dialog/top-filter-list-dialog.component';
 import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
 import { SourcesSelectorComponent } from './components/sources-selector/sources-selector.component';
-import { InputDialogComponent } from './components/input-dialog/input-dialog.component';
+import { InputDialogComponent } from './components/dialog/input/input-dialog.component';
 import { ReadLaterComponent } from './pages/read-later/read-later.component';
 import { PagerComponent } from './components/pager/pager.component';
 import { PreferencesComponent } from './pages/preferences/preferences.component';
 import { PreferencesLinkComponent } from './components/preferences/link/preferences-link.component';
 import { PreferencesFormComponent } from './components/preferences/form/preferences-form.component';
+import { ConfirmDialogComponent } from './components/dialog/confirm/confirm-dialog.component';
 
 const routes: Routes = [
   { path: '', component: TopArticlesComponent },
@@ -93,6 +94,7 @@ const newsComponents = [
   SourcesSelectorComponent,
   TopFilterListDialogComponent,
   InputDialogComponent,
+  ConfirmDialogComponent,
   ReadLaterComponent,
   PagerComponent,
   PreferencesLinkComponent,

@@ -11,7 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { IconDefinition, faFilter, faSave, faFolderOpen, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { RootStateModel, topActions } from '@state';
 import { ViewConfiguration } from '@view/config';
-import { InputDialogComponent } from '../../input-dialog/input-dialog.component';
+import { InputDialogComponent } from '../../dialog/input/input-dialog.component';
 import { TopFilterListDialogComponent } from '../filter-list-dialog/top-filter-list-dialog.component';
 
 @Component({
@@ -24,7 +24,7 @@ export class TopFilterSwitchComponent {
     public readonly viewConfig: ViewConfiguration,
     private readonly store: Store<RootStateModel>,
     private readonly translateService: TranslateService,
-    private readonly dialogService: MatDialog,
+    private readonly dialogService: MatDialog
   ) {}
 
   public readonly faFilter: IconDefinition = faFilter;

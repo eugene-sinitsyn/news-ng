@@ -4,7 +4,11 @@ import { LocalStorageService } from '../local-storage/local-storage.service';
 
 @Injectable()
 export class PreferencesStorageService {
-  public constructor(private readonly localStorageService: LocalStorageService) {}
+  public constructor(private readonly localStorageService: LocalStorageService) {
+    const preferences = localStorageService.get(this.namespace);
+    if (!preferences || typeof preferences !== 'object')
+      localStorageService.store(this.namespace, {});
+  }
 
   private readonly namespace: string = 'preferences';
 

@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>
+  {{ 'shared.are-you-sure' | translate }}
+  <fa-icon [icon]="faQuestionCircle"></fa-icon>
+</h1>
+
+<p mat-dialog-content>{{ description | translate }}</p>
+
+<div mat-dialog-actions>
+  <button
+    type="button"
+    mat-raised-button
+    color="primary"
+    cdkFocusInitial
+    [mat-dialog-close]="true"
+  >{{ 'shared.confirm' | translate }}</button>
+  <button type="button" mat-button [mat-dialog-close]="false"
+  >{{ 'shared.cancel' | translate }}</button>
+</div>

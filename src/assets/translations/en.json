@@ -9,7 +9,9 @@
     "apply": "Apply",
     "ok": "OK",
     "cancel": "Cancel",
-    "dismiss": "Dismiss"
+    "dismiss": "Dismiss",
+    "confirm": "Confirm",
+    "are-you-sure": "Are you sure"
   },
   "header": {
     "title": "NEWS",
@@ -54,7 +56,9 @@
     "articles": "articles",
     "infinite-scrolling": "Infinite scrolling",
     "dark-theme": "Dark theme",
-    "save": "Save preferences"
+    "save": "Save preferences",
+    "clear-user-data": "Clear user data",
+    "confirm-clear": "This action will erase saved filters, articles and preferences"
   },
   "languages": {
     "en": "English",

@@ -30,18 +30,17 @@ export class RootEffects {
         const preferences = this.preferencesStorageService.get();
         const filters = this.topFiltersStorageService.get();
         const articles = this.readLaterStorageService.get();
+
         const actions: Action[] = [
-          preferencesActions.storePreferences({ preferences }),
           topActions.storeFilters({ filters }),
-          readLaterActions.storeArticles({ articles })
+          readLaterActions.storeArticles({ articles }),
+          preferencesActions.storePreferences({ preferences })
         ];
 
         const defaultFilter = preferences.defaultTopFilterName &&
           filters[preferences.defaultTopFilterName];
-        if (defaultFilter) {
-          const filterState = new TopFilterStateModel(defaultFilter);
-          actions.push(topActions.storeFilter({ filterState }));
-        }
+        const filterState = defaultFilter && new TopFilterStateModel(defaultFilter)
+        if (filterState) actions.push(topActions.storeFilter({ filterState }));
 
         return of(...actions);
       })

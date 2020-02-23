@@ -21,6 +21,7 @@
 }
 
 .form-actions {
-  text-align: center;
-  padding: 36px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 56px 16px;
 }

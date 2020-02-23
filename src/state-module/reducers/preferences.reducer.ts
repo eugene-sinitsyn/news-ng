@@ -3,14 +3,16 @@ import { PreferencesStateModel } from '../models/preferences-state.model';
 import { LanguageEnum, PageSizeEnum } from '@domain';
 import { preferencesActions } from '../actions/preferences.actions';
 
+export const defaultPreferences: PreferencesStateModel = {
+  defaultLanguage: LanguageEnum.english,
+  defaultTopFilterName: null,
+  pageSize: PageSizeEnum.small,
+  infiniteScroll: true,
+  darkTheme: true
+};
+
 const reducer = createReducer<PreferencesStateModel, Action>(
-  {
-    defaultLanguage: LanguageEnum.english,
-    defaultTopFilterName: null,
-    pageSize: PageSizeEnum.small,
-    infiniteScroll: true,
-    darkTheme: true
-  },
+  defaultPreferences,
   on(preferencesActions.storePreferences, (state, action) => {
     return { ...state, ...action.preferences };
   }),
