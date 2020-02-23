@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { withLatestFrom, tap, concatMap, map } from 'rxjs/operators';
+import { Observable, of, from } from 'rxjs';
+import { withLatestFrom, tap, concatMap, map, startWith, endWith } from 'rxjs/operators';
 import { TopArticlesRequestModel, NotificationEnum } from '@domain';
 import { ArticlesService } from '@network';
 import { TopFiltersStorageService } from '@storage';
@@ -26,9 +26,12 @@ export class TopArticlesEffects {
       withLatestFrom(this.store),
       concatMap(([action, state]) => {
         const request = this.toTopArticlesRequest(state);
-        return this.articlesService.fetchTop(request)
+        const storeActionPromise = this.articlesService.fetchTop(request)
           .then(articles => topActions.storeArticles({ articles }));
-          // TODO: .catch(error => )
+        return from(storeActionPromise).pipe(
+          startWith(uiActions.toggleSpinner({ visible: true })),
+          endWith(uiActions.toggleSpinner({ visible: false }))
+        );
       })
     )
   );
