@@ -1,17 +1,20 @@
 import { createReducer, on, Action } from "@ngrx/store";
-import { ArticleModel } from '@domain';
 import { readLaterActions } from '../actions/read-later.actions';
+import { ReadLaterStateModel } from '../models/read-later-state.model';
 
-const reducer = createReducer<ArticleModel[], Action>(
-  [],
+const reducer = createReducer<ReadLaterStateModel, Action>(
+  { articles: null, page: 1 },
   on(readLaterActions.storeArticles, (state, action) => {
-    return action.articles;
+    return { ...state, articles: action.articles };
+  }),
+  on(readLaterActions.showMoreArticles, (state, action) => {
+    return { ...state, page: state.page + 1 };
   })
 );
 
 export function readLaterReducer(
-  state: ArticleModel[],
+  state: ReadLaterStateModel,
   action: Action
-): ArticleModel[] {
+): ReadLaterStateModel {
   return reducer(state, action);
 }

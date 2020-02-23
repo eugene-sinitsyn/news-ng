@@ -2,4 +2,13 @@
   <news-language-selector></news-language-selector>
   <news-preferences-link></news-preferences-link>
 </news-header>
+
 <news-articles-list [articles]="articles" withRemoveAction></news-articles-list>
+
+<news-pager
+  *ngIf="articles"
+  [infinite]="infiniteScrollEnabled"
+  [totalCount]="totalCount"
+  [visibleCount]="visibleCount"
+  (showMore)="showMore()"
+></news-pager>

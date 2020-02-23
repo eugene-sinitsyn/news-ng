@@ -21,7 +21,7 @@ export class ReadLaterEffects {
     () => this.actions$.pipe(
       ofType(readLaterActions.saveToReadlater),
       map(action => action.article),
-      withLatestFrom(this.store.select(state => state.readLater)),
+      withLatestFrom(this.store.select(state => state.readLater.articles)),
       concatMap(([article, previousArticles]) => {
         const articles = this.pushArticle(article, previousArticles);
         return of(
@@ -37,7 +37,7 @@ export class ReadLaterEffects {
     () => this.actions$.pipe(
       ofType(readLaterActions.deleteFromReadLater),
       map(action => action.url),
-      withLatestFrom(this.store.select(state => state.readLater)),
+      withLatestFrom(this.store.select(state => state.readLater.articles)),
       concatMap(([url, previousArticles]) => {
         const articles = (previousArticles || [])
           .filter(article => article.url !== url);
@@ -52,7 +52,7 @@ export class ReadLaterEffects {
   public readonly saveArticlesToStorage$: Observable<any> = createEffect(
     () => this.actions$.pipe(
       ofType(readLaterActions.saveArticlesToStorage),
-      withLatestFrom(this.store.select(state => state.readLater)),
+      withLatestFrom(this.store.select(state => state.readLater.articles)),
       tap(([action, articles]) => this.readLaterStorageService.store(articles))
     ),
     { dispatch: false }

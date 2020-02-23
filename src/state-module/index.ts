@@ -5,6 +5,7 @@ export * from './models/ui-state.model';
 export * from './models/preferences-state.model';
 export * from './models/top-filter-state.model';
 export * from './models/top-state.model';
+export * from './models/read-later-state.model';
 
 export * from './actions/ui.actions';
 export * from './actions/preferences.actions';
