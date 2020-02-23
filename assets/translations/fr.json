@@ -9,7 +9,9 @@
     "apply": "Apply(f)",
     "ok": "OK(f)",
     "cancel": "Cancel(f)",
-    "dismiss": "Dismiss(f)"
+    "dismiss": "Dismiss(f)",
+    "confirm": "Confirm(f)",
+    "are-you-sure": "Are you sure(f)"
   },
   "header": {
     "title": "NEWS(f)",
@@ -54,7 +56,9 @@
     "articles": "articles(f)",
     "infinite-scrolling": "Infinite scrolling(f)",
     "dark-theme": "Dark theme(f)",
-    "save": "Save preferences(f)"
+    "save": "Save preferences(f)",
+    "clear-user-data": "Clear user data(f)",
+    "confirm-clear": "This action will erase saved filters, articles and preferences(f)"
   },
   "languages": {
     "en": "English(f)",
