@@ -34,6 +34,7 @@
     "sources-hint-category-country": "{{category}} news sources in {{country}}(f)",
     "sources-hint-country": "News sources in {{country}}(f)",
     "sources-hint-category": "{{category}} news sources(f)",
+    "sources-hint-found": "{{numberOfSources}} found(f)",
     "browse": "Browse filters(f)",
     "save": "Save filter(f)",
     "no-saved-filters": "No saved filters found(f)",

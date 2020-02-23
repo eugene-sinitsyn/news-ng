@@ -44,7 +44,7 @@ export class SourcesSelectorComponent implements
     new BehaviorSubject<CountryEnum>(null);
   private category$: BehaviorSubject<CategoryEnum> =
     new BehaviorSubject<CategoryEnum>(null);
-  
+
   public sources: SourceDetailsModel[];
   public hint: string = '';
 
@@ -56,10 +56,13 @@ export class SourcesSelectorComponent implements
         this.country$,
         this.category$
       ).subscribe(([sources, language, country, category]) => {
-        this.hint = this.getHint(country, category);
         this.sources = sources && sources.filter(
           source => this.fitsCriteria(source, language, country, category)
         );
+        const numberOfSources = this.sources ? this.sources.length : 0;
+        this.hint = this.getHint(country, category, numberOfSources);
+        if (numberOfSources) this.ngControl.control.enable();
+        else this.ngControl.control.disable();
         // update value after sources are "change detected"
         setTimeout(() => this.writeValue(this.ngControl.value));
       })
@@ -70,7 +73,11 @@ export class SourcesSelectorComponent implements
     this.subscription.unsubscribe();
   }
 
-  private getHint(country: CountryEnum, category: CategoryEnum): string {
+  private getHint(
+    country: CountryEnum,
+    category: CategoryEnum,
+    numberOfSources: number
+  ): string {
     if (!country && !category) return '';
 
     let label: string;
@@ -78,10 +85,14 @@ export class SourcesSelectorComponent implements
     else if (!country) label = 'sources-hint-category';
     else label = 'sources-hint-category-country';
 
-    return this.translateService.instant(`filter.${label}`, {
+    const criteriaHint = this.translateService.instant(`filter.${label}`, {
       category: this.translateService.instant(`categories.${category}`),
       country: this.translateService.instant(`countries.${country}`)
     });
+    const resultsHint = this.translateService
+      .instant('filter.sources-hint-found', { numberOfSources });
+
+    return `${criteriaHint} (${resultsHint})`;
   }
 
   private fitsCriteria(
