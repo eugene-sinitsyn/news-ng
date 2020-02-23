@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -24,7 +24,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-import { LanguageEnum } from '@domain';
 import { StateModule } from '@state';
 import { ViewConfiguration } from './config/view-config';
 
@@ -33,6 +32,7 @@ import { PreferencesFormService } from './services/preferences-form.service';
 import { SpinnerDirective } from './directives/spinner.directive';
 import { NotificationDirective } from './directives/notification.directive';
 import { ThemeLoaderDirective } from './directives/theme-loader.directive';
+import { LanguageSwitcherDirective } from './directives/language-switcher.directive';
 
 import { AppComponent } from './root.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -78,7 +78,8 @@ const materialModules = [
 const newsDirectives = [
   SpinnerDirective,
   NotificationDirective,
-  ThemeLoaderDirective
+  ThemeLoaderDirective,
+  LanguageSwitcherDirective
 ];
 const newsComponents = [
   AppComponent,
@@ -127,9 +128,4 @@ export function createTranslationLoader(httpClient: HttpClient): TranslateLoader
   declarations: [...newsDirectives, ...newsComponents],
   bootstrap: [AppComponent]
 })
-export class ViewModule {
-  public constructor(translateService: TranslateService) {
-    translateService.setDefaultLang(LanguageEnum.english);
-    translateService.use(LanguageEnum.english);
-  }
-}
+export class ViewModule {}

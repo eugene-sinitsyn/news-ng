@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, HostBinding } from "@angular/core";
 import { Store } from '@ngrx/store';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { LanguageEnum, UtilitiesService } from '@domain';
 import { RootStateModel, preferencesActions } from '@state';
@@ -16,8 +15,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
   public constructor(
     public readonly viewConfig: ViewConfiguration,
     private readonly store: Store<RootStateModel>,
-    private readonly formBuilder: FormBuilder,
-    private readonly translateService: TranslateService
+    private readonly formBuilder: FormBuilder
   ) {}
 
   private readonly subscription: Subscription = new Subscription();
@@ -51,7 +49,6 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
   private setupControl(language: LanguageEnum): Subscription {
     this.control = this.formBuilder.control(language);
     return this.control.valueChanges.subscribe(language => {
-      this.translateService.use(language);
       this.store.dispatch(preferencesActions.storeLanguage({ language }));
     });
   }
