@@ -1,26 +1,37 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { merge, Subscription } from 'rxjs';
-import { RootStateModel } from '../../../state/models/root-state.model';
-import { UtilitiesService } from '../../../services/utilities.service';
+
 import { CategoryEnum } from '../../../enums/category.enum';
 import { CountryEnum } from '../../../enums/country.enum';
-import { TopFilterStateModel } from '../../../state/models/top-filter-state.model';
+import { UtilitiesService } from '../../../services/utilities.service';
 import { topActions } from '../../../state/actions/top.actions';
+import { RootStateModel } from '../../../state/models/root-state.model';
+import { TopFilterStateModel } from '../../../state/models/top-filter-state.model';
 
 @Component({
   selector: 'news-top-filter',
   templateUrl: './top-filter.component.html',
   styleUrls: ['./top-filter.component.scss']
 })
-export class TopFilterComponent implements OnInit, OnDestroy {
+export class TopFilterComponent implements OnInit, OnDestroy, AfterViewInit {
   public constructor(
     private readonly store: Store<RootStateModel>,
     private readonly formBuilder: FormBuilder
   ) {}
 
   @Output() public readonly close: EventEmitter<void> = new EventEmitter<void>();
+  @ViewChild('searchString') public searchStringControl: ElementRef;
 
   private formSubscription: Subscription;
   public readonly categories: any[] = UtilitiesService.enumToList(CategoryEnum);
@@ -45,6 +56,12 @@ export class TopFilterComponent implements OnInit, OnDestroy {
       .select(state => state.top.filter)
       .subscribe(filterState => this.setupFormGroup(filterState));
     stateSubscription.unsubscribe();
+  }
+
+  public ngAfterViewInit(): void {
+    setTimeout(() => {
+      if (this.searchStringControl) this.searchStringControl.nativeElement.focus();
+    });
   }
 
   public ngOnDestroy(): void {

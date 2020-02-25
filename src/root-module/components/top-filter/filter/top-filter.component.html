@@ -3,6 +3,7 @@
     <mat-form-field class="field-search-string">
       <mat-label>{{ 'filter.search-term' | translate }}</mat-label>
       <input
+        #searchString
         formControlName="searchString"
         matInput
         autocomplete="off"
