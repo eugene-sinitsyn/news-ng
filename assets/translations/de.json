@@ -63,6 +63,10 @@
     "clear-user-data": "Clear user data(d)",
     "confirm-clear": "This action will erase saved filters, articles and preferences(d)"
   },
+  "not-found": {
+    "nothing-here": "There's nothing here(d)",
+    "try-visiting": "Try visiting(d)"
+  },
   "languages": {
     "en": "English(d)",
     "fr": "French(d)",
