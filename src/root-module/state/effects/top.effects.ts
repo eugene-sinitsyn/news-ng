@@ -1,23 +1,33 @@
 import { Injectable } from '@angular/core';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
-import { Observable, of, from } from 'rxjs';
-import { withLatestFrom, tap, concatMap, map, startWith, endWith } from 'rxjs/operators';
-import { topActions } from '../actions/top.actions';
-import { RootStateModel } from '../models/root-state.model';
-import { uiActions } from '../actions/ui.actions';
-import { preferencesActions } from '../actions/preferences.actions';
-import { ArticlesService } from '../../services/network/articles.service';
-import { TopFiltersStorageService } from '../../services/local-storage/top-filters-storage.service';
+import { from, Observable, of } from 'rxjs';
+import {
+  concatMap,
+  endWith,
+  map,
+  startWith,
+  tap,
+  withLatestFrom
+} from 'rxjs/operators';
+
 import { NotificationEnum } from '../../enums/notification.enum';
 import { TopArticlesRequestModel } from '../../models/top-articles-request.model';
+import {
+  TopFiltersStorageService
+} from '../../services/local-storage/top-filters-storage.service';
+import { ArticlesHttpService } from '../../services/network/articles-http.service';
+import { preferencesActions } from '../actions/preferences.actions';
+import { topActions } from '../actions/top.actions';
+import { uiActions } from '../actions/ui.actions';
+import { RootStateModel } from '../models/root-state.model';
 
 @Injectable()
 export class TopArticlesEffects {
   public constructor(
     private readonly actions$: Actions,
     private readonly store: Store<RootStateModel>,
-    private readonly articlesService: ArticlesService,
+    private readonly articlesService: ArticlesHttpService,
     private readonly topFiltersStorageService: TopFiltersStorageService
   ) {}
 

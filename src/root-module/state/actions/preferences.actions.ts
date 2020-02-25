@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { PreferencesStateModel } from '../models/preferences-state.model';
+
 import { LanguageEnum } from '../../enums/language.enum';
+import { PreferencesStateModel } from '../models/preferences-state.model';
 
 export const preferencesActions = {
   savePreferencesToStorage: createAction('preferences-save-to-storage'),

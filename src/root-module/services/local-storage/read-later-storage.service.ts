@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from '../local-storage/local-storage.service';
+
 import { ArticleModel } from '../../models/article.model';
+import { LocalStorageService } from '../local-storage/local-storage.service';
 
 @Injectable()
 export class ReadLaterStorageService {

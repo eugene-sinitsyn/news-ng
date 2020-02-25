@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IconDefinition, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+
 import { RootConfig } from '../../root.config';
 
 @Component({

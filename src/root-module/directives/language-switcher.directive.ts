@@ -1,10 +1,11 @@
 import { Directive, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { distinctUntilChanged, filter } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
-import { RootStateModel } from '../state/models/root-state.model';
+
 import { LanguageEnum } from '../enums/language.enum';
+import { RootStateModel } from '../state/models/root-state.model';
 
 @Directive({ selector: '[newsLanguageSwitcher]' })
 export class LanguageSwitcherDirective implements OnInit, OnDestroy {

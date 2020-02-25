@@ -1,3 +1,4 @@
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -11,9 +12,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { ScrollingModule } from '@angular/cdk/scrolling';
 
 export const newsMaterialModules = [
+  ScrollingModule,
   MatBadgeModule,
   MatButtonModule,
   MatCardModule,
@@ -26,6 +27,5 @@ export const newsMaterialModules = [
   MatSelectModule,
   MatSlideToggleModule,
   MatSnackBarModule,
-  MatTooltipModule,
-  ScrollingModule
+  MatTooltipModule
 ];

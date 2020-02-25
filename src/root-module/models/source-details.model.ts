@@ -1,7 +1,7 @@
-import { SourceModel } from './source.model';
-import { LanguageEnum } from '../enums/language.enum';
 import { CategoryEnum } from '../enums/category.enum';
 import { CountryEnum } from '../enums/country.enum';
+import { LanguageEnum } from '../enums/language.enum';
+import { SourceModel } from './source.model';
 
 export class SourceDetailsModel extends SourceModel {
   public description: string;

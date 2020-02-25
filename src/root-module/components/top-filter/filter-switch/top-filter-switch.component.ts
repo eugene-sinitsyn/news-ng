@@ -1,26 +1,23 @@
-import {
-  Component,
-  HostBinding,
-  Output,
-  EventEmitter,
-  Input
-} from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Store } from '@ngrx/store';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
-  IconDefinition,
-  faFilter,
-  faSave,
-  faFolderOpen,
   faEllipsisV,
-  faEraser
+  faEraser,
+  faFilter,
+  faFolderOpen,
+  faSave,
+  IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
-import { InputDialogComponent } from '../../dialog/input/input-dialog.component';
-import { TopFilterListDialogComponent } from '../filter-list-dialog/top-filter-list-dialog.component';
+import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
+
 import { RootConfig } from '../../../root.config';
-import { RootStateModel } from '../../../state/models/root-state.model';
 import { topActions } from '../../../state/actions/top.actions';
+import { RootStateModel } from '../../../state/models/root-state.model';
+import { InputDialogComponent } from '../../dialog/input/input-dialog.component';
+import {
+  TopFilterListDialogComponent
+} from '../filter-list-dialog/top-filter-list-dialog.component';
 
 @Component({
   selector: 'news-top-filter-switch',

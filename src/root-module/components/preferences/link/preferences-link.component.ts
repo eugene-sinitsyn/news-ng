@@ -1,5 +1,6 @@
 import { Component, HostBinding } from '@angular/core';
-import { IconDefinition, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faCog, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+
 import { RootConfig } from '../../../root.config';
 
 @Component({

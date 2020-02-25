@@ -1,13 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IconDefinition, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { faTrash, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { RootStateModel } from '../../../state/models/root-state.model';
+
 import { TopFiltersDictionary } from '../../../models/top-filters-dictionary.model';
-import { TopFilterStateModel } from '../../../state/models/top-filter-state.model';
 import { preferencesActions } from '../../../state/actions/preferences.actions';
 import { topActions } from '../../../state/actions/top.actions';
+import { RootStateModel } from '../../../state/models/root-state.model';
+import { TopFilterStateModel } from '../../../state/models/top-filter-state.model';
 
 @Component({
   selector: 'news-top-filter-list-dialog',

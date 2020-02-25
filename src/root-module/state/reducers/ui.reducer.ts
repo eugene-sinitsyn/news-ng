@@ -1,6 +1,7 @@
-import { createReducer, on, Action } from '@ngrx/store';
-import { UiStateModel } from '../models/ui-state.model';
+import { Action, createReducer, on } from '@ngrx/store';
+
 import { uiActions } from '../actions/ui.actions';
+import { UiStateModel } from '../models/ui-state.model';
 
 const reducer = createReducer<UiStateModel, Action>(
   new UiStateModel(),

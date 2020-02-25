@@ -1,7 +1,8 @@
-import { createReducer, Action, on } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
+
+import { ArticleModel } from '../../models/article.model';
 import { topActions } from '../actions/top.actions';
 import { TopArticlesStateModel } from '../models/top-state.model';
-import { ArticleModel } from '../../models/article.model';
 
 const reducer = createReducer<TopArticlesStateModel, Action>(
   {

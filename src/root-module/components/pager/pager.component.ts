@@ -1,17 +1,18 @@
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { DOCUMENT } from '@angular/common';
 import {
   Component,
-  Input,
-  Output,
   EventEmitter,
   Inject,
+  Input,
   NgZone,
   OnDestroy,
-  OnInit
-} from '@angular/core'
-import { DOCUMENT } from '@angular/common';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { IconDefinition, faLongArrowAltUp } from '@fortawesome/free-solid-svg-icons';
+  OnInit,
+  Output
+} from '@angular/core';
+import { faLongArrowAltUp, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { fromEvent, Subscription } from 'rxjs';
+
 import { RootConfig } from '../../root.config';
 
 @Component({

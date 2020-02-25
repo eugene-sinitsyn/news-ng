@@ -1,6 +1,7 @@
-import { on, createReducer, Action } from '@ngrx/store';
-import { sourcesActions } from '../actions/sources.actions';
+import { Action, createReducer, on } from '@ngrx/store';
+
 import { SourceDetailsModel } from '../../models/source-details.model';
+import { sourcesActions } from '../actions/sources.actions';
 
 const reducer = createReducer<SourceDetailsModel[], Action>(
   [],

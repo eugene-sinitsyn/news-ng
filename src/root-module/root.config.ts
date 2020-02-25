@@ -1,12 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Routes } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { TopArticlesComponent } from './pages/top-articles/top-articles.component';
-import { ReadLaterComponent } from './pages/read-later/read-later.component';
-import { PreferencesComponent } from './pages/preferences/preferences.component';
+
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { PreferencesComponent } from './pages/preferences/preferences.component';
+import { ReadLaterComponent } from './pages/read-later/read-later.component';
+import { TopArticlesComponent } from './pages/top-articles/top-articles.component';
 
 @Injectable()
 export class RootConfig {

@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { Component, Input } from '@angular/core';
+
 import { ArticleModel } from '../../../models/article.model';
 
 @Component({

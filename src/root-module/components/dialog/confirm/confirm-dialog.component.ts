@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IconDefinition, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import { faQuestionCircle, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'news-confirm-dialog',

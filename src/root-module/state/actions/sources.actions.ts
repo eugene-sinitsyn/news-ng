@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+
 import { SourceDetailsModel } from '../../models/source-details.model';
 
 export const sourcesActions = {

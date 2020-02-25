@@ -1,8 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { PreferencesStateModel } from '../models/preferences-state.model';
-import { preferencesActions } from '../actions/preferences.actions';
+
 import { LanguageEnum } from '../../enums/language.enum';
 import { PageSizeEnum } from '../../enums/page-size.enum';
+import { preferencesActions } from '../actions/preferences.actions';
+import { PreferencesStateModel } from '../models/preferences-state.model';
 
 export const defaultPreferences: PreferencesStateModel = {
   language: LanguageEnum.english,

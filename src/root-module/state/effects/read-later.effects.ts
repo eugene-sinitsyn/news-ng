@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { tap, concatMap, withLatestFrom, map } from 'rxjs/operators';
+import { concatMap, map, tap, withLatestFrom } from 'rxjs/operators';
+
+import { NotificationEnum } from '../../enums/notification.enum';
+import { ArticleModel } from '../../models/article.model';
+import {
+  ReadLaterStorageService
+} from '../../services/local-storage/read-later-storage.service';
 import { readLaterActions } from '../actions/read-later.actions';
 import { uiActions } from '../actions/ui.actions';
 import { RootStateModel } from '../models/root-state.model';
-import { ReadLaterStorageService } from '../../services/local-storage/read-later-storage.service';
-import { NotificationEnum } from '../../enums/notification.enum';
-import { ArticleModel } from '../../models/article.model';
 
 @Injectable()
 export class ReadLaterEffects {

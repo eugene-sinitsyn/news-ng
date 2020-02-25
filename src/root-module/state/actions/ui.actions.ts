@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+
 import { NotificationEnum } from '../../enums/notification.enum';
 
 export const uiActions = {

@@ -1,7 +1,8 @@
 import { createAction, props } from '@ngrx/store';
-import { TopFilterStateModel } from '../models/top-filter-state.model';
+
 import { ArticleModel } from '../../models/article.model';
 import { TopFiltersDictionary } from '../../models/top-filters-dictionary.model';
+import { TopFilterStateModel } from '../models/top-filter-state.model';
 
 export const topActions = {
   fetchArticles: createAction('fetch-top-articles'),

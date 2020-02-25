@@ -4,6 +4,7 @@ import { MatSpinner } from '@angular/material/progress-spinner';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
+
 import { RootStateModel } from '../state/models/root-state.model';
 
 @Directive({ selector: '[newsSpinner]' })

@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription, combineLatest } from 'rxjs';
-import { skip } from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { RootStateModel } from '../../state/models/root-state.model';
+import { combineLatest, Subscription } from 'rxjs';
+import { skip } from 'rxjs/operators';
+
 import { ArticleModel } from '../../models/article.model';
 import { topActions } from '../../state/actions/top.actions';
+import { RootStateModel } from '../../state/models/root-state.model';
 
 @Component({
   selector: 'news-top-articles',

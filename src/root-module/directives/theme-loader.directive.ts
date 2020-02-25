@@ -1,8 +1,9 @@
-import { Directive, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Directive, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { filter, distinctUntilChanged } from 'rxjs/operators';
+import { distinctUntilChanged, filter } from 'rxjs/operators';
+
 import { RootConfig } from '../root.config';
 import { RootStateModel } from '../state/models/root-state.model';
 

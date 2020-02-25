@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageService } from '../local-storage/local-storage.service';
-import { TopFiltersDictionary } from '../../models/top-filters-dictionary.model';
+
 import { TopArticlesRequestModel } from '../../models/top-articles-request.model';
+import { TopFiltersDictionary } from '../../models/top-filters-dictionary.model';
+import { LocalStorageService } from '../local-storage/local-storage.service';
 
 @Injectable()
 export class TopFiltersStorageService {

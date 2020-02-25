@@ -1,11 +1,12 @@
 import { Directive } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
+import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { skip } from 'rxjs/operators';
-import { RootStateModel } from '../state/models/root-state.model';
+
 import { RootConfig } from '../root.config';
+import { RootStateModel } from '../state/models/root-state.model';
 
 @Directive({ selector: '[newsNotification]' })
 export class NotificationDirective {

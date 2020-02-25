@@ -1,14 +1,23 @@
-import { Component, Self, Optional, Input, ViewChild, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Self,
+  ViewChild
+} from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
-import { TranslateService } from '@ngx-translate/core';
 import { MatSelect } from '@angular/material/select';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription, combineLatest, BehaviorSubject } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
+import { BehaviorSubject, combineLatest, Observable, Subscription } from 'rxjs';
+
+import { CategoryEnum } from '../../enums/category.enum';
+import { CountryEnum } from '../../enums/country.enum';
 import { SourceDetailsModel } from '../../models/source-details.model';
 import { RootStateModel } from '../../state/models/root-state.model';
-import { CountryEnum } from '../../enums/country.enum';
-import { CategoryEnum } from '../../enums/category.enum';
 
 @Component({
   selector: 'news-sources-selector',

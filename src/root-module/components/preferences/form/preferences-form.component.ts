@@ -1,16 +1,21 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { withLatestFrom } from 'rxjs/operators'
-import { ConfirmDialogComponent } from '../../dialog/confirm/confirm-dialog.component';
-import { RootStateModel } from '../../../state/models/root-state.model';
-import { PreferencesFormService } from '../../../services/forms/preferences-form.service';
+import { withLatestFrom } from 'rxjs/operators';
+
 import { LanguageEnum } from '../../../enums/language.enum';
-import { UtilitiesService } from '../../../services/utilities.service';
 import { PageSizeEnum } from '../../../enums/page-size.enum';
+import {
+  PreferencesFormService
+} from '../../../services/forms/preferences-form.service';
+import { UtilitiesService } from '../../../services/utilities.service';
 import { preferencesActions } from '../../../state/actions/preferences.actions';
+import { RootStateModel } from '../../../state/models/root-state.model';
+import {
+  ConfirmDialogComponent
+} from '../../dialog/confirm/confirm-dialog.component';
 
 @Component({
   selector: 'news-preferences-form',

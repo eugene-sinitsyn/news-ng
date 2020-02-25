@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Actions, ofType, createEffect } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { Observable, defer, of } from 'rxjs';
+import { defer, Observable, of } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
+
+import { SourcesHttpService } from '../../services/network/sources-http.service';
 import { sourcesActions } from '../actions/sources.actions';
-import { SourcesService } from '../../services/network/sources.service';
 
 @Injectable()
 export class SourcesEffects {
   public constructor(
     private readonly actions$: Actions,
-    private readonly sourcesService: SourcesService
+    private readonly sourcesService: SourcesHttpService
   ) {}
 
   public readonly fetchSources$: Observable<Action> = createEffect(

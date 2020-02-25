@@ -1,12 +1,13 @@
-import { Component, OnInit, OnDestroy, HostBinding } from "@angular/core";
-import { Store } from '@ngrx/store';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { RootConfig } from '../../root.config';
-import { RootStateModel } from '../../state/models/root-state.model';
+
 import { LanguageEnum } from '../../enums/language.enum';
+import { RootConfig } from '../../root.config';
 import { UtilitiesService } from '../../services/utilities.service';
 import { preferencesActions } from '../../state/actions/preferences.actions';
+import { RootStateModel } from '../../state/models/root-state.model';
 
 @Component({
   selector: 'news-language-selector',

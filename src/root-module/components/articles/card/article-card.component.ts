@@ -1,16 +1,17 @@
-import { Component, Input } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { Store } from '@ngrx/store';
+import { Component, Input } from '@angular/core';
 import {
-  faExternalLinkAlt,
   faClock,
+  faExternalLinkAlt,
   faTrash,
   IconDefinition
 } from '@fortawesome/free-solid-svg-icons';
-import { RootConfig } from '../../../root.config';
-import { RootStateModel } from '../../../state/models/root-state.model';
+import { Store } from '@ngrx/store';
+
 import { ArticleModel } from '../../../models/article.model';
+import { RootConfig } from '../../../root.config';
 import { readLaterActions } from '../../../state/actions/read-later.actions';
+import { RootStateModel } from '../../../state/models/root-state.model';
 
 @Component({
   selector: 'news-article-card',

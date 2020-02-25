@@ -1,22 +1,27 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { StoreModule } from '@ngrx/store';
-
-import { newsMaterialModules } from './material';
-import { RootConfig, routes, createTranslationLoader } from './root.config';
-import { newsDirectives } from './directives';
-import { RootComponent, newsComponents } from './components';
-import { newsPageComponents } from './pages';
 import { EffectsModule } from '@ngrx/effects';
-import { newsReducers, newsEffects } from './state';
+import { StoreModule } from '@ngrx/store';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
+import { newsComponents, RootComponent } from './components';
+import { newsDirectives } from './directives';
+import { newsInterceptorProviders } from './interceptors';
+import { newsMaterialModules } from './material';
+import { newsPageComponents } from './pages';
+import { createTranslationLoader, RootConfig, routes } from './root.config';
+import {
+  newsFormsServices,
+  newsNetworkServices,
+  newsStorageServices
+} from './services';
+import { newsEffects, newsReducers } from './state';
 import { RootStateModel } from './state/models/root-state.model';
-import { newsFormsServices, newsStorageServices, newsNetworkServices } from './services';
 
 @NgModule({
   imports: [
@@ -39,7 +44,8 @@ import { newsFormsServices, newsStorageServices, newsNetworkServices } from './s
     RootConfig,
     ...newsFormsServices,
     ...newsStorageServices,
-    ...newsNetworkServices
+    ...newsNetworkServices,
+    ...newsInterceptorProviders
   ],
   declarations: [
     ...newsDirectives,

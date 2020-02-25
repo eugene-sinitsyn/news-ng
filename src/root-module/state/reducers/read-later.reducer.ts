@@ -1,4 +1,5 @@
-import { createReducer, on, Action } from "@ngrx/store";
+import { Action, createReducer, on } from '@ngrx/store';
+
 import { readLaterActions } from '../actions/read-later.actions';
 import { ReadLaterStateModel } from '../models/read-later-state.model';
 

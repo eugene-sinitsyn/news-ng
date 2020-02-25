@@ -1,5 +1,5 @@
-import { ArticleModel } from './article.model';
 import { ResponseStatus } from '../enums/response-status.enum';
+import { ArticleModel } from './article.model';
 
 export class ArticlesResponseModel {
   public status: ResponseStatus;

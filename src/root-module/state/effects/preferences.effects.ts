@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Store, Action } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Action, Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { withLatestFrom, concatMap } from 'rxjs/operators';
+import { concatMap, withLatestFrom } from 'rxjs/operators';
+
+import { NotificationEnum } from '../../enums/notification.enum';
+import {
+  PreferencesStorageService
+} from '../../services/local-storage/preferences-storage.service';
 import { preferencesActions } from '../actions/preferences.actions';
-import { RootStateModel } from '../models/root-state.model';
-import { uiActions } from '../actions/ui.actions';
-import { defaultPreferences } from '../reducers/preferences.reducer';
 import { readLaterActions } from '../actions/read-later.actions';
 import { topActions } from '../actions/top.actions';
-import { PreferencesStorageService } from '../../services/local-storage/preferences-storage.service';
-import { NotificationEnum } from '../../enums/notification.enum';
+import { uiActions } from '../actions/ui.actions';
+import { RootStateModel } from '../models/root-state.model';
+import { defaultPreferences } from '../reducers/preferences.reducer';
 
 @Injectable()
 export class PreferencesEffects {
