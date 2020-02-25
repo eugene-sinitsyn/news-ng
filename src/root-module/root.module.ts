@@ -41,7 +41,12 @@ import { newsFormsServices, newsStorageServices, newsNetworkServices } from './s
     ...newsStorageServices,
     ...newsNetworkServices
   ],
-  declarations: [...newsDirectives, ...newsComponents, ...newsPageComponents, RootComponent],
+  declarations: [
+    ...newsDirectives,
+    ...newsComponents,
+    ...newsPageComponents,
+    RootComponent
+  ],
   bootstrap: [RootComponent]
 })
 export class RootModule {}

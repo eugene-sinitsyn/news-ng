@@ -6,6 +6,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TopArticlesComponent } from './pages/top-articles/top-articles.component';
 import { ReadLaterComponent } from './pages/read-later/read-later.component';
 import { PreferencesComponent } from './pages/preferences/preferences.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @Injectable()
 export class RootConfig {
@@ -20,8 +21,8 @@ export class RootConfig {
 export const routes: Routes = [
   { path: '', component: TopArticlesComponent },
   { path: 'readlater', component: ReadLaterComponent },
-  { path: 'preferences', component: PreferencesComponent }
-  // TODO: 404 page
+  { path: 'preferences', component: PreferencesComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 export function createTranslationLoader(httpClient: HttpClient): TranslateLoader {

@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 48px 0;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+fa-icon {
+  font-size: 124px;
+  padding: 24px;
+}
+
+.message {
+  min-width: 250px;
+  padding: 24px;
+}
+
+a {
+  font-size: 20px;
+  text-decoration: underline;
+}
