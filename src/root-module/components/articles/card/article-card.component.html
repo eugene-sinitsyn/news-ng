@@ -1,0 +1,44 @@
+<mat-card *ngIf="article">
+  <mat-card-header>
+    <mat-card-title>{{ article.title }}</mat-card-title>
+    <mat-card-subtitle *ngIf="article.source.name">
+      {{ article.source.name }}
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <img *ngIf="article.urlToImage && article.urlToImage !== 'null'"
+    mat-card-image
+    [src]="article.urlToImage"
+  />
+
+  <mat-card-content>
+    <p>{{ article.description }}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a [href]="article.url" target="_blank" mat-button>
+      {{ 'shared.open' | translate }}
+      <fa-icon [icon]="faExternalLinkAlt" class="icon-open"></fa-icon>
+    </a>
+
+    <button
+      *ngIf="isReadLaterActionVisible"
+      mat-button
+      (click)="saveToReadLater()"
+      [matTooltip]="'read-later.add' | translate"
+      [matTooltipShowDelay]="rootConfig.tooltipDelay"
+    >
+      <fa-icon [icon]="faClock"></fa-icon>
+    </button>
+
+    <button
+      *ngIf="isRemoveActionVisible"
+      mat-button
+      (click)="removeFromReadLater()"
+      [matTooltip]="'read-later.remove' | translate"
+      [matTooltipShowDelay]="rootConfig.tooltipDelay"
+    >
+      <fa-icon [icon]="faTrash"></fa-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

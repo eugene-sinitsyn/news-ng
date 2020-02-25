@@ -18,15 +18,9 @@
       "es2018",
       "dom"
     ],
-    "paths": {
-      "@environment": ["src/environments/environment"],
-      "@domain": ["src/domain-module"],
-      "@network": ["src/network-module"],
-      "@storage": ["src/storage-module"],
-      "@state": ["src/state-module"],
-      "@view/config": ["src/view-module/config/view-config"],
-      "@view": ["src/view-module"],
-    }
+    // "paths": {
+    //   "@module-name": ["src/module-path"]
+    // }
   },
   "include": [
     "src/**/*.ts"
@@ -35,5 +29,5 @@
     "src/environments",
     "src/test.ts",
     "src/**/*.spec.ts"
-  ],
+  ]
 }

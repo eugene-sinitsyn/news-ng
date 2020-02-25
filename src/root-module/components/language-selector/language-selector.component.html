@@ -1,0 +1,12 @@
+<mat-select
+  [formControl]="control"
+  [matTooltip]="'header.language-change' | translate"
+  [matTooltipShowDelay]="rootConfig.tooltipDelay"
+  (focus)="toggleFocusedClass(true)"
+  (blur)="toggleFocusedClass(false)"
+>
+  <mat-option
+    *ngFor="let language of languages"
+    [value]="language"
+  >{{ language }}</mat-option>
+</mat-select>
