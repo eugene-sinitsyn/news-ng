@@ -2,7 +2,11 @@
   <div class="filter-row">
     <mat-form-field class="field-search-string">
       <mat-label>{{ 'filter.search-term' | translate }}</mat-label>
-      <input formControlName="searchString" matInput autocomplete="off" />
+      <input
+        formControlName="searchString"
+        matInput
+        autocomplete="off"
+        (keyup.enter)="tryApplyFilter()" />
     </mat-form-field>
 
     <mat-form-field class="field-category">

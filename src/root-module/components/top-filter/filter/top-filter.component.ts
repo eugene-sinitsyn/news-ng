@@ -60,6 +60,10 @@ export class TopFilterComponent implements OnInit, OnDestroy {
     this.formGroup.markAsDirty();
   }
 
+  public tryApplyFilter(): void {
+    if (this.formGroup.dirty) this.applyFilter();
+  }
+
   public applyFilter(): void {
     let filterState = new TopFilterStateModel(this.formGroup.value);
     if (filterState.isEmpty) filterState = null;
