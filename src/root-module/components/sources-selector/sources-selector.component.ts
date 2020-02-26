@@ -66,7 +66,7 @@ export class SourcesSelectorComponent implements
         this.country$,
         this.category$
       ).subscribe(([sources, country, category]) => {
-        this.sources = sources && sources.filter(
+        this.sources = sources?.filter(
           source => this.fitsCriteria(source, country, category)
         );
         const numberOfSources = this.sources ? this.sources.length : 0;

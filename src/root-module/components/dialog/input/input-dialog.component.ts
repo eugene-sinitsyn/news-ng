@@ -20,7 +20,7 @@ export class InputDialogComponent {
   public get value(): string {
     if (!this.formGroup) return null;
     const value = this.formGroup.get('value').value;
-    return value && value.trim();
+    return value?.trim();
   }
 
   public trySubmit(): void {

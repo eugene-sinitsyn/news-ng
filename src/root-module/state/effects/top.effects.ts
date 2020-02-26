@@ -104,10 +104,10 @@ export class TopArticlesEffects {
     const filter = state.top.filter
     return new TopArticlesRequestModel({
       language: state.preferences.language,
-      searchString: filter && filter.searchString,
-      category: filter && filter.category,
-      country: filter && filter.country,
-      sources: filter && filter.sources
+      searchString: filter?.searchString,
+      category: filter?.category,
+      country: filter?.country,
+      sources: filter?.sources
     });
   }
 }

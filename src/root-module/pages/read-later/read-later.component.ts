@@ -27,9 +27,9 @@ export class ReadLaterComponent implements OnInit, OnDestroy {
         this.store.select(state => state.readLater.page),
         this.store.select(state => state.preferences.pageSize)
       ).subscribe(([articles, page, pageSize]) => {
-        this.articles = articles && articles.slice(0, page * pageSize);
-        this.totalCount = (articles && articles.length) || 0;
-        this.visibleCount = (this.articles && this.articles.length) || 0;
+        this.articles = articles?.slice(0, page * pageSize);
+        this.totalCount = articles?.length || 0;
+        this.visibleCount = this.articles?.length || 0;
       })
     );
     this.subscription.add(

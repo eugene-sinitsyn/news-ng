@@ -38,7 +38,7 @@ export class ArticlesHttpService {
       params = params.set('q', encodeURI(request.searchString));
 
     // priority: 1: source, 2: country, 3: search string, 4: language
-    if (request.sources && request.sources.length)
+    if (request.sources?.length)
       params = params.set('sources', request.sources.join(','));
     else if (request.country) params = params.set('country', request.country);
     else if (!request.searchString) params = params.set('language', request.language);

@@ -45,7 +45,7 @@ export class ArticleCardComponent {
   }
 
   public removeFromReadLater(): void {
-    const url = this.article && this.article.url;
+    const url = this.article?.url;
     this.store.dispatch(readLaterActions.deleteFromReadLater({ url }));
   }
 }
