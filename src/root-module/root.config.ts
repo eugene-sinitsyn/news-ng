@@ -13,6 +13,7 @@ import { TopArticlesComponent } from './pages/top-articles/top-articles.componen
 export class RootConfig {
   public readonly apiBaseUrl: string = 'https://newsapi.org/v2';
   public readonly apiKey: string = 'fda9fe9838c14b07afb7ee94a9d0a7c8';
+  public readonly sourcesExpirationTimeMs: number = 86400000; // 1 day
   public readonly darkThemeStylesUrl: string = 'assets/themes/pink-bluegrey.css';
   public readonly lightThemeStylesUrl: string = 'assets/themes/indigo-pink.css';
   public readonly tooltipDelay: number = 500; // ms

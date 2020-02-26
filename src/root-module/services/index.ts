@@ -4,6 +4,7 @@ import {
   PreferencesStorageService
 } from './local-storage/preferences-storage.service';
 import { ReadLaterStorageService } from './local-storage/read-later-storage.service';
+import { SourcesStorageService } from './local-storage/sources-storage.service';
 import {
   TopFiltersStorageService
 } from './local-storage/top-filters-storage.service';
@@ -18,6 +19,7 @@ export const newsStorageServices = [
   LocalStorageService,
   PreferencesStorageService,
   ReadLaterStorageService,
+  SourcesStorageService,
   TopFiltersStorageService
 ];
 
