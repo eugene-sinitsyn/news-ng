@@ -1,4 +1,5 @@
 import { PreferencesFormService } from './forms/preferences-form.service';
+import { TopFilterFormService } from './forms/top-filter-form.service';
 import { LocalStorageService } from './local-storage/local-storage.service';
 import {
   PreferencesStorageService
@@ -12,7 +13,8 @@ import { ArticlesHttpService } from './network/articles-http.service';
 import { SourcesHttpService } from './network/sources-http.service';
 
 export const newsFormsServices = [
-  PreferencesFormService
+  PreferencesFormService,
+  TopFilterFormService
 ];
 
 export const newsStorageServices = [

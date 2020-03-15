@@ -8,12 +8,15 @@ import {
   Output,
   ViewChild
 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { merge, Subscription } from 'rxjs';
 
 import { CategoryEnum } from '../../../enums/category.enum';
 import { CountryEnum } from '../../../enums/country.enum';
+import {
+  TopFilterFormService
+} from '../../../services/forms/top-filter-form.service';
 import { UtilitiesService } from '../../../services/utilities.service';
 import { topActions } from '../../../state/actions/top.actions';
 import { RootStateModel } from '../../../state/models/root-state.model';
@@ -27,7 +30,7 @@ import { TopFilterStateModel } from '../../../state/models/top-filter-state.mode
 export class TopFilterComponent implements OnInit, OnDestroy, AfterViewInit {
   public constructor(
     private readonly store: Store<RootStateModel>,
-    private readonly formBuilder: FormBuilder
+    private readonly formService: TopFilterFormService
   ) {}
 
   @Output() public readonly close: EventEmitter<void> = new EventEmitter<void>();
@@ -89,18 +92,10 @@ export class TopFilterComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private setupFormGroup(filterState: TopFilterStateModel): void {
-    if (!filterState) filterState = new TopFilterStateModel();
-    this.formGroup = this.formBuilder.group({
-      category: [filterState.category],
-      country: [filterState.country],
-      sources: [filterState.sources],
-      searchString: [filterState.searchString]
-    });
+    const { formGroup, subscription } = this.formService.buildForm(filterState);
+    this.formGroup = formGroup;
 
     if (this.formSubscription) this.formSubscription.unsubscribe();
-    this.formSubscription = merge(
-      this.formGroup.get('country').valueChanges,
-      this.formGroup.get('category').valueChanges
-    ).subscribe(() => this.formGroup.get('sources').setValue([]));
+    this.formSubscription = subscription;
   }
 }
