@@ -29,19 +29,27 @@ export class ArticlesHttpService {
   }
 
   private createTopArticlesParams(request: TopArticlesRequestModel): HttpParams {
-    let params: HttpParams = new HttpParams()
-      .set('pageSize', '100'); // dev plan limitation
-
+    // 100 articles is the dev plan limitation
+    let params: HttpParams = new HttpParams().set('pageSize', '100');
     if (request.page) params = params.set('page', request.page.toString());
-    if (request.category) params = params.set('category', request.category);
-    else if (request.searchString)
+
+    const searchStringIsSet = !!request.searchString;
+    const sourceIsSet = !!request.sources?.length;
+    const countryIsSet = !!request.country;
+    const categoryIsSet = !!request.category;
+
+    if (searchStringIsSet)
       params = params.set('q', encodeURI(request.searchString));
 
-    // priority: 1: source, 2: country, 3: search string, 4: language
-    if (request.sources?.length)
-      params = params.set('sources', request.sources.join(','));
-    else if (request.country) params = params.set('country', request.country);
-    else if (!request.searchString) params = params.set('language', request.language);
+    // override rules:
+    //   - source > country and category
+    //   - source or country or category or search string > language
+    if (sourceIsSet) params = params.set('sources', request.sources.join(','));
+    else if (countryIsSet || categoryIsSet) {
+      if (countryIsSet) params = params.set('country', request.country);
+      if (categoryIsSet) params = params.set('category', request.category);
+    } else if (!searchStringIsSet) // nothing is set
+      params = params.set('language', request.language);
 
     return params;
   }
