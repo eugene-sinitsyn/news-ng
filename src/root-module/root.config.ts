@@ -18,6 +18,8 @@ export class RootConfig {
   public readonly lightThemeStylesUrl: string = 'assets/themes/indigo-pink.css';
   public readonly tooltipDelay: number = 500; // ms
   public readonly notificationDuration: number = 3000; // ms
+  public readonly infiniteScrollTolerance: number = 100; // px
+  public readonly scrollToTopTolerance: number = 1024; // px
 }
 
 export const routes: Routes = [

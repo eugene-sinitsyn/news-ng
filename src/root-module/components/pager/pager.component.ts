@@ -30,8 +30,6 @@ export class PagerComponent implements OnInit, OnDestroy {
   }
 
   private readonly body: HTMLElement;
-  private readonly infiniteScrollTolerance: number = 100; // px
-  private readonly scrollToTopTolerance: number = 1024; // px
   private subscription: Subscription = new Subscription();
   private infiniteScrollEnabled: boolean = true;
 
@@ -70,7 +68,8 @@ export class PagerComponent implements OnInit, OnDestroy {
   }
 
   private updateScrollToTopButton(): void {
-    const shouldBeVisible = this.body.scrollTop > this.scrollToTopTolerance;
+    const shouldBeVisible =
+      this.body.scrollTop > this.rootConfig.scrollToTopTolerance;
     if (shouldBeVisible !== this.scrollToTopVisible)
       this.ngZone.run(() => this.scrollToTopVisible = shouldBeVisible);
   }
@@ -78,7 +77,7 @@ export class PagerComponent implements OnInit, OnDestroy {
   private handleInfiniteScrolling(): Subscription {
     if (!this.moreAvailable) return;
     const distanceToBottom = this.getDistanceToBottom();
-    if (distanceToBottom < this.infiniteScrollTolerance)
+    if (distanceToBottom < this.rootConfig.infiniteScrollTolerance)
       this.ngZone.run(() => this.showMore.emit());
   }
 
